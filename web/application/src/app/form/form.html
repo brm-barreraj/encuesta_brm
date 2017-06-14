@@ -1,0 +1,14 @@
+<h1 class="form">Form</h1>
+<div *ngFor="let categoria of categorias">
+	<h2>{{categoria.categoria}}</h2>
+	<div *ngFor="let pregunta of categoria.preguntas">
+		<p>{{pregunta.pregunta}}</p>
+		<div>
+			<span (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)">1</span>
+			<span (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)">2</span>
+			<span (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)">3</span>
+			<span (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)">4</span>
+			<span (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)">5</span>
+		</div>
+	</div>
+</div>

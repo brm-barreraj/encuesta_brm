@@ -1,11 +1,14 @@
 # Requerimientos
 Node v6.10.1
+
 NPM 3.10.10
+
 @angular/cli: 1.0.3
+
 Gulp  1.2.2
 
 ## Instalación Proyecto 
-Correr `npm install`
+Correr en la carpeta web/application `npm install`
 
 ## Dev server
 Correr `npm start` for a dev server. ir a `http://localhost:4200/`. 

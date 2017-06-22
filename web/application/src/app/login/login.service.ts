@@ -17,4 +17,8 @@ export class LoginService {
     window.localStorage.setItem('!us3r4pp#', JSON.stringify(data));
   }
 
+  public deleteSession():any{
+    window.localStorage.removeItem('!us3r4pp#');
+  }
+
 }

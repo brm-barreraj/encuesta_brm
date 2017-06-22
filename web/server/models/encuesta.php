@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-class Pregunta extends \Illuminate\Database\Eloquent\Model {
+class Encuesta extends \Illuminate\Database\Eloquent\Model {
 
 	/*
 	Eloquent relacionará por defecto el modelo con una tabla que tenga su nombre en plural
@@ -9,6 +9,6 @@ class Pregunta extends \Illuminate\Database\Eloquent\Model {
 	si queremos especificar una tabla manualmente, podemos hacerlo de este modo:
 	protected $table = 'articulos';
 	*/
-	protected $table = 'pregunta';
+	protected $table = 'encuesta';
 	public $timestamps = false;
 }

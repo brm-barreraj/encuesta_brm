@@ -14,6 +14,7 @@ import { Form } from './form/form';
 // Admin
 import { AdminComponent } from './admin/admin.component';
 import { AdminLogin } from './admin/login/login';
+import { AdminEncuestas } from './admin/encuestas/encuestas';
 
 
 // Route Configuration
@@ -25,7 +26,9 @@ export const routes: Routes = [
 
   { path: 'admin', component: AdminComponent, 
   	children: [
-  		{path: 'login', component: AdminLogin}
+  		{path: 'login', component: AdminLogin},
+  		{path: 'encuestas', component: AdminEncuestas},
+
   	]
   }
 ];

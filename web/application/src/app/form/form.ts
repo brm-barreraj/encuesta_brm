@@ -70,7 +70,7 @@ export class Form {
 
 	enviarEncuesta(){
 		let idUsuario = this.serviceLogin.getSession().id;
-		this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'setEncuesta', idUsuario: idUsuario})
+		this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: this.respuestas})
 			.subscribe(
 			(result) => {
 				switch (result.error) {
@@ -78,10 +78,10 @@ export class Form {
 						alert("Ocurrió un error");
 						break;
 					case 1:
-						this.categorias = result.data;
+						alert("Se ha insertado la encuesta correctamente");
 						break;
 					case 2:
-						alert("Usuario incorrecto");
+						alert("Ya se ha respondido esta encuesta");
 						break;
 					
 				}

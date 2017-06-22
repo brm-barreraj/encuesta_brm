@@ -19,6 +19,7 @@ import { LoginService }      from './login/login.service';
 //admin
 import { AdminComponent }      from './admin/admin.component';
 import { AdminLogin }      from './admin/login/login';
+import { AdminEncuestas }      from './admin/encuestas/encuestas';
 
 
 import { routing } from './app.routes';
@@ -33,7 +34,8 @@ import { routing } from './app.routes';
 
 
     AdminComponent,
-    AdminLogin
+    AdminLogin,
+    AdminEncuestas
   ],
   imports: [
     BrowserModule,

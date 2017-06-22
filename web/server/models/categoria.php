@@ -10,5 +10,5 @@ class Categoria extends \Illuminate\Database\Eloquent\Model {
 	protected $table = 'articulos';
 	*/
 	protected $table = 'categoria';
-
+	public $timestamps = false;
 }

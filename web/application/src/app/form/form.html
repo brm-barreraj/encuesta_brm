@@ -1,4 +1,4 @@
-<h1 class="form">Form</h1>
+<h1 class="form">Form</h1><button (click)="cerrarSession()">Cerrar Sessión</button>
 <div *ngFor="let categoria of categorias">
 	<h2>{{categoria.categoria}}</h2>
 	<div *ngFor="let pregunta of categoria.preguntas">
@@ -12,3 +12,4 @@
 		</div>
 	</div>
 </div>
+<button (click)="enviarEncuesta()">Terminar</button>

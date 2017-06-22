@@ -10,4 +10,5 @@ class Usuario extends \Illuminate\Database\Eloquent\Model {
 	protected $table = 'articulos';
 	*/
 	protected $table = 'usuario';
+	public $timestamps = false;
 }

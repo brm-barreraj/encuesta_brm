@@ -30,29 +30,6 @@ const routes = {
 };
 
 
-//Compilador de TS
-
-gulp.task('ts', ()=>{
-	return gulp.src(routes.src+ '*ts')
-	.pipe(sourcemaps.init()) //cargamos tarea de sourcemaps
-	.pipe(typescript(tscConfig.compilerOptions))
-	.pipe(sourcemaps.write('../maps')) //creamos sourcemap aparte
-	.pipe(gulp.dest('dist/app'))
-	.pipe(browserSync.reload({
-		  stream: true
-		}))
-
-});
-
-
-//Lint de typscript
-gulp.task('tslint', ()=>{
-	return gulp.src(routes.src+ '*ts')
-	.pipe(tslint())
-	.pipe(tslint.report('verbose'))
-
-});
-
 
 //tarea para compilar stylus
 gulp.task('css',  () =>{

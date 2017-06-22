@@ -1,0 +1,135 @@
+button.close
+	color $Azul
+	display block
+	float none
+	font-size 8rem
+	font-weight $Light
+	height 8rem
+	margin 0
+	padding 0
+	position absolute
+	right 0rem
+	top 0rem
+	width @height
+	z-index 6
+
+	span
+		display block
+
+.btn
+	color $Azul
+	display block
+	font-weight $Light
+	margin 0 auto
+	margin-left 0
+	padding-left 0
+	position relative
+	text-transform uppercase
+	transitionBase()
+
+
+	&::after
+		path('arrow-r.svg')
+		background-size 100%
+		background-repeat no-repeat
+		content ''
+		display block
+		height 1rem
+		position absolute
+		right -0.1rem
+		top 38%
+		width 0.6rem
+		transitionBase()
+
+	&:hover
+		&::after
+			right -1rem
+
+
+	&-contract,
+	&-expand
+		cuadrado(2.3rem)
+		bottom vr-block(0.5)
+		right vr-block(0.5)
+		position absolute
+		padding 0
+		svg
+			cuadrado(100%)
+
+			polygon
+				transitionBase()
+				&:nth-of-type(1)
+					transform translate3d(-10%,-10%,0)
+				&:nth-of-type(2)
+					transform translate3d(10%,10%,0)
+
+		&::after
+			display none
+
+		&:hover
+			svg
+				polygon
+					&:nth-of-type(1)
+						transform translate3d(0%,0%,0)
+					&:nth-of-type(2)
+						transform translate3d(0%,0%,0)
+
+	&-contract
+		display none
+		svg
+			polygon
+				&:nth-of-type(1)
+					transform translate3d(10%,10%,0)
+				&:nth-of-type(2)
+					transform translate3d(-10%,-10%,0)
+
+
+
+	&-filtro
+		background-color $Amarillo
+		color $Azul
+		font-weight $Normal
+		padding 0.6rem 1rem
+
+		&::after
+			display none
+
+		svg
+			path
+				fill $Azul
+
+	&-login-g
+		background-color $Azul !important
+		background-image none !important
+		color #fff !important
+		display block
+		float none !important
+		font-size 1.8rem
+		margin 1rem auto
+		opacity 1 !important
+		width 30rem !important
+		&::after
+			content none
+
+		&::before
+			content 'Ingresar con Google'
+			display inline
+
+		&:hover
+			background-color #fff !important
+			color $Azul !important
+
+	&-vacante
+		background-color #fff
+		color $Azul
+
+		&::after
+			content none
+			margin 1rem auto
+
+		&:hover
+			background-color $Azul
+			color #fff
+	&-vacante-completa
+		float right
+		padding 0 1.2rem

@@ -1,0 +1,52 @@
+header
+  color #fff
+  padding 0
+  top 0
+  padding-bottom 0 !important
+  padding-top @padding-bottom
+
+  .col
+    &-logo
+      background-color #fff
+      padding-bottom 2.9%
+
+      .logo
+        margin auto
+        padding 3rem 0
+        height vr-block(1.3)
+        width 7.8rem
+
+        a
+          padding inherit
+
+        svg
+          img-responsive()
+
+  .container
+    &-buscar
+      background-color $Azul
+      margin-bottom vr-block(0.25)
+      padding 0.5rem
+
+      form
+        text-align right
+
+      input
+        background-color transparent
+        border none
+        border-bottom 1px solid #fff
+        color #fff
+        padding 0.3rem
+        transitionBase()
+        &:hover, &:active, &:focus
+          background-color lighten($Azul, 30%)
+          border-color @background-color
+
+      .container-buscar
+        margin 0
+        padding 0
+
+    &-menu
+      background-color $Azul
+      clearfix()
+      margin-top 1px

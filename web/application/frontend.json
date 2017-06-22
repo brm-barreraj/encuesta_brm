@@ -1,0 +1,22 @@
+{
+  "name": "encuesta-brm",
+  "title": "encuesta-brm",
+  "description": "maquetacion encuesta-brm",
+  "version": "0.1.0",
+  "homepage": "https://github.com/brmBOG/HTML",
+  "author": {
+    "name": "BRM Team"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brmBOG/HTML.git"
+  },
+  "bugs": "https://github.com/brmBOG/HTML/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/brmBOG/HTML/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": []
+}

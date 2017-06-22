@@ -1,0 +1,66 @@
+.slide
+  // position relative
+
+  &-content
+    margin-bottom 3rem
+    margin-top vr-block(4)
+    position relative
+    z-index 6
+
+    h2
+      color #fff
+      font-size 4rem
+      letter-spacing 0.5rem
+      margin-bottom 2rem
+      margin-left 0
+      text-align center
+      text-transform initial
+
+    h3
+      color #fff
+      font-weight $Normal
+      letter-spacing 0.5rem
+      margin-left 0
+      text-align center
+      text-transform initial
+
+
+    .btn-slide
+      color #fff
+      margin-left 0
+      max-width 10rem
+      padding-left 0
+      margin-bottom vr-block(2.8)
+      text-align left
+      text-transform uppercase
+
+  &-image
+    height 43rem
+    left 0
+    overflow hidden
+    position absolute
+    top 0
+    width 100%
+
+    img
+      img-responsive()
+      object-fit cover
+      height 44rem
+      -webkit-object-fit cover
+      -moz-object-fit cover
+      -ms-object-fit cover
+      -o-object-fit cover
+
+  &-title
+    border-bottom 1px dotted white
+    color #fff
+    // left 5rem
+    margin-bottom vr-block(0.25)
+    margin-top @margin-bottom
+    padding-bottom vr-block(0.5)
+    padding-top @padding-bottom
+    position relative
+    text-align left
+    text-transform initial
+    // top 12rem
+    z-index 6

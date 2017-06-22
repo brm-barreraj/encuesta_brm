@@ -9,11 +9,11 @@ import { RequestService } from './app.request';
 
 // App
 import { AppComponent } from './app.component';
-import { Login }      from './login/login';
-import { Form }      from './form/form';
+import { Login }      from './public/login/login';
+import { Form }      from './public/form/form';
 
 // App services
-import { LoginService }      from './login/login.service';
+import { LoginService }      from './public/login/login.service';
 
 
 //admin

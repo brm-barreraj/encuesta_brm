@@ -1,0 +1,57 @@
+#filtro
+  make-lg-column-offset(1)
+  make-lg-column(10)
+  margin-top vr-block(1)
+  clear both
+
+  .btn, .form-control
+    display inline-block
+    vertical-align top
+
+  .form-control
+    border-radius 0
+    max-width 85%
+
+    &:active, &:focus
+      border-color $Amarillo
+      box-shadow none
+      outline 0 !important
+
+#filtro-vacante
+  make-lg-column(12)
+  margin-bottom vr-block(1)
+  margin-top vr-block(1)
+
+
+  label
+    display block
+
+  .btn, .form-control
+    display inline-block
+    vertical-align top
+
+  .form-control
+    border-radius 0
+    max-width 85%
+
+    &:active, &:focus
+      border-color $Amarillo
+      box-shadow none
+      outline 0 !important
+
+
+
+#search
+  input
+    padding 0.3rem
+    &::-webkit-input-placeholder
+      color #fff
+    &::-moz-placeholder
+      color #fff
+    &::-ms-input-placeholder
+      color #fff
+    &:-moz-placeholder
+      color #fff
+
+    &:hover, &:active, &:focus
+      background-color lighten($Azul, 30%)

@@ -1,0 +1,590 @@
+.bienestar
+
+  &-content
+    color #fff
+    make-sm-column(8)
+    make-md-column(8)
+    make-lg-column(8)
+
+    h2
+      color #fff
+      font-size 4.8rem
+      letter-spacing 0.5rem
+      margin-left 0
+      margin-top vr-block(1)
+      margin-bottom vr-block(0.8)
+      max-width 50%
+
+    p
+      font-size 1.8rem
+
+
+    .btn
+      color #fff
+      display inline-block
+    .stores
+      a
+        display inline-block
+        max-width 20rem
+        padding-left 0
+        vertical-align top
+      img
+        img-responsive()
+
+  &-img
+    make-sm-column(4)
+    make-md-column(4)
+    make-lg-column(4)
+    img
+      margin auto
+      img-responsive()
+
+.caso
+  &-descripcion
+    make-sm-column(9)
+    make-md-column(9)
+    make-lg-column(9)
+    p
+      margin-top 0
+
+    .btn
+      display inline-block
+
+      &-board
+        margin-right 1rem
+
+      &-video
+        &::after
+          path('icon-video.svg')
+          height 1.4rem
+          width 2rem
+          right -2rem
+          top 30%
+    .container-badges
+      margin 0
+      width 100%
+      a
+        padding-left 0.5rem
+        &::before
+          content none
+
+  &-image
+    make-sm-column(3)
+    make-md-column(3)
+    make-lg-column(3)
+
+    img
+      margin auto
+      img-responsive()
+
+
+.container-servicios
+  h3.title-servicio
+    font-size 1.8rem
+    font-weight $Normal
+    padding 0.5rem
+    height 6rem
+
+  .col-lg-3
+    background-color transparent
+    border-bottom 10px solid transparent
+    cursor pointer
+    min-height 42.3rem
+    transitionBase()
+    // transition border-color 0.3s ease-in-out,
+    //            background-color 0.3s ease-in-out,
+    //            width 0.3s ease-in-out,
+    //            height 0.3s ease-in-out
+
+    &:nth-of-type(2)
+      border-bottom-color $Gris[2]
+    &:nth-of-type(3)
+      border-bottom-color $Amarillo
+    &:nth-of-type(4)
+      border-bottom-color $Verde
+    &:nth-of-type(5)
+      border-bottom-color $Cyan
+
+
+    &:hover
+      background-color $Gris[3]
+      border-color $Azul
+
+
+    //estado activo de servicio
+
+    &.active
+      background-color #fff
+      border-color transparent
+      cursor default
+      float none
+      margin-bottom 44rem
+      min-height auto
+      position relative
+      width 100%
+      z-index 1
+
+      &::after
+      &::before,
+        display table
+        content ''
+
+      &::after
+        clear both
+
+      &:hover
+        // background-color $Gris[3]
+        border-color transparent
+
+      &#u-diseno, &#u-69
+        &.active
+          .servicio-content
+            .servicio-list
+              .servicio-item
+                max-width 30%
+
+      // &#u-dev, &#u-69
+      //   background-color rgba($Amarillo,0.1)
+      // &#u-sac, &#u-70
+      //   background-color rgba($Verde,0.1)
+      // &#u-crm, &#u-71
+      //   background-color rgba($Cyan,0.1)
+
+      .img-servicio
+        display inline-block
+        margin-left 8rem
+        margin-right 13rem
+
+      .servicio-content
+        max-width 60%
+        padding-bottom 5rem
+        padding-top @padding-bottom
+        text-align center
+        h3.title-servicio
+          height auto
+          text-align center
+
+        .servicio-desc
+          max-height 100%
+          max-width 100%
+          opacity 0.99
+
+        .servicio-list
+          pointer-events all
+          .servicio-item
+            border none
+            display inline-block
+            font-size 1.8rem
+            max-width 45%
+            text-align center
+            vertical-align top
+            width 100%
+
+    &.unactive
+      bottom 0
+      clear both
+      float none
+      position absolute
+      width 33.3%
+
+      &-1
+        transform-origin top left
+      &-2
+        margin-left 33.3%
+        transform-origin top center
+      &-3
+        margin-left (33.3%*2)
+        transform-origin top right
+
+  .img-servicio
+    img-responsive()
+    // display inline-block
+    margin 1rem auto
+    vertical-align top
+
+  .servicio
+    &-caso
+      max-height 0rem
+      overflow hidden
+      padding 1rem
+      position relative
+      transitionBase()
+      z-index 2
+
+      &.active
+        max-height 60rem
+
+      h2
+        font-size 1.8rem
+        font-weight $Normal
+        margin-top 2rem
+        text-align center
+
+      h3
+        font-size 1.6rem
+        font-weight $Normal
+        margin-bottom 2rem
+        text-align center
+
+      .btn-close
+        padding 0
+        position absolute
+        right 1rem
+        top 2rem
+        &::after
+          content none
+
+      .lista-casos
+        padding 0
+        list-style-type none
+        text-align left
+
+        li
+          background-color #fff
+          border-bottom 1px solid $Gris[3]
+          display block
+          margin 0.5rem auto
+
+          a
+            color #000
+            display block
+            padding 0.5rem 1rem
+            position relative
+            z-index 1
+
+            &::before
+              background-color $Gris[3]
+              content ''
+              height 100%
+              left 0
+              position absolute
+              top 0
+              transitionBase()
+              width 0
+              z-index -1
+
+            &:hover
+              text-decoration none
+
+              &::before
+                width 100%
+
+    &-content
+      display inline-block
+      vertical-align top
+      width 100%
+      .servicio-desc
+        display inline-block
+        max-height 0
+        max-width 0
+        opacity 0
+        overflow hidden
+        transitionBase()
+        vertical-align top
+
+    &-list
+      margin-bottom 1rem
+      pointer-events none
+      transitionBase()
+      .servicio-item
+        border-bottom 1px dotted $Gris[1]
+        color $Gris[1]
+        display block
+        transitionBase()
+
+      &.hide
+        opacity 0
+
+.content-no-img
+  margin-top 0 !important
+
+.empleado
+  &-item
+    make-sm-column(12)
+    make-sm-column(3)
+    make-md-column(3)
+    make-lg-column(3)
+    img
+      img-responsive()
+
+    h2,h3
+      color $Azul
+      font-size 1.6rem
+      height 3rem
+
+    .item
+      padding $Gutter
+
+.image-hero
+  .image
+    left 0
+    position absolute
+    top 0
+    width 100%
+    img
+      img-responsive()
+
+.interacciones
+  background-color $Gris[3]
+  padding 2rem
+  position relative
+
+  #crm,
+  #desarrollo,
+  #diseno,
+  #sac
+    cursor pointer
+
+    .stroke
+      fill $Gris[3]
+      transitionBase()
+
+    .text
+      path
+        transitionBase()
+
+    &:hover, &.active
+      .stroke
+        fill $Azul
+        stroke transparent
+        stroke-dasharray 0
+
+      .text
+        path
+          fill #fff
+
+
+  &-circle
+  &-text
+    display inline-block
+    vertical-align top
+    width 100%
+
+  &-circle
+    max-width 40%
+
+  &-text
+    max-width 55%
+    position absolute
+    top 50%
+    transform translate3d(0,-50%,0)
+    h2
+      font-size 2rem
+      font-weight $Normal
+      text-align center
+      text-transform none
+      width 100%
+      // padding-top 4rem
+
+
+.img-404
+  img-responsive()
+
+.mapa-sede
+  position relative
+  height 0
+  padding-bottom 25%
+  make-xs-column(6)
+  make-sd-column(6)
+  make-md-column(6)
+  make-lg-column(6)
+  iframe
+    position absolute
+    cuadrado(100%)
+    centrarAb()
+
+
+.mdm
+  &-intro
+    make-xs-column(12)
+    make-sm-column(10)
+    make-md-column(10)
+    make-lg-column(10)
+
+    p
+      font-size 1.6rem
+      margin 0 auto
+      padding vr-block(1) 0
+      text-align justify
+      text-align-last left
+
+  &-logo
+    make-xs-column(12)
+    make-sm-column(2)
+    make-md-column(2)
+    make-lg-column(2)
+
+    svg
+      margin auto
+      img-responsive()
+
+.modal.in .modal-dialog
+  z-index 9999
+
+
+.modal-header
+  border none
+
+
+.privacyBox
+  h2
+    border-bottom 1px dotted $Gris[1]
+    // color $Azul
+    margin-bottom 1rem
+
+  h3
+    font-size $Normal
+    margin-bottom 1rem
+
+
+.sede
+  margin-bottom 1rem
+  margin-top 1rem
+  h2,h3,h4
+    border-bottom 1px dotted $Gris[1]
+    color $Azul
+    margin-top 0
+    padding-bottom 1rem
+
+  img
+    img-responsive()
+
+  p
+    text-align justify
+    text-align-last left
+
+  &-img, &-info
+    make-xs-column(12)
+    make-sm-column(6)
+    make-md-column(6)
+    make-lg-column(6)
+    margin-bottom 0.5rem
+    margin-top 0.5rem
+
+  &-info
+    padding-left 1rem
+
+.sedes-lista
+  .sede-content
+    h3
+      span
+        color $Gris[1]
+        font-size 75%
+
+
+
+.social-icons
+    padding vr-block(0.5) 0
+  a
+    padding vr-block(0.5)
+
+.text
+  &-intro
+    make-sm-column(10)
+    make-sm-column-offset(1)
+    make-md-column(10)
+    make-md-column-offset(1)
+    make-lg-column(10)
+    make-lg-column-offset(1)
+    text-align justify
+    text-align-last center
+
+.title-black
+  border-bottom 1px dotted $Gris[2]
+  color $Gris[2]
+
+.vacante
+  &-cant
+    font-weight $Bold
+    letter-spacing 0.1rem
+    strong
+      background-color $Gris[0]
+      border-radius 0.5rem
+      color $Gris[1]
+      padding 0 2rem
+      margin-left 1rem
+
+  &-content
+    // border 1px solid $Gris[1]
+    border-radius 5px
+    padding $Gutter
+
+    h2,h3
+      border-bottom 1px dotted $Gris[2]
+      color $Azul
+      font-size 1.6rem
+      margin 0 0 1rem
+      padding-bottom 1rem
+
+    p
+      padding-right 0.8rem
+      text-align left
+      text-align-last left
+
+
+    .btn
+      max-width 11rem
+      padding-left 0
+      text-align left
+
+      &:hover
+        background-color transparent
+        color $Amarillo
+
+
+    .descripcion-cargo
+      // text-overflow ellipsis
+      position relative
+      max-height 6rem
+      overflow hidden
+      transitionBase()
+
+      &.active
+        max-height 20rem
+
+
+      // &::after
+      //   background-color #fff
+      //   bottom 0
+      //   content '...'
+      //   position absolute
+      //   right 0
+      //   pointer-events none
+      //   padding 0 0 0 1rem
+      //
+      // &:hover
+      //   height 7rem
+      //   max-height 100%
+      //   overflow visible
+      //
+      //   &::after
+      //     opacity 0
+
+
+  &-sede
+    color $Gris[1]
+    font-weight $Bold
+    text-align left !important
+    text-align-last left !important
+
+#modal-premios
+  a
+    display block
+    margin 0
+    padding 0
+  img
+    img-responsive(block)
+  .modal
+    &-lg
+      max-width 60rem
+    &-header
+      padding 0
+      button.close
+        color #fff
+        opacity 0.99
+        outline none !important
+        right -0.5rem
+        top @right
+
+        &:focus, &:active
+          outline none !important

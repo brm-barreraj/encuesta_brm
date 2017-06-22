@@ -1,0 +1,21 @@
+a.badge
+  background-color $Gris[0]
+  color $Gris[1]
+  font-weight $Light
+  margin-right 0.5rem
+  padding-left 1.8rem
+  position relative
+
+  &::before
+    path('icon-close.svg')
+    background-size 100%
+    content ' '
+    cuadrado(0.8rem)
+    display block
+    left 0.5rem
+    position absolute
+    top 0.5rem
+
+
+  &:hover
+    color $Amarillo

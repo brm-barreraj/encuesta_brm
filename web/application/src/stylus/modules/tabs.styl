@@ -1,0 +1,94 @@
+.nav-tabs
+	border none
+	margin 1rem auto
+
+	&>li.active>a,
+	&>.nav-tabs>li.active>a:focus,
+	&>.nav-tabs>li.active>a:hover
+		border-radius 0
+
+
+	li
+		border-radius 0
+		&:nth-of-type(2)
+			border-left 1px solid $Gris[0]
+			border-right @border-left
+
+		a
+			border none
+			color $Gris[2]
+			margin 0
+			padding 1rem 1.5rem
+			text-transform uppercase
+
+			&:hover, &:active, &:focus
+				background-color $Gris[0] !important
+				color $Azul
+
+			a
+				background-color $Gris[0] !important
+				border none !important
+				color $Azul
+				font-weight $Light
+
+		&:active, &:focus, &:hover
+			background-color $Gris[0] !important
+
+		&.active
+			a
+				border none
+				color $Azul
+				font-weight $Normal
+
+			&:hover
+				a
+					border none !important
+					color #000 !important
+					font-weight $Normal
+
+.tabs, .tab
+	list-style-type none
+	margin 1rem auto
+	padding 0
+	text-align center
+	text-transform uppercase
+
+	li
+		display inline-block
+		max-width 33%
+		width 100%
+
+		&:nth-of-type(2)
+			border-left 1px solid $Gris[0]
+			border-right @border-left
+
+
+		a
+			color $Gris
+			display block
+			padding 1rem 1.5rem
+			text-align center
+
+		&.active
+			a
+				background-color $Gris[0]
+				border none
+				color $Azul
+				pointer-events none
+
+
+
+	&-content
+		.tab-pane
+			font-size 1.2rem
+			transition opacity 0.3s ease-in-out
+
+			p
+				text-align justify
+				text-align-last left
+				line-height 1.3
+
+
+			// &.active
+			// 	display block
+			// 	opacity 0.99

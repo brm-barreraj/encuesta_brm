@@ -6,7 +6,7 @@ import { RequestService } from '../../app.request';
 
 @Component({
   templateUrl: './encuestas.html',
-  styleUrls: ['./encuestas.css'],
+  // styleUrls: ['./encuestas.css'],
   providers: [RequestService]
 })
 

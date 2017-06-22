@@ -1,0 +1,38 @@
+footer
+  background-color $Azul
+  color #fff
+  padding 2rem 0
+
+  a
+    color #fff
+    padding 0 0.25rem
+
+    &:hover
+      color $Amarillo
+
+  .col
+    &-marcas
+      svg
+        margin auto
+        img-responsive()
+    &-contacto
+      text-align right
+
+      h3
+        color #fff
+        font-family $FontStack
+        font-size 1.8rem
+        font-weight $Light
+        margin-bottom vr-block(0.5)
+        text-transform capitalize
+
+
+  .container-legales
+    make-xs-column(12)
+    make-sm-column(10)
+    make-sm-column-offset(1)
+    make-md-column(8)
+    make-md-column-offset(2)
+    make-lg-column(8)
+    make-lg-column-offset(2)
+    // text-align center

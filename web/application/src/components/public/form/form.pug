@@ -1,0 +1,13 @@
+div(*ngFor="let categoria of categorias")
+	h2 {{categoria.categoria}}
+
+	div( *ngFor="let pregunta of categoria.preguntas")
+		p {{pregunta.pregunta}}
+
+		div
+			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") 1
+			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") 2
+			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") 3
+			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") 4
+			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") 1
+button((click)="enviarEncuesta()") Terminar

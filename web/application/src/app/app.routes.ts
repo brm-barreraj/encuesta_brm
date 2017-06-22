@@ -7,8 +7,8 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // App
-import { Login } from './login/login';
-import { Form } from './form/form';
+import { Login } from './public/login/login';
+import { Form } from './public/form/form';
 
 
 // Admin

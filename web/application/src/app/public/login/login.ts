@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RequestService } from '../app.request';
+import { RequestService } from '../../app.request';
 import { LoginService } from './login.service';
 
 

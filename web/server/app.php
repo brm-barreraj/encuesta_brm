@@ -190,9 +190,9 @@ switch ($accion) {
 		if (isset($request->idCuenta) && $request->idCuenta !="") {
 			$idCuenta = requestHash('decode',$request->idCuenta);
 			$preguntas = Categoria::select('cuenta.id AS idCuenta',
-				'categoria.id AS idCategoria',
+				'categoria.idCategoriaHistorial AS idCategoria',
 				'categoria.nombre AS categoria',
-				'pregunta.id AS idPregunta',
+				'pregunta.idPreguntaHistorial AS idPregunta',
 				'pregunta.titulo AS pregunta'
 				)
 			->join('pregunta', 'pregunta.idCategoria', '=', 'categoria.id')
@@ -202,37 +202,7 @@ switch ($accion) {
 			->get();
 			if (count($preguntas) > 0) {
 				$preguntas = $preguntas->toArray();
-				//Guarda las preguntas en cada categoría
-				$newPreguntas = array();
-				foreach ($preguntas as $pregunta) {
-					$nNewPreguntas = count($newPreguntas);
-					$status=true;
-						for ($i=0; $i < $nNewPreguntas; $i++) { 
-							if ($pregunta['idCategoria']==$newPreguntas[$i]['idCategoria']) {
-								array_push($newPreguntas[$i]['preguntas'], array(
-										'idPregunta'=>$pregunta['idPregunta'],
-										'pregunta'=>$pregunta['pregunta']
-									)
-								);
-								$status=false;
-								break;
-							}
-						}
-					if ($status) {
-						array_push($newPreguntas, array(
-							'idCategoria'=>$pregunta['idCategoria'],
-							'categoria'=>$pregunta['categoria'],
-							'preguntas'=>
-								array(
-									array(
-										'idPregunta'=>$pregunta['idPregunta'],
-										'pregunta'=>$pregunta['pregunta']
-									)
-								)
-							)
-						);
-					}
-				}
+				$newPreguntas = groupArray($preguntas,array('idCategoria','categoria'),'preguntas');
 				$data = $newPreguntas;
 				// Error 1: Los datos de usuario son corerectos
 				$error = 1;

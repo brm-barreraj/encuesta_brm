@@ -23,6 +23,7 @@ export class Login {
 		if (this.serviceLogin.validateSession()) {
 			this.router.navigate(['form']);
 		}
+		document.body.classList.add('login');
 	}
 
 	login(){

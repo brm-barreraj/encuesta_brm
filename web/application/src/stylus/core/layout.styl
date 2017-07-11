@@ -1,11 +1,7 @@
 .row
+	make-row()
 	margin 0 auto
 	max-width $SiteWidth
+	padding-left 10px
+	padding-right @padding-left
 	position relative
-
-	for x in (1..12)
-
-		.col-lg-{x}, .col-md-{x}, .col-sm-{x}, .col-xs-{x}
-			// padding-left ($Gutter / 2)
-			// padding-right @padding-left
-			transition width ease-in-out 0.3s

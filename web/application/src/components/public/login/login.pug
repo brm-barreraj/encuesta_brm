@@ -1,5 +1,31 @@
-h1.login Login
+header.container-fluid
+	div.row
+		//Logo brm login
+		div.logo
+			include ../../includes/logo-brm.svg
+		///-Logo brm login
 
-input(type="text" [(ngModel)]="usuario")
-input(type="password" [(ngModel)]="contrasena")
-button((click)="login()") Aceptar
+		h1.login Encuesta brm
+		
+		p.text-center.
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure.
+
+
+//Login
+div.container-fluid.container-login
+	div.row
+		div.form-group
+			label(for="usuario") Usuario
+			input(type="text" [(ngModel)]="usuario", id="usuario")
+
+		div.form-group
+			label(for="pass") Contraseña
+			input(type="password" [(ngModel)]="contrasena", id="pass")
+
+
+		button.btn.btn-submit((click)="login()") Aceptar
+///-Login
+
+
+
+

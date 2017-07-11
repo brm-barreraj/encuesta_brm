@@ -1,0 +1,67 @@
+//prefijo pub
+body.login
+	path('bg-login.jpg')
+	background-size cover
+	color #fff
+	text-align center
+	
+
+	h1
+		color #fff
+		
+
+	p
+		margin 1rem auto
+		font-size 
+
+
+	.logo
+		background-color #fff
+		box-shadow 0px 0px 5px 0px rgba(0, 0, 0, 0.5)
+		margin 0 auto 3rem
+		max-width 10rem
+		padding 3.3rem 1rem
+		
+		svg
+			img-responsive(block)
+			margin 0 auto
+			max-width 20rem
+			width 100%
+			
+
+.container-login
+	margin 1rem auto
+	
+	.form
+		&-group
+			margin 2rem auto
+			position relative
+			padding-left 2rem
+			transitionBase()
+			
+			input
+				background-color transparent
+				border none
+				border-bottom 1px solid white
+				font-size 1.6rem
+				padding 1rem 0
+				position relative
+				transitionBase()
+				width 100%
+				z-index 0
+			
+			
+			label
+				display block
+				margin 0
+				padding 0
+				position absolute
+				text-align left
+				top 50%
+				transform translateY(-@top)
+				transitionBase()
+				
+
+			&.active
+				opacity 0
+				pointer-events none

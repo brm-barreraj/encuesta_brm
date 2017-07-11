@@ -36,11 +36,17 @@ head
 
 body
 	
-	//Ejemplo de injeccion de SVG en el html
-	div.logo
-		include ../includes/logo-brm.svg
+	//- //Ejemplo de injeccion de SVG en el html
+	//- div.logo
+	//- 	include ../includes/logo-brm.svg
 
 	app-root Cargando
+
+
+	footer.container-fluid
+		div.row
+			p Todos los derechos reservados
+			+image('sign.svg', 'Write with love by BRM')(class="firma-footer")
 
 	block Scripts
 

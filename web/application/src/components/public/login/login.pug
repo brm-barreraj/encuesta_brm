@@ -14,16 +14,19 @@ header.container-fluid
 //Login
 div.container-fluid.container-login
 	div.row
-		div.form-group
-			label(for="usuario") Usuario
-			input(type="text" [(ngModel)]="usuario", id="usuario")
+		div.col-login
+			//- div.form-group((click)="this.active = !this.active", [class.active]="this.active")
+			div.form-group.form-user((click)="this.active = !this.active", [class.active]="this.active")
+				label(for="usuario") Usuario
+				input(type="text" [(ngModel)]="usuario", id="usuario")
 
-		div.form-group
-			label(for="pass") Contraseña
-			input(type="password" [(ngModel)]="contrasena", id="pass")
+			//- div.form-group((click)="this.aca = !this.aca", [class.active]="this.aca")
+			div.form-group.form-pass((click)="this.aca = !this.aca", [class.active]="this.aca")
+				label(for="pass") Contraseña
+				input(type="password" [(ngModel)]="contrasena", id="pass")
 
 
-		button.btn.btn-submit((click)="login()") Aceptar
+			button.btn.btn-submit((click)="login()") Aceptar
 ///-Login
 
 

@@ -1,6 +1,7 @@
 //prefijo pub
 body.login
 	path('bg-login.jpg')
+	background-repeat no-repeat
 	background-size cover
 	color #fff
 	text-align center
@@ -32,12 +33,32 @@ body.login
 .container-login
 	margin 1rem auto
 	
+	.btn
+		background-color $Amarillo
+		border none
+		color #fff
+		display block
+		margin 0 auto
+		max-width 30rem
+		padding 1rem 2rem
+		text-align center
+		width 100%
+	
 	.form
 		&-group
 			margin 2rem auto
 			position relative
-			padding-left 2rem
+			padding-left 3rem
 			transitionBase()
+			
+			&::before
+				background-size cover
+				position absolute
+				left 0
+				top 50%
+				transform translateY(-@top)
+				content ''
+				cuadrado(2.3rem)
 			
 			input
 				background-color transparent
@@ -63,5 +84,13 @@ body.login
 				
 
 			&.active
-				opacity 0
-				pointer-events none
+				label
+					opacity 0
+					pointer-events none
+		&-pass
+			&::before
+				path('icon-pass.svg')
+				
+		&-user
+			&::before
+				path('icon-user.svg')

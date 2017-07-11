@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Mon Jul 10 2017 21:29:20 GMT-0500 (COT)
+ *Mon Jul 10 2017 22:37:42 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -1823,8 +1823,214 @@ footer .firma-footer {
 .container-fluid:after {
   clear: both;
 }
+.col-login {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  position: relative;
+  min-height: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+@media (min-width: 770px) {
+  .col-login {
+    float: left;
+    width: 33.33333333333333%;
+  }
+}
+@media (min-width: 770px) {
+  .col-login {
+    margin-left: 33.33333333333333%;
+  }
+}
+button.close {
+  color: #0d2d6c;
+  display: block;
+  float: none;
+  font-size: 8rem;
+  font-weight: 300;
+  height: 8rem;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  width: 8rem;
+  z-index: 6;
+}
+button.close span {
+  display: block;
+}
+.btn {
+  color: #0d2d6c;
+  display: block;
+  font-weight: 300;
+  margin: 0 auto;
+  margin-left: 0;
+  padding-left: 0;
+  position: relative;
+  text-transform: uppercase;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn::after {
+  background-image: url("../images/arrow-r.svg");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  content: '';
+  display: block;
+  height: 1rem;
+  position: absolute;
+  right: -0.1rem;
+  top: 38%;
+  width: 0.6rem;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover::after {
+  right: -1rem;
+}
+.btn-contract,
+.btn-expand {
+  height: 2.3rem;
+  width: 2.3rem;
+  bottom: 0.6em;
+  right: 0.6em;
+  position: absolute;
+  padding: 0;
+}
+.btn-contract svg,
+.btn-expand svg {
+  height: 100%;
+  width: 100%;
+}
+.btn-contract svg polygon,
+.btn-expand svg polygon {
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn-contract svg polygon:nth-of-type(1),
+.btn-expand svg polygon:nth-of-type(1) {
+  -o-transform: translate3d(-10%, -10%, 0);
+  -ms-transform: translate3d(-10%, -10%, 0);
+  -webkit-transform: translate3d(-10%, -10%, 0);
+  -moz-transform: translate3d(-10%, -10%, 0);
+  transform: translate3d(-10%, -10%, 0);
+}
+.btn-contract svg polygon:nth-of-type(2),
+.btn-expand svg polygon:nth-of-type(2) {
+  -o-transform: translate3d(10%, 10%, 0);
+  -ms-transform: translate3d(10%, 10%, 0);
+  -webkit-transform: translate3d(10%, 10%, 0);
+  -moz-transform: translate3d(10%, 10%, 0);
+  transform: translate3d(10%, 10%, 0);
+}
+.btn-contract::after,
+.btn-expand::after {
+  display: none;
+}
+.btn-contract:hover svg polygon:nth-of-type(1),
+.btn-expand:hover svg polygon:nth-of-type(1) {
+  -o-transform: translate3d(0%, 0%, 0);
+  -ms-transform: translate3d(0%, 0%, 0);
+  -webkit-transform: translate3d(0%, 0%, 0);
+  -moz-transform: translate3d(0%, 0%, 0);
+  transform: translate3d(0%, 0%, 0);
+}
+.btn-contract:hover svg polygon:nth-of-type(2),
+.btn-expand:hover svg polygon:nth-of-type(2) {
+  -o-transform: translate3d(0%, 0%, 0);
+  -ms-transform: translate3d(0%, 0%, 0);
+  -webkit-transform: translate3d(0%, 0%, 0);
+  -moz-transform: translate3d(0%, 0%, 0);
+  transform: translate3d(0%, 0%, 0);
+}
+.btn-contract {
+  display: none;
+}
+.btn-contract svg polygon:nth-of-type(1) {
+  -o-transform: translate3d(10%, 10%, 0);
+  -ms-transform: translate3d(10%, 10%, 0);
+  -webkit-transform: translate3d(10%, 10%, 0);
+  -moz-transform: translate3d(10%, 10%, 0);
+  transform: translate3d(10%, 10%, 0);
+}
+.btn-contract svg polygon:nth-of-type(2) {
+  -o-transform: translate3d(-10%, -10%, 0);
+  -ms-transform: translate3d(-10%, -10%, 0);
+  -webkit-transform: translate3d(-10%, -10%, 0);
+  -moz-transform: translate3d(-10%, -10%, 0);
+  transform: translate3d(-10%, -10%, 0);
+}
+.btn-filtro {
+  background-color: #c3b578;
+  color: #0d2d6c;
+  font-weight: 400;
+  padding: 0.6rem 1rem;
+}
+.btn-filtro::after {
+  display: none;
+}
+.btn-filtro svg path {
+  fill: #0d2d6c;
+}
+.btn-login-g {
+  background-color: #0d2d6c !important;
+  background-image: none !important;
+  color: #fff !important;
+  display: block;
+  float: none !important;
+  font-size: 1.8rem;
+  margin: 1rem auto;
+  opacity: 1 !important;
+  -ms-filter: none !important;
+  filter: none !important;
+  width: 30rem !important;
+}
+.btn-login-g::after {
+  content: none;
+}
+.btn-login-g::before {
+  content: 'Ingresar con Google';
+  display: inline;
+}
+.btn-login-g:hover {
+  background-color: #fff !important;
+  color: #0d2d6c !important;
+}
+.btn-vacante {
+  background-color: #fff;
+  color: #0d2d6c;
+}
+.btn-vacante::after {
+  content: none;
+  margin: 1rem auto;
+}
+.btn-vacante:hover {
+  background-color: #0d2d6c;
+  color: #fff;
+}
+.btn-vacante-completa {
+  float: right;
+  padding: 0 1.2rem;
+}
 body.login {
   background-image: url("../images/bg-login.jpg");
+  background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -1857,15 +2063,42 @@ body.login .logo svg {
 .container-login {
   margin: 1rem auto;
 }
+.container-login .btn {
+  background-color: #c3b578;
+  border: none;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+  max-width: 30rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  width: 100%;
+}
 .container-login .form-group {
   margin: 2rem auto;
   position: relative;
-  padding-left: 2rem;
+  padding-left: 3rem;
   -o-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.container-login .form-group::before {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: '';
+  height: 2.3rem;
+  width: 2.3rem;
 }
 .container-login .form-group input {
   background-color: transparent;
@@ -1900,11 +2133,17 @@ body.login .logo svg {
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.container-login .form-group.active {
+.container-login .form-group.active label {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   pointer-events: none;
+}
+.container-login .form-pass::before {
+  background-image: url("../images/icon-pass.svg");
+}
+.container-login .form-user::before {
+  background-image: url("../images/icon-user.svg");
 }
 .u-fixed {
   position: fixed;

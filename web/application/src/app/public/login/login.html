@@ -196,15 +196,17 @@
 <!--Login-->
 <div class="container-fluid container-login">
   <div class="row">
-    <div class="form-group">
-      <label for="usuario">Usuario</label>
-      <input type="usuario" id="usuario"/>
+    <div class="col-login">
+      <div class="form-group form-user" (click)="this.active = !this.active" [class.active]="this.active">
+        <label for="usuario">Usuario</label>
+        <input type="usuario" id="usuario"/>
+      </div>
+      <div class="form-group form-pass" (click)="this.aca = !this.aca" [class.active]="this.aca">
+        <label for="pass">Contraseña</label>
+        <input type="contrasena" id="pass"/>
+      </div>
+      <button class="btn btn-submit" (click)="login()">Aceptar</button>
     </div>
-    <div class="form-group">
-      <label for="pass">Contraseña</label>
-      <input type="contrasena" id="pass"/>
-    </div>
-    <button class="btn btn-submit" (click)="login()">Aceptar</button>
   </div>
 </div>
 <!--/-Login-->

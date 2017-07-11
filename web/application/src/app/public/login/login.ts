@@ -8,12 +8,14 @@ import { LoginService } from './login.service';
 @Component({
   templateUrl: './login.html',
   // styleUrls: ['./login.css'],
-  providers: [RequestService, LoginService]
+  providers: [RequestService, LoginService],
 })
 
 export class Login {
 	usuario:string = '';
 	contrasena:string = '';
+	// bindActive = false;
+	active = false;
 
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
@@ -25,6 +27,16 @@ export class Login {
 		}
 		document.body.classList.add('login');
 	}
+
+	// inputToggle(){
+	// 	if(!this.bindActive ){
+	// 		this.bindActive = true;
+	// 		console.log(this)
+
+	// 	}else{
+	// 		this.bindActive = false;
+	// 	}
+	// }
 
 	login(){
 		this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})

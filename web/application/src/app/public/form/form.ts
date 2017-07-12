@@ -20,7 +20,7 @@ export class Form {
 			this.router.navigate(['login']);
 		}else{
 			let idCuenta = this.serviceLogin.getSession().idCuenta;
-			this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'getPreguntas', idCuenta: idCuenta})
+			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getPreguntas', idCuenta: idCuenta})
 				.subscribe(
 				(result) => {
 					switch (result.error) {
@@ -70,7 +70,7 @@ export class Form {
 
 	enviarEncuesta(){
 		let idUsuario = this.serviceLogin.getSession().id;
-		this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: this.respuestas})
+		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: this.respuestas})
 			.subscribe(
 			(result) => {
 				switch (result.error) {

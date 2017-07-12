@@ -1,13 +1,101 @@
-div(*ngFor="let categoria of categorias")
-	h2 {{categoria.categoria}}
+include ../../includes/mixins
+//- div(*ngFor="let categoria of categorias")
+//- 	h2 {{categoria.categoria}}
 
-	div( *ngFor="let pregunta of categoria.preguntas")
-		p {{pregunta.pregunta}}
+//- 	div( *ngFor="let pregunta of categoria.preguntas")
+//- 		p {{pregunta.pregunta}}
 
-		div
-			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") 1
-			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") 2
-			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") 3
-			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") 4
-			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") 1
-button((click)="enviarEncuesta()") Terminar
+//- 		div
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") 1
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") 2
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") 3
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") 4
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") 0
+//- button((click)="enviarEncuesta()") Terminar
+header.container-fluid
+	div.row
+		//Logo brm login
+		div.logo
+			include ../../includes/logo-brm.svg
+		///-Logo brm login
+
+		h1.encuesta-title Encuesta BRM
+
+//Logo marca
+figure.marca(style="background-color:#e8252b")
+	+image('logos/avianca.png', 'Avianca')
+//Logo marca
+
+section.container-fluid.container-encuesta
+	div.row
+		h3.hola Hola Usuario
+
+		div.progress-bar
+			div.progress
+
+	//- -for(x=0; x < 5; x++)
+		
+	//Categoria
+	div.row(*ngFor="let categoria of categorias")
+		section.categoria
+			h4 categoría
+			//Nombre categoria
+			h2 {{categoria.categoria}}
+			///-Nombre categoria
+			
+			//Descripción
+			p.categoria-intro.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque repellendus nesciunt molestiae eius veritatis, minima quia tempore consectetur eum veniam porro possimus non, animi, ipsum laudantium quaerat illo ipsam. Laboriosam.
+			///-Descripción
+			//-for(y=1; y <= 4 ; y++)
+			//Pregunta
+			article.pregunta( *ngFor="let pregunta of categoria.preguntas;let i=index")
+				p.pregunta-num i
+				
+				p.pregunta-text.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nesciunt, maiores omnis molestias? Amet exercitationem sed excepturi omnis quasi dolorum rerum repellat distinctio maxime fuga, sapiente minima voluptatum illum cupiditate.
+
+				div.pregunta-opt
+					div.pregunta-controls
+						//Seleccion
+						div.pregunta-select excelente
+						//Seleccion
+
+						//Btn responder
+
+						a.btn.btn-reply Responder
+
+					///-Btn responder
+
+					//Opciones
+
+					//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") 1
+					//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") 2
+					//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") 3
+					//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") 4
+					//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") 0
+					div.opciones()
+						a.opt((click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") N/A
+						a.opt((click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") Malo
+						a.opt((click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") Regular
+						a.opt((click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") Bueno
+						a.opt((click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") excelente
+
+					///-Opciones
+
+
+			///-Pregunta
+			//actions
+			div.categoria-controls
+				//- -if(x !=0)
+				a.btn.btn-prev(href="#") Volver
+
+				//- -if(x !=4)
+				a.btn.btn-next(href="#") continuar
+				
+				// -if(x == 4)
+				button.btn.btn-submit((click)="enviarEncuesta()") Terminar
+
+			//actions
+
+	///-Categoria

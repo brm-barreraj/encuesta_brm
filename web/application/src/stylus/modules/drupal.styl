@@ -1,0 +1,242 @@
+//Rewrite Drupal CSS Components
+.container-form-vacante
+  background-color $Gris[0]
+  padding-bottom 0.5rem
+  padding-top @padding-bottom
+
+
+  .form-item
+    make-xs-column(12)
+    make-sm-column(6)
+    make-md-column(6)
+    make-lg-column(6)
+    position relative
+    padding 0.5rem
+
+    label
+      color $Gris[2]
+      display block
+      font-weight $Light
+      text-transform uppercase
+      margin 0
+
+    input
+      background-color $Gris[0]
+      border none
+      border-bottom 1px solid $Gris[1]
+      width 100%
+
+      &:focus
+        background-color #fff
+        border-color $Azul
+
+      &[type='submit']
+        background none
+        border none
+        bottom 0
+        color $Azul
+        display block
+        font-weight $Light
+        margin 0 auto
+        padding auto 0
+        position absolute
+        right 0
+        text-align center
+        text-transform uppercase
+        transitionBase()
+        width auto
+
+
+
+  #edit-submitted-subir-tu-hoja-de-vida-ajax-wrapper
+    clear both
+    .form-item
+      background-color $Gris[0]
+      make-xs-column(12)
+      make-sm-column(12)
+      make-md-column(12)
+      make-lg-column(12)
+
+    .form-managed-file, .description
+      make-xs-column(12)
+      make-sm-column(6)
+      make-md-column(6)
+      make-lg-column(6)
+
+      input
+        border none
+
+        &:focus
+          background-color transparent
+
+  .form-actions
+    clear both
+    float right
+
+    input
+      border none
+      width 100%
+
+      &[type='submit']
+        background $Amarillo
+        border none
+        color $Azul
+        display block
+        font-weight $Light
+        margin 0 auto
+        max-width 100%
+        padding auto 0
+        position relative
+        text-align center
+        text-transform uppercase
+        transitionBase()
+        width 20rem
+
+        &:hover
+          background-color darken($Amarillo, 20%)
+
+
+.view-filters
+  make-lg-column-offset(1)
+  make-lg-column(10)
+  margin-top vr-block(1)
+
+.views-widget-filter-field_vacantes_area_tid, .views-submit-button
+  display inline-block
+  vertical-align middle
+  float none !important
+  padding 0.5rem !important
+
+.views-widget-filter-field_vacantes_area_tid
+  width 88%
+  input
+    width 100%
+
+.views-submit-button
+  width 10%
+  input
+    background $Amarillo
+    border none
+    border none
+    color $Azul
+    display block
+    font-weight $Light
+    margin 0 auto
+    max-width 100%
+    padding 0.7rem 0
+    position relative
+    text-align center
+    text-transform uppercase
+    transitionBase()
+    width 100%
+
+    &:hover
+      background-color darken($Amarillo, 20%)
+
+
+#search-block-form
+  .element-invisible
+    display none
+
+  .form-item
+    display block
+    vertical-align middle
+
+  .form-actions
+    display none
+    max-width 20%
+
+    input
+      border 1px solid white
+      margin-bottom 0
+      width 100%
+
+
+  .form-item
+    path('icon-search.svg')
+    background-position center left
+    background-repeat no-repeat
+    background-size 1.3rem
+    float right
+    max-width 100%
+    padding-left 2rem
+
+#content #search-form.search-form
+  display none
+
+#block-system.block.no-title.odd.first.block-count-3.block-region-content.block-main
+  display none
+
+#block-hybridauth-hybridauth, .hybridauth-widget-wrapper
+  h2.block-title
+    display none
+
+  h3
+    text-align center
+
+  ul
+    li,a
+      display block !important
+      margin 0 auto !important
+    a
+      text-decoration none
+
+      &:hover
+        text-decoration none
+
+#block-brm-sedesu
+  .content-no-img
+      display none
+
+
+
+
+#user-login
+  .container-text
+    make-xs-column(12)
+    make-sm-column(10)
+    make-sm-column-offset(1)
+    make-md-column(8)
+    make-md-column-offset(2)
+    make-lg-column(6)
+    make-lg-column-offset(3)
+
+    .form-submit
+      background-color $Azul !important
+      background-image none !important
+      border none
+      color #fff !important
+      display block
+      float none !important
+      font-size 1.8rem
+      margin 1rem auto
+      opacity 1 !important
+      text-transform uppercase
+      width 30rem !important
+
+  p.text-center
+    display none !important
+
+#block-brm-servicios
+  .caso
+    &-descripcion
+      p
+        font-size 1.8rem
+        margin-top 4.4rem
+.container-eventos
+  .vacante-content
+    .descripcion-cargo
+      text-align left
+      transitionBase()
+
+      &.active
+        height 20rem
+        max-height 22rem
+
+
+#block-brm-trabaja
+  .modal
+    h3
+      color $Azul
+      margin 1rem auto
+      text-align center

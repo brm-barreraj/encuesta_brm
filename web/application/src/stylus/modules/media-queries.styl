@@ -1,0 +1,701 @@
+ @media (max-width:1140px)
+  header
+    .col-logo
+      padding-bottom 3.3rem
+      max-height 8.8rem
+      overflow hidden
+
+    .menu
+      ul
+        li
+          font-size 1.1rem
+          a
+            padding 1.6rem 0
+
+  .container-fluid[class^="container-"], .container-banner-home
+    padding-left ($Gutter / 2)
+    padding-right @padding-left
+
+
+  .container
+    &-columnas
+      padding-top 3.4em
+    &-content
+      margin-top 34rem
+    &-image-hero
+      h1
+        bottom -36rem
+
+
+  // .slide
+  //   &-content
+  //     margin-top vr-block(2)
+
+@media (max-width:1050px)
+  .container
+    &-content
+      margin-top 32rem
+    &-image-hero
+      h1
+        bottom -34rem
+
+@media (max-width:1000px)
+  .slide
+    &-content
+      h2
+        font-size 3.6rem
+
+      h3
+        font-size 2rem
+
+    &-image
+      height 40rem
+
+      img
+        height 42rem
+
+
+  .container
+    &-image-hero
+      h1
+        bottom -28rem
+
+    &-servicios
+      .col-lg-3
+        text-align center
+        &.active
+          .img-servicio
+            margin 1rem auto
+            margin-right 7rem
+
+          .servicio-content
+            max-width 62%
+
+@media (max-width:970px)
+  header
+    .col-logo
+      .logo
+        max-width 100%
+        padding-bottom 1rem
+
+  .container-servicios
+    .col-lg-3.active
+      .servicio-content
+        max-width 70%
+
+  .interacciones-text
+    h2
+      font-size 1.8rem
+
+@media (max-width:930px)
+
+  .slide
+    &-content
+      h2
+        font-size 2.8rem
+
+      h3
+        font-size 2rem
+
+    &-image
+      height 38rem
+
+      img
+        height 40rem
+
+
+@media (max-width:900px)
+  #filtro
+    .form-control
+      border-radius 0
+      max-width 80%
+  header
+    .col-logo
+      padding-bottom 3.3rem
+      max-height 8.4rem
+    .menu
+      ul
+        li
+          line-height vr-block(0.9)
+          width (91%/7)
+
+          ul
+            li
+              width 100%
+
+  .container
+    &-content
+      margin-top 28rem
+    &-image-hero
+      h1
+        bottom -22rem
+
+    &-servicios
+      .col-lg-3
+        min-height 43rem
+  .item
+    &-logo
+      &.active
+        .container-info-cliente
+          max-width 80%
+
+  .slide
+    &-content
+      // h2
+      //   font-size 2.8rem
+
+    &-title
+      font-size 1.7rem
+      margin-top vr-block(2)
+@media (max-width:870px)
+  .container
+    &-servicios
+      .col-lg-3
+        text-align center
+        &.active
+          .img-servicio
+            margin-right auto
+
+
+@media (max-width:850px)
+  header
+    .menu
+      ul
+        li
+          &:nth-of-type(7)
+            a
+              padding 0.7rem
+  .container-social-icon
+    width 20%
+
+  .slide
+    &-content
+      margin-top vr-block(3)
+      h2
+        font-size 2.8rem
+
+      h3
+        font-size 2rem
+
+    // &-image
+    //   height 38rem
+    //
+    //   img
+    //     height 40rem
+
+@media (max-width:820px)
+  header
+    .menu
+      ul
+        li
+          line-height vr-block(0.9)
+          width 11.8%
+
+          ul
+            li
+              width 100%
+
+@media (max-width:790px)
+  .container
+    &-servicios
+      .col-lg-3
+        min-height 44.3rem
+
+
+@media (max-width:770px)
+  footer
+    .col-contacto
+      text-align center
+  header
+    &.u-fixed
+      position fixed !important
+
+    .col
+      &-logo
+        padding-bottom 3.3rem
+        max-height 9.4rem
+        .logo
+          padding 2.5rem 0
+          height 8.5rem
+          width 10.8rem
+
+          svg
+            margin auto
+            width 100%
+      &-navegacion
+        position initial
+
+    .container
+      &-buscar
+        form
+          text-align center
+
+      &-columnas
+        h3
+          display block
+          height auto
+          text-overflow initial
+
+
+
+
+
+    .menu
+      padding vr-block(0.4)
+      ul
+        // display none
+        left 0
+        max-height none
+        opacity 0
+        overflow visible
+        pointer-events none
+        position absolute
+        width 100%
+        z-index 12
+
+        li
+          background-color $Azul
+          border-bottom 1px dotted #fff
+          display block
+          font-size 1.6rem
+          max-width 100%
+          opacity 0
+          text-align center
+          transform translate3d(0, -5%, 0)
+          width 100%
+
+          &:nth-last-of-type(1)
+            border-color transparent
+
+          a
+            padding 2rem 1.5rem !important
+          ul
+            display none
+          &.active
+            ul
+              display block !important
+              position relative
+
+              li
+                a
+                  padding 2rem 1.5rem !important
+      &.active
+        ul
+          li
+            for x in (1..8)
+              &:nth-of-type({x})
+                transition-delay (0.25s*x)
+
+      .btn-menu
+        display block
+  .col
+    &-marcas, &-contacto
+      margin vr-block(1) auto
+
+  .container
+    &-banner-home
+      padding-top 0
+
+    &-social-icon
+      bottom 0
+      position absolute
+      right 0
+      float none !important
+      z-index 10
+
+    &-content
+      margin-top 20rem
+
+    &-servicios .col-lg-3
+      min-height 30rem
+      h3.title-servicio
+        font-size 1.6rem
+
+      .servicio-list
+        display none
+
+      &.active
+        margin-bottom 31rem
+        .img-servicio
+            display block
+            margin auto
+            max-width 40rem
+
+        .servicio-content
+          display block
+          max-width 100%
+
+          .servicio-list
+            display block
+            .servicio-item
+              max-width 33%
+
+      &.unactive
+        max-width 33%
+
+    &-image-hero
+      h1
+        bottom -15rem
+
+  .empleado
+    &-item
+      margin auto
+
+      h2,h3
+        text-align center
+      img
+        display block
+        margin auto
+
+  .interacciones
+    &-circle,
+    &-text
+      max-width 100%
+
+    &-circle
+      svg
+        display block
+        margin 0.5rem auto
+
+    &-text
+      h2
+        font-size 1.6rem
+
+  .item
+    &-logo
+      &-width
+        max-width 50%
+        padding-bottom @max-width
+
+      .container-info-cliente
+        .container-social-icon
+          bottom initial
+          float right !important
+          position initial
+          right initial
+
+        p
+          font-size 1.6rem
+
+  .panel
+    &-heading
+      h4
+        a
+          padding 0
+
+  .row
+    padding-left $Gutter
+    padding-right @padding-left
+
+  .sede
+    img
+      display block
+      margin 0.5rem auto
+
+  .slide
+    &-content
+      margin-top vr-block(1)
+
+      h2
+        font-size 2.6rem
+
+      h3
+        font-size 1.6rem
+
+    &-image
+      height 33rem
+
+      img
+        height 38rem
+
+    &-title
+      margin-top vr-block(5)
+
+  .slider
+    &-home
+      margin-bottom 6rem
+
+  .stores
+    text-align center
+  .u-fixed
+    position initial
+
+  .affix
+    position fixed
+
+  .vacante-content
+    .btn
+      max-width 100%
+
+@media (max-width:680px)
+
+  .container-servicios
+    .col-lg-3
+      &.active
+        .servicio-content
+          .servicio-list
+            .servicio-item
+              max-width 100%
+  .item
+    &-logo
+      &.active
+        .container-info-cliente
+          max-width 70%
+
+
+@media (max-width:630px)
+
+  .bienestar
+    &-content
+      h2
+        font-size 3rem
+        max-width 100%
+
+  .container
+    &-banner-home
+      margin-bottom vr-block(-1)
+
+    &-columnas
+      .col-xs-4
+        clear both
+        float none
+        margin vr-block(0.5) auto
+        width 100%
+    &-social-icon
+      bottom -4rem
+
+      a
+        padding 0.3rem
+
+    &-title
+      font-size 3rem
+    &-content
+      margin-top 15rem
+    &-image-hero
+      h1
+        bottom -5rem
+        font-size 2.4rem
+        max-width 100%
+        width 100%
+    &-servicios
+      .col-lg-3
+        width 50%
+  .interacciones
+    &-circle
+      display none
+
+  .item
+    &-logo
+      &.active
+        padding-bottom 100%
+
+        .container-info-cliente
+          max-width 100%
+          p
+            font-size 1.4rem
+
+          .container-social-icon
+            max-width 12%
+            position absolute
+            right 0
+            top 4rem
+
+  .slide
+    &-content
+      margin-top vr-block(0.5)
+
+    &-image
+      height 37rem
+      img
+        height 40rem
+
+    &-title
+      font-size 1.4rem
+      margin-top vr-block(6.5)
+
+  .slider
+    &-home
+      margin-bottom 1rem
+
+@media (max-width:590px)
+  .container
+    &-banner-home
+      margin-bottom vr-block(1)
+
+
+
+@media (max-width:580px)
+  .container
+    &-banner-home
+      margin-bottom 0
+
+@media (max-width:480px)
+  .container
+    &-content
+      margin-top 10rem
+
+
+  .item
+    &-logo
+      .container-info-cliente
+        .container-social-icon
+          max-width 20%
+
+
+@media (max-width:510px)
+  #filtro
+    .form-control
+      border-radius 0
+      max-width 70%
+
+  .container
+    &-servicios
+      .col-lg-3
+        &.active
+          margin-bottom 90rem
+
+        &.unactive
+          min-height 26rem
+          margin-left 0
+          max-width 96%
+          width 100%
+
+          &-1
+            bottom 54rem
+          &-2
+            bottom 27rem
+
+          h3.title-servicio
+            // font-size 1.2rem
+            height auto
+
+  .slide
+    &-content
+      h2
+        max-width 100%
+
+@media (max-width:460px)
+  .container
+    // &-banner-home
+    //   margin-bottom vr-block(-3)
+    &-social-icon
+      bottom -4rem
+      width 23%
+  .item-logo
+    &.active
+      padding-bottom 120%
+
+
+  .slide
+    &-content
+      h2
+        font-size 2rem
+
+      h3
+        font-size 1.4rem
+
+  .slider
+    &-home
+      margin-bottom 3rem
+
+@media (max-width:430px)
+  .container
+    &-social-icon
+      bottom -4rem
+      width 25%
+  .item-logo
+    &.active
+      padding-bottom 160%
+@media (max-width:390px)
+  #search
+    input
+      max-width 70%
+
+  .item-logo
+    &.active
+      padding-bottom 200%
+
+@media (max-width:360px)
+  #filtro
+    .form-control
+      border-radius 0
+      max-width 60%
+
+  .container
+    &-content
+      margin-top 5rem
+
+    &-servicios .col-lg-3
+      min-height 20rem
+    &-social-icon
+      bottom -4rem
+      width 30%
+
+@media (max-width:350px)
+  .slide
+    &-image
+      height 42rem
+
+      img
+        height 44rem
+
+  .item-logo
+    &.active
+      padding-bottom 250%
+
+
+////============Big screens============////
+
+@media (min-width:1040px)
+  .slide
+    &-image
+
+      img
+        height auto
+
+
+@media (min-width:1290px)
+  .container
+    &-banner-home
+      margin-bottom 5rem
+
+  .image-hero
+    .image
+      max-height 53rem
+      overflow hidden
+
+  .slide-image
+    max-height 53rem
+    overflow hidden
+
+@media (min-width:1400px)
+  .container
+    &-banner-home
+      margin-bottom 5rem
+
+
+//
+// @media (min-width:1450px)
+//   .container
+//     &-banner-home
+//       margin-bottom 10rem
+//
+// @media (min-width:1500px)
+//   .container
+//     &-banner-home
+//       margin-bottom 15rem
+//
+// @media (min-width:1600px)
+//   .container
+//     &-banner-home
+//       margin-bottom 20rem
+//
+// @media (min-width:1750px)
+//   .container
+//     &-banner-home
+//       margin-bottom 25rem
+//
+// @media (min-width:1820px)
+//   .container
+//     &-banner-home
+//       margin-bottom 30rem

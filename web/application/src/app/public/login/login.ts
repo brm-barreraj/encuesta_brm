@@ -7,13 +7,15 @@ import { LoginService } from './login.service';
 
 @Component({
   templateUrl: './login.html',
-  styleUrls: ['./login.css'],
+  // styleUrls: ['./login.css'],
   providers: [RequestService, LoginService]
 })
 
 export class Login {
 	usuario:string = '';
 	contrasena:string = '';
+	activeI=false;
+	activeO=false;
 
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
@@ -23,10 +25,12 @@ export class Login {
 		if (this.serviceLogin.validateSession()) {
 			this.router.navigate(['form']);
 		}
+
+		document.body.classList.add('login')
 	}
 
 	login(){
-		this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})
+		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})
 			.subscribe(
 			(result) => {
 				switch (result.error) {

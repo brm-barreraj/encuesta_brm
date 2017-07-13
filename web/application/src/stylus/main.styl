@@ -1,0 +1,37 @@
+//Nib & gradient support
+@require 'nib'
+//Esto hace que exporte los estilos css3 con soporte para todos los navegadores
+vendor-prefixes = o ms webkit moz official
+
+//Variables y funciones, se deben declarar primero que el resto de archivos para poderlos utilizar
+@import "core/variables"
+@import "core/funciones"
+
+// vertical rhythm & modular types
+@import "core/typographic"
+$min-font	         = 10px
+$max-font	         = 14px
+$line-height-ratio = 1.2
+$min-width         = 320px
+$max-width         = 1100px
+typographic()
+
+//Bootstrap v 3.3.7
+@import 'bootstrap.config'
+
+//Layout Base
+@import "core/base"
+@import "core/layout"
+@import "core/footer"
+@import "core/containers"
+@import "core/columns"
+@import "core/buttons"
+@import "core/header"
+// @import "modules/menu"
+
+//Components
+@import "admin" 
+@import "front"
+
+//Extras
+@import "modules/utilities"

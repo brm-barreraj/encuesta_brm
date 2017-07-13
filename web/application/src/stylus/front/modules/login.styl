@@ -1,0 +1,94 @@
+//prefijo pub
+body.login
+	path('bg-login.jpg')
+	background-repeat no-repeat
+	color #fff
+	text-align center
+	
+
+	footer
+		position absolute
+		bottom 0
+
+	h1
+		color #fff
+		font-size 2.8rem
+		padding-bottom 0
+		
+	
+
+	header
+		background-image none
+		
+
+	p
+		display none
+		margin 1rem auto
+
+
+	
+
+.container-login
+	margin 1rem auto
+	
+	.btn
+		background-color $Amarillo
+		border none
+		color #fff
+		display block
+		margin 0 auto
+		max-width 30rem
+		padding 1rem 2rem
+		text-align center
+		width 100%
+	
+	.form
+		&-group
+			margin 2rem auto
+			position relative
+			padding-left 3rem
+			transitionBase()
+			
+			&::before
+				background-size cover
+				position absolute
+				left 0
+				top 50%
+				transform translateY(-@top)
+				content ''
+				cuadrado(2.3rem)
+			
+			input
+				background-color transparent
+				border none
+				border-bottom 1px solid white
+				font-size 1.6rem
+				padding 1rem 0
+				position relative
+				transitionBase()
+				width 100%
+				z-index 0
+			
+			
+			label
+				display block
+				margin 0
+				padding 0
+				position absolute
+				text-align left
+				top 50%
+				transform translateY(-@top)
+				transitionBase()
+				
+
+			&.active
+				label
+					opacity 0
+					pointer-events none
+		&-pass
+			&::before
+				path('icon-pass.svg')
+				
+		&-user
+			&::before
+				path('icon-user.svg')

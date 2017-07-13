@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginService } from '../login/login.service';
 
 @Component({
   templateUrl: './form.html',
-  styleUrls: ['./form.css']
+  // styleUrls: ['./form.css']
 })
 
 export class Form {
 	categorias:any = [];
+	catShow = 0;
+	resShow = null;
 	respuestas:Array<{idCategoria:number,idPregunta:number,puntaje:number}> = [];
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
-		private router: Router) { }
+		private router: Router,
+		private elementRef: ElementRef) { }
 
 	ngOnInit() {
+		document.body.classList.remove('login')
 		if (!this.serviceLogin.validateSession()) {
 			this.router.navigate(['login']);
 		}else{
@@ -42,7 +46,38 @@ export class Form {
 		}
 	}
 
-	votoPregunta(idCategoria, idPregunta, puntaje){
+	showRespuesta(id): void{
+		this.resShow = id;
+	}
+
+	volverCat(){
+		if (this.catShow > 0) {
+			this.resShow = null;
+			this.catShow--;
+		}
+	}
+
+	siguienteCat(){
+		if (this.catShow < this.categorias.length) {
+			this.resShow = null;
+			this.catShow++;
+		}
+	}
+
+	votoPregunta(e,idCategoria, idPregunta, puntaje): void{
+
+		let activo = e.toElement.parentNode.querySelectorAll('a.active');
+
+
+		if(activo.length > 0){
+			for(let x = 0; x < activo.length; x ++){
+
+				activo[x].classList.remove('active')
+			}
+		};
+
+		e.target.classList.add('active');
+
 		let key = -1;
 		// Valida si la respuesta ya existe
 		if (this.respuestas.length > 0) {
@@ -68,7 +103,7 @@ export class Form {
 		console.log(this.respuestas,"this.respuestas");
 	}
 
-	enviarEncuesta(){
+	enviarEncuesta(): void{
 		let idUsuario = this.serviceLogin.getSession().id;
 		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: this.respuestas})
 			.subscribe(

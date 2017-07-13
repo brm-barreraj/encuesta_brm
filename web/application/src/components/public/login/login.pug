@@ -1,0 +1,34 @@
+header.container-fluid
+	div.row
+		//Logo brm login
+		div.logo
+			include ../../includes/logo-brm.svg
+		///-Logo brm login
+
+		h1.login Encuesta brm
+		
+		p.text-center.
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure.
+
+
+//Login
+div.container-fluid.container-login
+	div.row
+		div.col-login
+			//- div.form-group((click)="this.active = !this.active", [class.active]="this.active")
+			div.form-group.form-user((click)="this.activeI = !this.activeI", [class.active]="this.activeI")
+				label(for="usuario") Usuario
+				input(type="text", [(ngModel)]="usuario", id="usuario")
+
+			//- div.form-group((click)="this.aca = !this.aca", [class.active]="this.aca")
+			div.form-group.form-pass((click)="this.activeO = !this.activeO", [class.active]="this.activeO")
+				label(for="pass") Contraseña
+				input(type="password", [(ngModel)]="contrasena", id="pass")
+
+
+			button.btn.btn-submit((click)="login()") Aceptar
+///-Login
+
+
+
+

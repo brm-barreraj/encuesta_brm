@@ -1,0 +1,26 @@
+.panel
+  &-default
+    border none
+    & > .panel-heading
+      background-color $Gris[3]
+      border none
+
+
+  &-group
+    .panel
+      border-radius 0
+
+
+  &-heading
+    border-radius 0
+    padding 1rem 0.6rem
+
+    h4
+      font-family $FontStack
+      font-weight $Light
+      text-transform inherit
+
+
+  + .panel-collapse > .panel-body,
+  + .panel-collapse > .list-group
+    border none

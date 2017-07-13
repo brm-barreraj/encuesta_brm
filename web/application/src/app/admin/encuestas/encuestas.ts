@@ -6,7 +6,7 @@ import { RequestService } from '../../app.request';
 
 @Component({
   templateUrl: './encuestas.html',
-  styleUrls: ['./encuestas.css'],
+  // styleUrls: ['./encuestas.css'],
   providers: [RequestService]
 })
 
@@ -16,7 +16,7 @@ export class AdminEncuestas {
 		private router: Router) { }
 
 	ngOnInit() {
-		this.serviceRequest.post('http://127.0.0.1/encuestas_brm/web/server/app.php', { accion: 'getEncuestas'})
+		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getEncuestas'})
 			.subscribe(
 			(result) => {
 				switch (result.error) {

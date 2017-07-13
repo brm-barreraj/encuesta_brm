@@ -1,0 +1,95 @@
+include ../../includes/mixins
+//- div(*ngFor="let categoria of categorias")
+//- 	h2 {{categoria.categoria}}
+
+//- 	div( *ngFor="let pregunta of categoria.preguntas")
+//- 		p {{pregunta.pregunta}}
+
+//- 		div
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") 1
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") 2
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") 3
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") 4
+//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") 0
+//- button((click)="enviarEncuesta()") Terminar
+header.container-fluid
+	div.row
+		//Logo brm login
+		div.logo
+			include ../../includes/logo-brm.svg
+		///-Logo brm login
+
+		h1.encuesta-title Encuesta BRM
+
+//Logo marca
+figure.marca(style="background-color:#e8252b")
+	+image('logos/avianca.png', 'Avianca')
+//Logo marca
+
+section.container-fluid.container-encuesta
+	div.row
+		h3.hola Hola Usuario
+
+		div.progress-bar
+			div.progress
+
+	//- -for(x=0; x < 5; x++)
+		
+	//Categoria
+	div.row(*ngFor="let categoria of categorias; let keyCategoria = index; let firstItem = first; let lastItem = last")
+		section.categoria([ngClass]="{ active: catShow==keyCategoria}")
+			h4 categoría
+			//Nombre categoria
+			h2 {{categoria.categoria}}
+			///-Nombre categoria
+			
+			//Descripción
+			p.categoria-intro.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque repellendus nesciunt molestiae eius veritatis, minima quia tempore consectetur eum veniam porro possimus non, animi, ipsum laudantium quaerat illo ipsam. Laboriosam.
+			///-Descripción
+			//-for(y=1; y <= 4 ; y++)
+			//Pregunta
+			article.pregunta( *ngFor="let pregunta of categoria.preguntas; let keyPregunta = index")
+				p.pregunta-num {{(keyPregunta+1)}}
+				
+				p.pregunta-text.
+					{{pregunta.pregunta}}
+
+				div.pregunta-opt
+					div.pregunta-controls
+						//Seleccion
+						div.pregunta-select Excelente
+						//Seleccion
+
+						//Btn responder
+
+						a.btn.btn-reply((click)="showRespuesta(keyPregunta)") Responder
+
+					///-Btn responder
+
+					//Opciones
+					div.opciones([ngClass]="{ active: catShow==keyCategoria && resShow==keyPregunta}")
+						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,0)") N/A
+						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,1)") Malo
+						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,2)") Regular
+						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,3)") Bueno
+						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,4)") Excelente
+
+					///-Opciones
+
+
+			///-Pregunta
+			//actions
+			div.categoria-controls
+				//- -if(x !=0)
+				a.btn.btn-prev((click)="volverCat()", *ngIf="catShow > 0") Volver
+
+				//- -if(x !=4)
+				a.btn.btn-next((click)="siguienteCat()", *ngIf="catShow < categorias.length - 1") Continuar
+				
+				// -if(x == 4)
+				button.btn.btn-submit((click)="enviarEncuesta()", *ngIf="catShow == categorias.length - 1") Terminar
+
+			//actions
+
+	///-Categoria

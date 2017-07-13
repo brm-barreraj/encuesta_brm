@@ -1,0 +1,11 @@
+div(*ngFor="let encuesta of encuestas")
+	h2 {{encuesta.cuenta}}
+	div(*ngFor="let categoria of encuesta.categorias" class="categorias")
+		| {{categoria.categoria}} {{categoria.porcentajeCategoria}} % | {{categoria.promedioPregunta}}
+		div(*ngFor="let usuario of categoria.usuarios" class="usuarios")
+			| {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+			div(*ngFor="let respuesta of usuario.respuestas" class="respuestas")
+				| {{respuesta.pregunta}} -> {{respuesta.puntaje}}
+			
+	strong Total: {{encuesta.total}}
+

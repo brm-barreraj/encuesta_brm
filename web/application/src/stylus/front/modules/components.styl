@@ -1,0 +1,185 @@
+.btn
+	border none
+	&-next,
+	&-submit
+		background-color $Gris[2]
+		color #fff
+		display block
+		margin 3rem auto
+		padding 1rem 2rem
+		text-align center
+		text-transform uppercase
+		
+		&:hover
+			background-color darken($Gris[2], 40%)
+			color #fff
+			text-decoration none
+
+	&-prev
+		background-color $Azul
+		color #fff
+		display block
+		margin 3rem auto
+		padding 1rem 2rem
+		text-align center
+		text-transform uppercase
+		
+		&:hover
+			background-color darken($Azul, 40%)
+			color #fff
+			text-decoration none
+		
+	&-reply
+		path('reply.svg')
+		background-position center right
+		background-size 2.5rem
+		background-repeat no-repeat
+		color black
+		// float right
+		padding-right 3rem
+
+.categoria
+	height 100%
+	opacity 0
+	max-height 0
+	overflow hidden
+	transitionBase()
+	
+	&-controls
+		clearfix()
+	&-intro
+		border-bottom 2px solid $Gris[2]
+		padding 0.5rem 1rem
+		
+	&.active
+		opacity 0.99
+		max-height 130rem
+
+.container-encuesta
+	margin 9rem auto 1rem
+	
+	h2, h4
+		line-height 1
+		text-align center
+		text-transform uppercase
+		
+	h2
+		color black
+		font-size 2.5rem
+	h4
+		color $Gris[2]
+		font-size 1.6rem
+
+.encuesta-title
+	padding-bottom 5rem
+
+
+.hola
+	text-align center
+	font-size 1.6rem
+	
+
+//marca
+.marca
+	border-radius 100%
+	box-shadow 0px 0px 5px 0px rgba(0, 0, 0, 0.5)
+	height 0
+	left 50%
+	overflow hidden
+	padding-bottom 10rem
+	position absolute
+	top 18.3rem
+	transform translateX(-@left)
+	width @padding-bottom
+	z-index 2
+	
+	img
+		img-responsive(block)
+		max-width 7.5rem
+		margin 1rem auto
+		
+
+.btn-reply,
+.pregunta-select
+	display inline-block
+	vertical-align middle
+
+.opciones
+	background-color $Azul
+	border-radius 1rem
+	box-shadow 0px 0px 5px 0px rgba(0, 0, 0, 0.5)
+	bottom 0
+	max-height 5.9rem
+	opacity 0
+	padding 0.5rem 1rem
+	pointer-events none
+	position absolute
+	text-align center
+	transitionBase()
+	width 0%
+	z-index 5
+	
+	&.active
+		opacity 0.99
+		pointer-events all
+		width 100%
+		
+		a
+			opacity 0.99
+
+	a
+		color #fff
+		font-size 1rem
+		display inline-block
+		margin 0.5rem
+		opacity 0
+		position relative
+		text-transform uppercase
+		transition-delay 0.3s
+		
+		&::before
+			background-color transparent
+			border 2px solid white
+			circ(2.5rem)
+			content ''
+			display block
+			margin 0 auto
+			transitionBase()
+			
+		&.active, &:hover
+			text-decoration none
+			&::before
+				background-color $Amarillo
+				border-color transparent
+
+.pregunta
+	border-bottom 2px solid $Gris[2]
+	padding 0.5rem 1rem
+	position relative
+	
+	&-controls
+		float right
+		
+
+	&-num
+		color black
+		font-weight $Bold
+		left 0.5rem
+		position absolute
+		top 0.5rem
+		
+
+	&-opt
+		position relative
+		padding 1.7rem 0
+		margin 2rem auto
+		
+		
+	&-select
+		border-right 2px solid $Azul
+		color $Azul
+		padding 0 0.5rem
+		text-transform uppercase
+		
+	&-text
+		padding-left 0.8rem

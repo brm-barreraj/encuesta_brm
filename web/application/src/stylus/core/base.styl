@@ -1,0 +1,51 @@
+::selection /* WebKit/Blink Browsers */
+	background $Azul
+	color #fff
+	text-shadow 0px 0px 5px rgba(255, 255, 255, .75)
+
+::-moz-selection /* Gecko Browsers */
+	background $Azul
+	color #fff
+	text-shadow 0px 0px 5px rgba(255, 255, 255, .75)
+
+
+::-webkit-file-upload-button
+	cursor pointer
+
+a
+	color $Amarillo
+	transitionBase()
+
+	&:hover
+		color $Azul
+		text-decoration underline
+
+	img
+		border 0 !important
+
+body
+	background-color #fff
+	color $Gris[1]
+	font-family $FontStack
+	font-size 1.4rem
+	font-weight $Light
+
+
+h1,h2,h3,h4,h5,h6
+	color $Gris[2]
+	font-family $FontStack
+	letter-spacing 0.3rem
+	margin 0.5rem auto
+	font-weight $Bold
+	text-transform uppercase
+
+input,select,textarea
+	transitionBase()
+	&:active
+	&:focus
+		outline none !important
+
+
+p
+	margin 0.5rem auto
+	font-size 1.4rem

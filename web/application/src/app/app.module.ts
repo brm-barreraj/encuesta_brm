@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 //General
 import { RequestService } from './app.request';
 
@@ -43,7 +43,7 @@ import { routing } from './app.routes';
     HttpModule,
     routing
   ],
-  providers: [RequestService, LoginService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, RequestService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

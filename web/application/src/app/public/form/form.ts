@@ -19,7 +19,7 @@ export class Form {
 		private elementRef: ElementRef) { }
 
 	ngOnInit() {
-		document.body.classList.remove('login')
+		document.body.classList
 		if (!this.serviceLogin.validateSession()) {
 			this.router.navigate(['login']);
 		}else{
@@ -46,8 +46,8 @@ export class Form {
 		}
 	}
 
-	showRespuesta(id): void{
-		this.resShow = id;
+	showRespuesta(idPregunta): void{
+		document.querySelector('.resp-'+idPregunta).classList.add('active');
 	}
 
 	volverCat(){
@@ -65,13 +65,36 @@ export class Form {
 	}
 
 	votoPregunta(e,idCategoria, idPregunta, puntaje): void{
-
 		let activo = e.toElement.parentNode.querySelectorAll('a.active');
+		let resp = document.querySelector('.resp-'+idPregunta).classList;
+		let restTitle = document.querySelector('.respTitle-'+idPregunta);
 
+		// Quitamos el div de respuestas
+		setTimeout(function(){
+			resp.remove('active');
+			switch (puntaje) {
+		    	case 0:
+		    		restTitle.innerHTML = "N/A";
+		    		break;
+		    	case 1:
+		    		restTitle.innerHTML = "Malo";
+		    		break;
+		    	case 2:
+		    		restTitle.innerHTML = "Regular";
+		    		break;
+
+		    	case 3:
+		    		restTitle.innerHTML = "Bueno";
+		    		break;
+
+		    	case 4:
+		    		restTitle.innerHTML = "Excelente";
+		    		break;
+		    }
+	    },300);
 
 		if(activo.length > 0){
 			for(let x = 0; x < activo.length; x ++){
-
 				activo[x].classList.remove('active')
 			}
 		};

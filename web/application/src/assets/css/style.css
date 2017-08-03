@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Wed Jul 12 2017 19:48:06 GMT-0500 (COT)
+ *Wed Jul 26 2017 20:19:44 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2406,7 +2406,7 @@ body.login p {
 }
 .pregunta-opt {
   position: relative;
-  padding: 1.7rem 0;
+  padding: 2.7rem 0;
   margin: 2rem auto;
 }
 .pregunta-select {

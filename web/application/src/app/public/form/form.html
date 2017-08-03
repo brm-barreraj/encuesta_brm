@@ -219,13 +219,13 @@
         <div class="pregunta-opt">
           <div class="pregunta-controls">
             <!--Seleccion-->
-            <div class="pregunta-select">Excelente</div>
+            <div class="pregunta-select respTitle-{{pregunta.idPregunta}}"></div>
             <!--Seleccion-->
-            <!--Btn responder--><a class="btn btn-reply" (click)="showRespuesta(keyPregunta)">Responder</a>
+            <!--Btn responder--><a class="btn btn-reply" (click)="showRespuesta(pregunta.idPregunta)">Responder</a>
           </div>
           <!--/-Btn responder-->
           <!--Opciones-->
-          <div class="opciones" [ngClass]="{ active: catShow==keyCategoria &amp;&amp; resShow==keyPregunta}"><a class="opt" (click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,0)">N/A</a><a class="opt" (click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,1)">Malo</a><a class="opt" (click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,2)">Regular</a><a class="opt" (click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,3)">Bueno</a><a class="opt" (click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,4)">Excelente</a></div>
+          <div class="opciones resp-{{pregunta.idPregunta}}" [ngClass]="{ active: catShow==keyCategoria &amp;&amp; resShow==keyPregunta}"><a class="opt" (click)="votoPregunta($event, categoria.idCategoria,pregunta.idPregunta,0)">N/A</a><a class="opt" (click)="votoPregunta($event, categoria.idCategoria,pregunta.idPregunta,1)">Malo</a><a class="opt" (click)="votoPregunta($event, categoria.idCategoria,pregunta.idPregunta,2)">Regular</a><a class="opt" (click)="votoPregunta($event, categoria.idCategoria,pregunta.idPregunta,3)">Bueno</a><a class="opt" (click)="votoPregunta($event, categoria.idCategoria,pregunta.idPregunta,4)">Excelente</a></div>
           <!--/-Opciones-->
         </div>
       </article>

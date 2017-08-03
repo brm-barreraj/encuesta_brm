@@ -57,8 +57,29 @@ export class Form {
 		}
 	}
 
-	siguienteCat(){
-		if (this.catShow < this.categorias.length) {
+	siguienteCat(idCategoria){
+		let tempPreg = document.querySelectorAll(".cat-"+idCategoria+" > .pregunta");
+		let respCompletas = true;
+		let respuestaEsta = false;
+		// Recorre todas las preguntas
+		for(let i = 0; i < tempPreg.length;i++){
+			respuestaEsta = false;
+			// Valida que la respuesta de la pregunta este
+			for(let j = 0; j < this.respuestas.length;j++){
+				if (this.respuestas[j].idPregunta == parseInt(tempPreg[i].id)) {
+					respuestaEsta = true;
+					break;
+				}
+			}
+			if (!respuestaEsta) {
+				respCompletas = false;
+				break;
+			}
+		}
+
+		if (!respCompletas) {
+			alert("Por favor, responda todas las preguntas");
+		}else if (this.catShow < this.categorias.length) {
 			this.resShow = null;
 			this.catShow++;
 		}

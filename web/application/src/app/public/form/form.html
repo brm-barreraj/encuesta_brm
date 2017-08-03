@@ -201,7 +201,7 @@
   </div>
   <!--Categoria-->
   <div class="row" *ngFor="let categoria of categorias; let keyCategoria = index; let firstItem = first; let lastItem = last">
-    <section class="categoria" [ngClass]="{ active: catShow==keyCategoria}">
+    <section class="categoria cat-{{categoria.idCategoria}}" [ngClass]="{ active: catShow==keyCategoria}">
       <h4>categoría</h4>
       <!--Nombre categoria-->
       <h2>{{categoria.categoria}}</h2>
@@ -210,7 +210,7 @@
       <p class="categoria-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque repellendus nesciunt molestiae eius veritatis, minima quia tempore consectetur eum veniam porro possimus non, animi, ipsum laudantium quaerat illo ipsam. Laboriosam.</p>
       <!--/-Descripción-->
       <!--Pregunta-->
-      <article class="pregunta" *ngFor="let pregunta of categoria.preguntas; let keyPregunta = index">
+      <article class="pregunta preg-{{pregunta.idPregunta}}" data-id="{{pregunta.idPregunta}}" *ngFor="let pregunta of categoria.preguntas; let keyPregunta = index">
         <p class="pregunta-num">{{(keyPregunta+1)}}</p>
         <p class="pregunta-text">
           {{pregunta.pregunta}}
@@ -231,7 +231,7 @@
       </article>
       <!--/-Pregunta-->
       <!--actions-->
-      <div class="categoria-controls"><a class="btn btn-prev" (click)="volverCat()" *ngIf="catShow &gt; 0">Volver</a><a class="btn btn-next" (click)="siguienteCat()" *ngIf="catShow &lt; categorias.length - 1">Continuar</a>
+      <div class="categoria-controls"><a class="btn btn-prev" (click)="volverCat()" *ngIf="catShow &gt; 0">Volver</a><a class="btn btn-next" (click)="siguienteCat(categoria.idCategoria)" *ngIf="catShow &lt; categorias.length - 1">Continuar</a>
         <!-- -if(x == 4)-->
         <button class="btn btn-submit" (click)="enviarEncuesta()" *ngIf="catShow == categorias.length - 1">Terminar</button>
       </div>

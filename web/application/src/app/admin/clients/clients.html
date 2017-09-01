@@ -1,0 +1,9 @@
+
+<div>
+  <input placeholder="Nombre"/>
+  <input placeholder="Seleccionar imagen"/>
+  <button class="btn btn-submit" (click)="goToReports()">Crear Cliente</button>
+</div>
+<div *ngFor="let cliente of clientes"><img (click)="goToClient(cliente.idCuenta)" src="assets/images/{{cliente.imagenCuenta}}" alt="{{cliente.nombreCuenta}}"/>
+  <div *ngFor="let usuario of cliente.usuarios"><span (click)="goToUserClient(usuario.idUsuario)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</span></div><b>Crear Usuario</b>
+</div>

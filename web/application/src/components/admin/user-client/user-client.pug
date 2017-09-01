@@ -1,0 +1,10 @@
+div
+	input(placeholder="Nombre")
+	input(placeholder="Seleccionar imagen")
+	button.btn.btn-submit((click)="goToReports()") Crear Cliente
+
+div(*ngFor="let cliente of clientes")
+	h2((click)="goToClient(cliente.idCuenta)") {{cliente.nombreCuenta}}
+	div(*ngFor="let usuario of cliente.usuarios")
+		span((click)="goToUserClient(usuario.idUsuario)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+	span Crear Usuario

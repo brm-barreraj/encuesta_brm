@@ -8,7 +8,7 @@
     "serve": "ng serve",
     "watch": " gulp watch --debug",
     "start": "npm run serve &  npm run  watch",
-    "build": "rm src/index.html && gulp views & gulp template  & gulp libs & gulp css & gulp minicss  && rm src/assets/css/style.css && rm -rf src/assets/maps && ng build --prod && rm -rf dist/assets/maps && rm dist/assets/css/style.css",
+    "build": "gulp libs & gulp css & gulp minicss & gulp limpiar && rm assets/css/style.css && rm -rf assets/maps && ng build --prod ",
     "css": "gulp css && gulp minicss",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",

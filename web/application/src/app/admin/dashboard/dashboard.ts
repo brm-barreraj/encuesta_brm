@@ -5,12 +5,12 @@ import { RequestService } from '../../app.request';
 
 
 @Component({
-  templateUrl: './encuestas.html',
+  templateUrl: './dashboard.html',
   // styleUrls: ['./encuestas.css'],
   providers: [RequestService]
 })
 
-export class AdminEncuestas {
+export class AdminDashboard {
 	encuestas:any = [];
 	constructor(private serviceRequest: RequestService,
 		private router: Router) { }
@@ -34,6 +34,16 @@ export class AdminEncuestas {
 			(error) =>  {
 				console.log(error)
 			});
+	}
+
+	goToClients(){
+		this.router.navigate(['admin/clients']);
+	}
+	goToCategories(){
+		this.router.navigate(['admin/categories']);
+	}
+	goToReports(){
+		this.router.navigate(['admin/reports']);
 	}
 
 }

@@ -12,6 +12,7 @@ use Models\Pregunta;
 use Models\Respuesta;
 use Models\CategoriaHistorial;
 use Models\PreguntaHistorial;
+use Models\Cuenta;
 
 
 $request = json_decode(file_get_contents("php://input"));
@@ -115,143 +116,229 @@ function getEncuesta(){
 }
 
 switch ($accion) {
-	// Trae todas las respuestas de las encuestas
-	case 'getEncuestas':
-		$encuestas = getEncuesta();
-		$nEncuestas = count($encuestas);
-		for ($i=0; $i < $nEncuestas; $i++) { 
-			$categorias = $encuestas[$i]['categorias'];
-			$nCategorias = count($categorias);
-			$totalPromedioPeso = 0;
-			$totalPorcentajeCategoria  = 0;
-			for ($k=0; $k < $nCategorias; $k++) { 
-				$usuarios = $encuestas[$i]['categorias'][$k]['usuarios'];
-				$nUsuarios = count($usuarios);
-				$totalPuntajePregunta = 0;
-				for ($l=0; $l < $nUsuarios; $l++) { 
-					$respuestas = $encuestas[$i]['categorias'][$k]['usuarios'][$l]['respuestas'];
-					$nRespuestas = count($respuestas);
-					$totalPuntajeUsuario = 0;
-					for ($j=0; $j < $nRespuestas; $j++) { 
-						$totalPuntajeUsuario += $respuestas[$j]['puntaje'];
-					}
-					$promedioUsuarioPregunta = ($totalPuntajeUsuario/$nRespuestas);
-					$totalPuntajePregunta += $promedioUsuarioPregunta;
-					$encuestas[$i]['categorias'][$k]['usuarios'][$l]['promedioUsuarioPregunta'] = $promedioUsuarioPregunta;
-				}
-				$promedioPregunta = ($totalPuntajePregunta/$nUsuarios);
-				$encuestas[$i]['categorias'][$k]['promedioPregunta'] = $promedioPregunta;
-				$porcentajeCategoria = $encuestas[$i]['categorias'][$k]['porcentajeCategoria'];
-				$promedioPeso = (($promedioPregunta*$porcentajeCategoria)/100);
-				$totalPromedioPeso += $promedioPeso;
-				$encuestas[$i]['categorias'][$k]['promedioPeso'] = $promedioPeso;
-				$totalPorcentajeCategoria += $porcentajeCategoria;
-			}
-			$encuestas[$i]['totalPromedioPeso'] = $totalPromedioPeso;
-			$encuestas[$i]['totalPorcentajeCategoria'] = $totalPorcentajeCategoria;
-			$encuestas[$i]['total'] = (100 * $totalPromedioPeso)/ $totalPorcentajeCategoria;
-		}
-		if (count($encuestas) > 0) {
-			$data = $encuestas;
-			$error = 1;
-		}else{
-			$error = 2;
-		}
-		break;
+	// Public
 	
-	// Login: Realiza la validación del usuario
-	case "login":
-		if (isset($request->usuario) && $request->usuario != "" && isset($request->contrasena) && $request->contrasena != "") {
-			$usuario = $request->usuario;
-			$contrasena = $request->contrasena;
-			$data = Usuario::select('id','nombre','apellido','idCuenta')
-			->where('usuario',$usuario)
-			->where('contrasena',$contrasena)
-			->first();
-			if (count($data) > 0 && isset($data->id)) {
-				$data = (object) $data->toArray();
-				$data->id = requestHash('encode',$data->id);
-				$data->idCuenta= requestHash('encode',$data->idCuenta);
-				// Error 1: Los datos de usuario son corerectos
+		// Trae todas las respuestas de las encuestas
+		case 'getEncuestas':
+			$encuestas = getEncuesta();
+			$nEncuestas = count($encuestas);
+			for ($i=0; $i < $nEncuestas; $i++) { 
+				$categorias = $encuestas[$i]['categorias'];
+				$nCategorias = count($categorias);
+				$totalPromedioPeso = 0;
+				$totalPorcentajeCategoria  = 0;
+				for ($k=0; $k < $nCategorias; $k++) { 
+					$usuarios = $encuestas[$i]['categorias'][$k]['usuarios'];
+					$nUsuarios = count($usuarios);
+					$totalPuntajePregunta = 0;
+					for ($l=0; $l < $nUsuarios; $l++) { 
+						$respuestas = $encuestas[$i]['categorias'][$k]['usuarios'][$l]['respuestas'];
+						$nRespuestas = count($respuestas);
+						$totalPuntajeUsuario = 0;
+						for ($j=0; $j < $nRespuestas; $j++) { 
+							$totalPuntajeUsuario += $respuestas[$j]['puntaje'];
+						}
+						$promedioUsuarioPregunta = ($totalPuntajeUsuario/$nRespuestas);
+						$totalPuntajePregunta += $promedioUsuarioPregunta;
+						$encuestas[$i]['categorias'][$k]['usuarios'][$l]['promedioUsuarioPregunta'] = $promedioUsuarioPregunta;
+					}
+					$promedioPregunta = ($totalPuntajePregunta/$nUsuarios);
+					$encuestas[$i]['categorias'][$k]['promedioPregunta'] = $promedioPregunta;
+					$porcentajeCategoria = $encuestas[$i]['categorias'][$k]['porcentajeCategoria'];
+					$promedioPeso = (($promedioPregunta*$porcentajeCategoria)/100);
+					$totalPromedioPeso += $promedioPeso;
+					$encuestas[$i]['categorias'][$k]['promedioPeso'] = $promedioPeso;
+					$totalPorcentajeCategoria += $porcentajeCategoria;
+				}
+				$encuestas[$i]['totalPromedioPeso'] = $totalPromedioPeso;
+				$encuestas[$i]['totalPorcentajeCategoria'] = $totalPorcentajeCategoria;
+				$encuestas[$i]['total'] = (100 * $totalPromedioPeso)/ $totalPorcentajeCategoria;
+			}
+			if (count($encuestas) > 0) {
+				$data = $encuestas;
 				$error = 1;
 			}else{
-				$data = null;
-				// Error 2: Los datos de usuario son incorerectos
 				$error = 2;
 			}
-		}else{
-			// Error 3: datos request incorrectos
-			$error = 3;
-		}
-		break;
+			break;
+		
+		// Login: Realiza la validación del usuario
+		case "login":
+			if (isset($request->usuario) && $request->usuario != "" && isset($request->contrasena) && $request->contrasena != "") {
+				$usuario = $request->usuario;
+				$contrasena = $request->contrasena;
+				$data = Usuario::select('id','nombre','apellido','idCuenta')
+				->where('usuario',$usuario)
+				->where('contrasena',$contrasena)
+				->first();
+				if (count($data) > 0 && isset($data->id)) {
+					$data = (object) $data->toArray();
+					$data->id = requestHash('encode',$data->id);
+					$data->idCuenta= requestHash('encode',$data->idCuenta);
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 2: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
 
-	// Preguntas: Retorna todas las preguntas con su respectiva categoría
-	case "getPreguntas":
-		if (isset($request->idCuenta) && $request->idCuenta !="") {
-			$idCuenta = requestHash('decode',$request->idCuenta);
-			$preguntas = Categoria::select('cuenta.id AS idCuenta',
-				'categoria.idCategoriaHistorial AS idCategoria',
-				'categoria.nombre AS categoria',
-				'pregunta.idPreguntaHistorial AS idPregunta',
-				'pregunta.titulo AS pregunta'
+		// Preguntas: Retorna todas las preguntas con su respectiva categoría
+		case "getPreguntas":
+			if (isset($request->idCuenta) && $request->idCuenta !="") {
+				$idCuenta = requestHash('decode',$request->idCuenta);
+				$preguntas = Categoria::select('cuenta.id AS idCuenta',
+					'categoria.idCategoriaHistorial AS idCategoria',
+					'categoria.nombre AS categoria',
+					'pregunta.idPreguntaHistorial AS idPregunta',
+					'pregunta.titulo AS pregunta'
+					)
+				->join('pregunta', 'pregunta.idCategoria', '=', 'categoria.id')
+				->join('cuenta_x_categoria', 'cuenta_x_categoria.idCategoria', '=', 'categoria.id')
+				->join('cuenta', 'cuenta.id', '=', 'cuenta_x_categoria.idCuenta')
+				->where('cuenta.id',$idCuenta)
+				->get();
+				if (count($preguntas) > 0) {
+					$preguntas = $preguntas->toArray();
+					$newPreguntas = groupArray($preguntas,array('idCategoria','categoria'),'preguntas');
+					$data = $newPreguntas;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+		// setEncuesta: Guarda el formulario de una encuesta
+		case "setEncuesta":
+			if (isset($request->idUsuario) && $request->idUsuario != "" && isset($request->respuestas) && count($request->respuestas) > 0) {
+				$idUsuario = requestHash('decode',$request->idUsuario);
+				$respuestas = $request->respuestas;
+
+				// Valida si el usuario no ha realizado la encuesta el semestre actual
+				$data = Encuesta::select('id')
+				->where('fecha','>=',getRangoSemestre()->desde)
+				->where('fecha','<=',getRangoSemestre()->hasta)
+				->where('idUsuario',$idUsuario)
+				->first();
+				if (!isset($data) || $data == null || $data == '') {
+					// Inserta una nueva encuesta
+					$encuesta = new Encuesta;
+					$encuesta->fecha = date("Y-m-d H:i:s");
+					$encuesta->idUsuario = $idUsuario;
+					$encuesta->save();
+					$idEncuesta = $encuesta->id;
+					foreach ($respuestas as $respuesta) {
+						if ($respuesta->idCategoria > 0 && $respuesta->idPregunta > 0 && $respuesta->puntaje > 0) {
+							$idCategoria = $respuesta->idCategoria;
+							$idPregunta = $respuesta->idPregunta;
+							$puntaje = $respuesta->puntaje;
+							// Inserta las respuestas de una encuesta
+							$respuesta = new Respuesta;
+							$respuesta->puntaje = $puntaje;
+							$respuesta->fecha = date("Y-m-d H:i:s");
+							$respuesta->idEncuesta = $idEncuesta;
+							$respuesta->idPreguntaHistorial = $idPregunta;
+							$respuesta->idCategoriaHistorial = $idCategoria;
+							$respuesta->save();
+							unset($respuesta);
+						}
+					}
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+	// Admin
+			
+		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		case "upAdminCliente":
+			if (isset($request->idCuenta) && $request->idCuenta != "" &&
+				isset($request->nombre) && $request->nombre != "") {
+				$idCuenta = requestHash('decode',$request->idCuenta);
+
+				$nResult = Cuenta::where('id', $idCuenta)
+					->update(['nombre' => $request->nombre]);
+
+				printVar($cliente);
+				if (count($cliente) > 0) {
+					
+					$data = $nResult;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+
+		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		case "getAdminClientes":
+			if (isset($request->idCuenta) && $request->idCuenta != "") {
+				$idCuenta = requestHash('decode',$request->idCuenta);
+				$cliente = Cuenta::where("id",$idCuenta)->first();
+				if (count($cliente) > 0) {
+					$cliente = $cliente->toArray();
+					$cliente['id'] = requestHash('encode',$cliente['id']);
+					$data = $cliente;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}
+			break;
+
+	
+		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		case "getAdminUsuariosClientes":
+			$clientes = Usuario::select('cuenta.id AS idCuenta',
+				'cuenta.nombre AS nombreCuenta',
+				'cuenta.imagen AS imagenCuenta',
+				'usuario.id AS idUsuario',
+				'usuario.nombre AS nombreUsuario',
+				'usuario.apellido AS apellidoUsuario',
+				'usuario.correo AS correoUsuario'
 				)
-			->join('pregunta', 'pregunta.idCategoria', '=', 'categoria.id')
-			->join('cuenta_x_categoria', 'cuenta_x_categoria.idCategoria', '=', 'categoria.id')
-			->join('cuenta', 'cuenta.id', '=', 'cuenta_x_categoria.idCuenta')
-			->where('cuenta.id',$idCuenta)
+			->join('cuenta', 'cuenta.id', '=', 'usuario.idCuenta')
 			->get();
-			if (count($preguntas) > 0) {
-				$preguntas = $preguntas->toArray();
-				$newPreguntas = groupArray($preguntas,array('idCategoria','categoria'),'preguntas');
-				$data = $newPreguntas;
-				// Error 1: Los datos de usuario son corerectos
-				$error = 1;
-			}else{
-				$data = null;
-				// Error 1: Los datos de usuario son incorerectos
-				$error = 2;
-			}
-		}else{
-			// Error 3: datos request incorrectos
-			$error = 3;
-		}
-		break;
-
-	// Login: Realiza la validación del usuario
-	case "setEncuesta":
-		if (isset($request->idUsuario) && $request->idUsuario != "" && isset($request->respuestas) && count($request->respuestas) > 0) {
-			$idUsuario = requestHash('decode',$request->idUsuario);
-			$respuestas = $request->respuestas;
-
-			// Valida si el usuario no ha realizado la encuesta el semestre actual
-			$data = Encuesta::select('id')
-			->where('fecha','>=',getRangoSemestre()->desde)
-			->where('fecha','<=',getRangoSemestre()->hasta)
-			->where('idUsuario',$idUsuario)
-			->first();
-			if (!isset($data) || $data == null || $data == '') {
-				// Inserta una nueva encuesta
-				$encuesta = new Encuesta;
-				$encuesta->fecha = date("Y-m-d H:i:s");
-				$encuesta->idUsuario = $idUsuario;
-				$encuesta->save();
-				$idEncuesta = $encuesta->id;
-				foreach ($respuestas as $respuesta) {
-					if ($respuesta->idCategoria > 0 && $respuesta->idPregunta > 0 && $respuesta->puntaje > 0) {
-						$idCategoria = $respuesta->idCategoria;
-						$idPregunta = $respuesta->idPregunta;
-						$puntaje = $respuesta->puntaje;
-						// Inserta las respuestas de una encuesta
-						$respuesta = new Respuesta;
-						$respuesta->puntaje = $puntaje;
-						$respuesta->fecha = date("Y-m-d H:i:s");
-						$respuesta->idEncuesta = $idEncuesta;
-						$respuesta->idPreguntaHistorial = $idPregunta;
-						$respuesta->idCategoriaHistorial = $idCategoria;
-						$respuesta->save();
-						unset($respuesta);
-					}
+			if (count($clientes) > 0) {
+				$clientes = $clientes->toArray();
+				// Ciframos ids 
+				foreach ($clientes as $clienteKey => $clienteValue) {
+					$clientes[$clienteKey]['idCuenta'] = requestHash('encode',$clientes[$clienteKey]['idCuenta']);
+					$clientes[$clienteKey]['idUsuario'] = requestHash('encode',$clientes[$clienteKey]['idUsuario']);
 				}
+
+				$newClientes = groupArray($clientes,array('idCuenta','nombreCuenta','imagenCuenta'),'usuarios');
+				$data = $newClientes;
 				// Error 1: Los datos de usuario son corerectos
 				$error = 1;
 			}else{
@@ -259,12 +346,7 @@ switch ($accion) {
 				// Error 1: Los datos de usuario son incorerectos
 				$error = 2;
 			}
-		}else{
-			// Error 3: datos request incorrectos
-			$error = 3;
-		}
-		break;
-	
+			break;
 	// Acción no encontrada
 	default:
 		$data = "Ups 404";

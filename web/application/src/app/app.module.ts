@@ -16,10 +16,18 @@ import { Form }      from './public/form/form';
 import { LoginService }      from './public/login/login.service';
 
 
-//admin
+//Admin
 import { AdminComponent }      from './admin/admin.component';
 import { AdminLogin }      from './admin/login/login';
-import { AdminEncuestas }      from './admin/encuestas/encuestas';
+import { AdminReports }      from './admin/reports/reports';
+import { AdminDashboard }      from './admin/dashboard/dashboard';
+import { AdminClients }      from './admin/clients/clients';
+import { AdminClient }      from './admin/client/client';
+import { AdminUserClient }      from './admin/user-client/user-client';
+
+
+// Admin services
+import { LoginAdminService }      from './admin/login/login.service';
 
 
 import { routing } from './app.routes';
@@ -35,7 +43,11 @@ import { routing } from './app.routes';
 
     AdminComponent,
     AdminLogin,
-    AdminEncuestas
+    AdminReports,
+    AdminDashboard,
+    AdminClients,
+    AdminClient,
+    AdminUserClient,
   ],
   imports: [
     BrowserModule,

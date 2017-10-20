@@ -26,7 +26,7 @@ import { AdminUserClient } from './admin/user-client/user-client';
 export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'form', component: Form },
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
 
 
   { path: 'admin', component: AdminComponent, 

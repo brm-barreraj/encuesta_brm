@@ -10,7 +10,7 @@ export class RequestService {
   constructor(private http: Http) {}
 
   public post(url:string, parameters:any) {
-    url = url.replace("https://enc.brm.co/","http://127.0.0.1/encuestas_brm/web/server/");
+    //url = url.replace("https://enc.brm.co/","http://127.0.0.1/encuestas_brm/web/server/");
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers, method: "post" });
     return this.http.post(url, parameters, options)

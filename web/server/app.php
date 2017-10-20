@@ -167,7 +167,8 @@ switch ($accion) {
 			if (isset($request->usuario) && $request->usuario != "" && isset($request->contrasena) && $request->contrasena != "") {
 				$usuario = $request->usuario;
 				$contrasena = $request->contrasena;
-				$data = Usuario::select('id','nombre','apellido','idCuenta')
+				$data = Usuario::select('usuario.id','usuario.nombre','usuario.apellido','usuario.idCuenta','cuenta.nombre AS nombreCuenta','cuenta.imagen AS imagenCuenta')
+				->join('cuenta', 'usuario.idCuenta', '=', 'cuenta.id')
 				->where('usuario',$usuario)
 				->where('contrasena',$contrasena)
 				->first();
@@ -267,7 +268,6 @@ switch ($accion) {
 				$error = 3;
 			}
 			break;
-
 	// Admin
 			
 		// getClientes: Retorna todas los clientes de brm con sus usuarios

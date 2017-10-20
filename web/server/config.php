@@ -18,11 +18,11 @@ $capsule->addConnection([
     'driver' =>'mysql',
     'host' => '127.0.0.1',
     'database' => 'brm2_3ncu3db',
-    /* Local **/
+    /* Local **
     'username' => 'root',
     'password' => '1nt3r4ct1v3',
     /**/
-    /* Produccion **
+    /* Produccion **/
     'username' => 'brm2_enct4suser',
     'password' => 'a50PbjVnAj52',
     /**/

@@ -12,6 +12,8 @@ export class Form {
 	categorias:any = [];
 	catShow = 0;
 	resShow = null;
+	nombreUsuario = null;
+	dataSesssion = null;
 	respuestas:Array<{idCategoria:number,idPregunta:number,puntaje:number}> = [];
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
@@ -19,12 +21,12 @@ export class Form {
 		private elementRef: ElementRef) { }
 
 	ngOnInit() {
-		document.body.classList.remove('login')
+		document.body.classList.remove('login');
+		this.dataSesssion = this.serviceLogin.getSession();
 		if (!this.serviceLogin.validateSession()) {
 			this.router.navigate(['login']);
 		}else{
-			let idCuenta = this.serviceLogin.getSession().idCuenta;
-			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getPreguntas', idCuenta: idCuenta})
+			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getPreguntas', idCuenta: this.dataSesssion.idCuenta})
 				.subscribe(
 				(result) => {
 					switch (result.error) {

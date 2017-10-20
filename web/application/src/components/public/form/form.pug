@@ -23,12 +23,12 @@ header.container-fluid
 
 //Logo marca
 figure.marca(style="background-color:#e8252b")
-	+image('logos/avianca.png', 'Avianca')
+	+image('{{dataSesssion.imagenCuenta}}', '{{dataSesssion.nombreCuenta}}')
 //Logo marca
 
 section.container-fluid.container-encuesta
 	div.row
-		h3.hola Hola Usuario
+		h3.hola Hola {{dataSesssion.nombre}}
 
 		div.progress-bar
 			div.progress

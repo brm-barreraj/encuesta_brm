@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Fri Oct 20 2017 14:20:03 GMT-0500 (COT)
+ *Fri Oct 20 2017 14:50:50 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2063,6 +2063,14 @@ header .logo svg {
   margin: 0 auto;
   max-width: 20rem;
   width: 100%;
+}
+.container-admin .logo {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.container-admin .logo svg path {
+  fill: #fff;
 }
 .categoria {
   position: relative;

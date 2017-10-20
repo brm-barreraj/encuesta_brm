@@ -1,3 +1,5 @@
+include ../../includes/header-admin
+
 div(*ngFor="let encuesta of encuestas")
 	h2 {{encuesta.cuenta}}
 	div(*ngFor="let categoria of encuesta.categorias" class="categorias")

@@ -189,11 +189,19 @@
   </div>
 </header>
 <!--/-Header-->
-<div *ngFor="let encuesta of encuestas">
-  <h2>{{encuesta.cuenta}}</h2>
-  <div class="categorias" *ngFor="let categoria of encuesta.categorias">{{categoria.categoria}} {{categoria.porcentajeCategoria}} % | {{categoria.promedioPregunta}}
-    <div class="usuarios" *ngFor="let usuario of categoria.usuarios">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
-      <div class="respuestas" *ngFor="let respuesta of usuario.respuestas">{{respuesta.pregunta}} -> {{respuesta.puntaje}}</div>
-    </div>
-  </div><strong>Total: {{encuesta.total}}</strong>
-</div>
+<!--Logo marca-->
+<figure class="marca" style="background-color:#e8252b;"><img src="assets/images/test.png" title="Hola" alt="Hola"/>
+</figure>
+<!--Logo marca-->
+<section class="container-fluid container-reports">
+  <div class="row">
+    <article class="categoria-rep" *ngFor="let encuesta of encuestas">
+      <h2>{{encuesta.cuenta}}</h2>
+      <div class="categorias categorias-reports" *ngFor="let categoria of encuesta.categorias">{{categoria.categoria}} {{categoria.porcentajeCategoria}} % | {{categoria.promedioPregunta}}
+        <div class="usuarios" *ngFor="let usuario of categoria.usuarios">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+          <div class="respuestas" *ngFor="let respuesta of usuario.respuestas">{{respuesta.pregunta}} -> {{respuesta.puntaje}}</div>
+        </div>
+      </div><strong>Total: {{encuesta.total}}</strong>
+    </article>
+  </div>
+</section>

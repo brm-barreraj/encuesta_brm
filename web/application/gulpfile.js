@@ -85,9 +85,9 @@ gulp.task('css',  () =>{
 
 gulp.task('csslint', () =>{
   return gulp.src(routes.root + routes.stylus + '**/*.styl')
-        // .pipe(stylint.reporter({
-        //   verbose: true
-        //  }))
+        .pipe(stylint.reporter({
+          verbose: true
+         }))
 
 });
 
@@ -104,10 +104,10 @@ gulp.task('minicss',  () =>{
 //Render de pug
 gulp.task('views',  () =>{
   return gulp.src(
-  	[routes.root + routes.components + '**/*.pug',
-  	'!'+ routes.root + routes.components + 'template/*.pug',
-  	'!'+ routes.root + routes.components + 'includes/*.pug'
-  	])
+    [routes.root + routes.components + '**/*.pug',
+    '!'+ routes.root + routes.components + 'template/*.pug',
+    '!'+ routes.root + routes.components + 'includes/*.pug'
+    ])
     .pipe(data( function (file) {
       return {
         debug: debug,

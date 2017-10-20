@@ -15,14 +15,20 @@ date_default_timezone_set('America/Bogota');
 $capsule = new Capsule;
 //Indicamos en el siguiente array los datos de configuración de la BD
 $capsule->addConnection([
- 'driver' =>'mysql',
- 'host' => '127.0.0.1',
- 'database' => 'encuestas_brm',
- 'username' => 'root',
- 'password' => '1nt3r4ct1v3',
- 'charset' => 'utf8',
- 'collation' => 'utf8_unicode_ci',
- 'prefix' => 'enc_',
+    'driver' =>'mysql',
+    'host' => '127.0.0.1',
+    'database' => 'brm2_3ncu3db',
+    /* Local **/
+    'username' => 'root',
+    'password' => '1nt3r4ct1v3',
+    /**/
+    /* Produccion **
+    'username' => 'brm2_enct4suser',
+    'password' => 'a50PbjVnAj52',
+    /**/
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => 'enc_',
 ]);
  
 //Y finalmente, iniciamos Eloquent

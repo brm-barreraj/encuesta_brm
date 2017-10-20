@@ -19,7 +19,7 @@ export class Form {
 		private elementRef: ElementRef) { }
 
 	ngOnInit() {
-		document.body.classList
+		document.body.classList.remove('login')
 		if (!this.serviceLogin.validateSession()) {
 			this.router.navigate(['login']);
 		}else{

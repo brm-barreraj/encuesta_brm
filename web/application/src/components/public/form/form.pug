@@ -37,7 +37,7 @@ section.container-fluid.container-encuesta
 		
 	//Categoria
 	div.row(*ngFor="let categoria of categorias; let keyCategoria = index; let firstItem = first; let lastItem = last")
-		section.categoria([ngClass]="{ active: catShow==keyCategoria}")
+		section.categoria([ngClass]="{ active: catShow==keyCategoria}", class="cat-{{categoria.idCategoria}}")
 			h4 categoría
 			//Nombre categoria
 			h2 {{categoria.categoria}}
@@ -49,7 +49,7 @@ section.container-fluid.container-encuesta
 			///-Descripción
 			//-for(y=1; y <= 4 ; y++)
 			//Pregunta
-			article.pregunta( *ngFor="let pregunta of categoria.preguntas; let keyPregunta = index")
+			article.pregunta( *ngFor="let pregunta of categoria.preguntas; let keyPregunta = index", class="preg-{{pregunta.idPregunta}}", data-id="{{pregunta.idPregunta}}" )
 				p.pregunta-num {{(keyPregunta+1)}}
 				
 				p.pregunta-text.
@@ -58,17 +58,17 @@ section.container-fluid.container-encuesta
 				div.pregunta-opt
 					div.pregunta-controls
 						//Seleccion
-						div.pregunta-select Excelente
+						div.pregunta-select(class="respTitle-{{pregunta.idPregunta}}")
 						//Seleccion
 
 						//Btn responder
 
-						a.btn.btn-reply((click)="showRespuesta(keyPregunta)") Responder
+						a.btn.btn-reply((click)="showRespuesta(pregunta.idPregunta)") Responder
 
 					///-Btn responder
 
 					//Opciones
-					div.opciones([ngClass]="{ active: catShow==keyCategoria && resShow==keyPregunta}")
+					div.opciones([ngClass]="{ active: catShow==keyCategoria && resShow==keyPregunta}", class="resp-{{pregunta.idPregunta}}")
 						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,0)") N/A
 						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,1)") Malo
 						a.opt((click)="votoPregunta($event,categoria.idCategoria,pregunta.idPregunta,2)") Regular
@@ -85,7 +85,7 @@ section.container-fluid.container-encuesta
 				a.btn.btn-prev((click)="volverCat()", *ngIf="catShow > 0") Volver
 
 				//- -if(x !=4)
-				a.btn.btn-next((click)="siguienteCat()", *ngIf="catShow < categorias.length - 1") Continuar
+				a.btn.btn-next((click)="siguienteCat(categoria.idCategoria)", *ngIf="catShow < categorias.length - 1") Continuar
 				
 				// -if(x == 4)
 				button.btn.btn-submit((click)="enviarEncuesta()", *ngIf="catShow == categorias.length - 1") Terminar

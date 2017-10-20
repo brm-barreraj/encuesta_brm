@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Fri Sep 01 2017 00:41:26 GMT-0500 (COT)
+ *Fri Oct 20 2017 00:59:26 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -1796,6 +1796,7 @@ footer {
   background-color: #0d2d6c;
   color: #fff;
   padding: 2rem 0;
+  text-align: center;
   width: 100%;
 }
 footer a {
@@ -2072,23 +2073,22 @@ header .logo svg {
 @media (min-width: 770px) {
   .categoria {
     float: left;
-    width: 58.333333333333336%;
+    width: 66.66666666666666%;
   }
 }
 @media (min-width: 770px) {
   .categoria {
-    margin-left: 25%;
+    margin-left: 16.666666666666664%;
   }
 }
 body.login {
   background-image: url("../images/bg-login.jpg");
   background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
   color: #fff;
   text-align: center;
-}
-body.login footer {
-  position: absolute;
-  bottom: 0;
 }
 body.login h1 {
   color: #fff;
@@ -2156,6 +2156,18 @@ body.login p {
   transition: all 0.3s ease-in-out;
   width: 100%;
   z-index: 0;
+}
+.container-login .form-group input::-webkit-input-placeholder {
+  color: #fff;
+}
+.container-login .form-group input::-moz-placeholder {
+  color: #fff;
+}
+.container-login .form-group input:-ms-input-placeholder {
+  color: #fff;
+}
+.container-login .form-group input:-moz-placeholder {
+  color: #fff;
 }
 .container-login .form-group label {
   display: block;
@@ -2318,9 +2330,9 @@ body.login p {
 .opciones {
   background-color: #0d2d6c;
   border-radius: 1rem;
+  bottom: -2.1rem;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-  bottom: 0;
   max-height: 5.9rem;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -2406,7 +2418,7 @@ body.login p {
 }
 .pregunta-opt {
   position: relative;
-  padding: 2.7rem 0;
+  padding: 1.7rem 0;
   margin: 2rem auto;
 }
 .pregunta-select {
@@ -2419,18 +2431,25 @@ body.login p {
   padding-left: 0.8rem;
 }
 @media (min-width: 460px) {
+  .opciones {
+    right: 12rem;
+  }
   .opciones.active {
     max-width: 72%;
   }
 }
 @media (min-width: 540px) {
-  .categoria {
-    max-width: 87%;
+  .opciones.active {
+    max-width: 27rem;
   }
 }
 @media (min-width: 770px) {
   .container-encuesta {
     margin-top: 4rem;
+  }
+  .hola {
+    margin-bottom: 2.9rem;
+    margin-top: -2.9rem;
   }
   .marca {
     left: 15%;

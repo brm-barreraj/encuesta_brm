@@ -2,20 +2,17 @@
 body.login
 	path('bg-login.jpg')
 	background-repeat no-repeat
+	background-size cover
 	color #fff
 	text-align center
 	
-
-	footer
-		position absolute
-		bottom 0
 
 	h1
 		color #fff
 		font-size 2.8rem
 		padding-bottom 0
 		
-	
+
 
 	header
 		background-image none
@@ -68,7 +65,17 @@ body.login
 				transitionBase()
 				width 100%
 				z-index 0
-			
+				
+				&::-webkit-input-placeholder
+					color: white
+				&::-moz-placeholder
+					color: white
+					
+				&:-ms-input-placeholder
+					color: white
+				&:-moz-placeholder
+					color: white
+	
 			
 			label
 				display block

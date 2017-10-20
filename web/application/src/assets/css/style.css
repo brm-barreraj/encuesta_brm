@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Fri Oct 20 2017 14:50:50 GMT-0500 (COT)
+ *Fri Oct 20 2017 15:22:16 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2064,13 +2064,56 @@ header .logo svg {
   max-width: 20rem;
   width: 100%;
 }
+.marca {
+  border-radius: 100%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  height: 0;
+  left: 50%;
+  overflow: hidden;
+  padding-bottom: 10rem;
+  position: absolute;
+  top: 18.3rem;
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 10rem;
+  z-index: 2;
+}
+.marca img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-width: 7.5rem;
+  margin: 1rem auto;
+}
 .container-admin .logo {
   background-color: transparent;
   -webkit-box-shadow: none;
   box-shadow: none;
+  max-width: 20rem;
 }
 .container-admin .logo svg path {
   fill: #fff;
+}
+.categoria-rep {
+  position: relative;
+  min-height: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+@media (min-width: 770px) {
+  .categoria-rep {
+    float: left;
+    width: 66.66666666666666%;
+  }
+}
+@media (min-width: 770px) {
+  .categoria-rep {
+    margin-left: 16.666666666666664%;
+  }
 }
 .categoria {
   position: relative;
@@ -2311,31 +2354,6 @@ body.login p {
 .hola {
   text-align: center;
   font-size: 1.6rem;
-}
-.marca {
-  border-radius: 100%;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-  height: 0;
-  left: 50%;
-  overflow: hidden;
-  padding-bottom: 10rem;
-  position: absolute;
-  top: 18.3rem;
-  -o-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  transform: translateX(-50%);
-  width: 10rem;
-  z-index: 2;
-}
-.marca img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  max-width: 7.5rem;
-  margin: 1rem auto;
 }
 .btn-reply,
 .pregunta-select {

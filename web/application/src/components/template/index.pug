@@ -14,13 +14,13 @@ head
 	link(rel="shortcut icon" href="favicon.ico" type="image/x-icon")
 	
 	if debug == true
-		link(rel='stylesheet', href='assets/css/style.css')
+		link(rel='stylesheet', href='/assets/css/style.css')
 
 	else
 		//-El nombre del archivo se debe reemplazar por el atributo name del package.json
-		link(rel='stylesheet', href='assets/css/'+name+'.min.css')
+		link(rel='stylesheet', href='/assets/css/'+name+'.min.css')
 
-	base(href="")
+	base(href="/")
 
 	// Web Fonts
 	link(link href="https://fonts.googleapis.com/css?family=Prompt:300,400,700" rel="stylesheet")

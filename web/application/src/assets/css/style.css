@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Fri Oct 20 2017 00:59:26 GMT-0500 (COT)
+ *Fri Oct 20 2017 14:20:03 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2089,6 +2089,8 @@ body.login {
   background-size: cover;
   color: #fff;
   text-align: center;
+  position: relative;
+  height: 100vh;
 }
 body.login h1 {
   color: #fff;
@@ -2097,6 +2099,11 @@ body.login h1 {
 }
 body.login header {
   background-image: none;
+}
+body.login footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 body.login p {
   display: none;

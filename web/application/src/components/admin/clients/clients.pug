@@ -5,7 +5,7 @@ include ../../includes/header-admin
 div
 	input(placeholder="Nombre")
 	input(placeholder="Seleccionar imagen")
-	button.btn.btn-submit((click)="goToReports()") Crear Cliente
+	//button.btn.btn-submit((click)="goToReports()") Crear Cliente
 
 div(*ngFor="let cliente of clientes")
 	img((click)="goToClient(cliente.idCuenta)", src="assets/images/{{cliente.imagenCuenta}}", alt="{{cliente.nombreCuenta}}")

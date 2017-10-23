@@ -44,4 +44,8 @@ export class AdminUserClient {
 		this.router.navigate(['admin/user-client', { i: idUser}]);
 	}
 
+	goToReports(){
+		
+	}
+
 }

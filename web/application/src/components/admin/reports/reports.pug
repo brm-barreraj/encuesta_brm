@@ -11,14 +11,44 @@ figure.marca(style="background-color:#e8252b")
 section.container-fluid.container-reports
 	div.row
 
-		article.categoria-rep(*ngFor="let encuesta of encuestas")
-			h2 {{encuesta.cuenta}}
-			div(*ngFor="let categoria of encuesta.categorias" class="categorias categorias-reports")
-				| {{categoria.categoria}} {{categoria.porcentajeCategoria}} % | {{categoria.promedioPregunta}}
-				div(*ngFor="let usuario of categoria.usuarios" class="usuarios")
-					| {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
-					div(*ngFor="let respuesta of usuario.respuestas" class="respuestas")
-						| {{respuesta.pregunta}} -> {{respuesta.puntaje}}
+		h1.text-intro
+			| Resultados de
+			strong satisfacción
+
+
+
+		div.categoria-rep(*ngFor="let encuesta of encuestas")
+			div.categoria-resume
+				//Nombre Cuenta
+				h2.text-cuenta {{encuesta.cuenta}}
+				///-Nombre Cuenta
+				//Total
+				p.categoria-total
+					span TOTAL:  
+					strong {{encuesta.total}}%
+				///-Total
+			
+			div.categorias.categoria-content.active(*ngFor="let categoria of encuesta.categorias", [ngClass]="{ active: catShow==keyCategoria}", )
+				//Categoria pregunta y calificacion
+				div.categoria-head
+
+					h3.categoria-text {{categoria.categoria}}
+					h3.categoria-pts {{categoria.porcentajeCategoria}}% 
+					//- | {{categoria.promedioPregunta}}
+
+				///-Categoria pregunta y calificacion
+
+				div.respuesta(*ngFor="let usuario of categoria.usuarios" class="usuarios")
+					p.respuesta-usuario: strong {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}:
 					
-			strong Total: {{encuesta.total}}
+					div.respuesta-body(*ngFor="let respuesta of usuario.respuestas; let keyRespuesta = index " class="respuestas")
+						p.respuesta-num {{(keyRespuesta+1)}}
+						
+						p.respuesta-content
+							| {{respuesta.pregunta}}
+
+						p.respuesta-pts
+							| {{respuesta.puntaje}}
+					
+			
 

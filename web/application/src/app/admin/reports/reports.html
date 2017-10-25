@@ -195,13 +195,32 @@
 <!--Logo marca-->
 <section class="container-fluid container-reports">
   <div class="row">
-    <article class="categoria-rep" *ngFor="let encuesta of encuestas">
-      <h2>{{encuesta.cuenta}}</h2>
-      <div class="categorias categorias-reports" *ngFor="let categoria of encuesta.categorias">{{categoria.categoria}} {{categoria.porcentajeCategoria}} % | {{categoria.promedioPregunta}}
-        <div class="usuarios" *ngFor="let usuario of categoria.usuarios">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
-          <div class="respuestas" *ngFor="let respuesta of usuario.respuestas">{{respuesta.pregunta}} -> {{respuesta.puntaje}}</div>
+    <h1 class="text-intro">Resultados de<strong>satisfacción</strong></h1>
+    <div class="categoria-rep" *ngFor="let encuesta of encuestas">
+      <div class="categoria-resume">
+        <!--Nombre Cuenta-->
+        <h2 class="text-cuenta">{{encuesta.cuenta}}</h2>
+        <!--/-Nombre Cuenta-->
+        <!--Total-->
+        <p class="categoria-total"><span>TOTAL:  </span><strong>{{encuesta.total}}%</strong></p>
+        <!--/-Total-->
+      </div>
+      <div class="categorias categoria-content active" *ngFor="let categoria of encuesta.categorias" [ngClass]="{ active: catShow==keyCategoria}">
+        <!--Categoria pregunta y calificacion-->
+        <div class="categoria-head">
+          <h3 class="categoria-text">{{categoria.categoria}}</h3>
+          <h3 class="categoria-pts">{{categoria.porcentajeCategoria}}% </h3>
         </div>
-      </div><strong>Total: {{encuesta.total}}</strong>
-    </article>
+        <!--/-Categoria pregunta y calificacion-->
+        <div class="respuesta usuarios" *ngFor="let usuario of categoria.usuarios">
+          <p class="respuesta-usuario"><strong>{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}:</strong></p>
+          <div class="respuesta-body respuestas" *ngFor="let respuesta of usuario.respuestas; let keyRespuesta = index ">
+            <p class="respuesta-num">{{(keyRespuesta+1)}}</p>
+            <p class="respuesta-content">{{respuesta.pregunta}}</p>
+            <p class="respuesta-pts">{{respuesta.puntaje}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

@@ -1,5 +1,14 @@
 include ../../includes/header-admin
 
-button.btn.btn-submit((click)="goToClients()") Clientes
-button.btn.btn-submit((click)="goToCategories()") Categorias
-button.btn.btn-submit((click)="goToReports()") Reportes
+
+section.container-fluid.container-dashboard
+	div.row
+
+		h1.text-intro.text-dashboard Encuestas BRM
+		
+		p.text-dashboard.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda temporibus velit perspiciatis quo explicabo cum provident dolor voluptate voluptas, dolores ipsum ipsam voluptatibus, molestiae sunt, ab iste. Minima, non, veritatis.
+
+		button.btn.btn-section.btn-full((click)="goToClients()") Clientes
+		button.btn.btn-section.btn-full((click)="goToCategories()") Categorías
+		button.btn.btn-section.btn-full((click)="goToReports()") Reportes

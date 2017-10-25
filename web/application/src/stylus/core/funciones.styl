@@ -56,3 +56,11 @@ calc()
 		add-property(current-property[0], s('-%s-calc(%s)', pre, arguments) )
 
 	s('calc(%s)', arguments)
+
+mix-blend-mode(argument)
+	vendor-prefixes = o ms webkit moz
+	mix-blend-mode argument
+	for pre in vendor-prefixes
+		-{pre}-mix-blend-mode argument
+		
+

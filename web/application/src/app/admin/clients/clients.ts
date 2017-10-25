@@ -12,6 +12,7 @@ import { RequestService } from '../../app.request';
 
 export class AdminClients {
 	clientes:any = [];
+	activeS:boolean = false;
 	constructor(private serviceRequest: RequestService,
 		private router: Router) { }
 
@@ -46,5 +47,9 @@ export class AdminClients {
 	goToReports(){
 		
 	}
+	
+	toggleClass(){
+      this.activeS = !this.activeS;
+  	}
 
 }

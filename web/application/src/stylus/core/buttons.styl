@@ -15,9 +15,11 @@ button.close
 
 	span
 		display block
+		
 
 .btn
 	color $Azul
+	cursor pointer
 	display block
 	font-weight $Light
 	margin 0 auto
@@ -26,25 +28,19 @@ button.close
 	position relative
 	text-transform uppercase
 	transitionBase()
-
-
-	&::after
-		path('arrow-r.svg')
-		background-size 100%
-		background-repeat no-repeat
-		content ''
-		display block
-		height 1rem
-		position absolute
-		right -0.1rem
-		top 38%
-		width 0.6rem
-		transitionBase()
-
+	
 	&:hover
-		&::after
-			right -1rem
+		text-decoration none
 
+	&-blue
+		background-color $Azul
+		border 2px solid $Azul !important
+		color white
+		
+		&:hover
+			background-color white
+			color $Azul
+			
 
 	&-contract,
 	&-expand
@@ -84,6 +80,21 @@ button.close
 					transform translate3d(-10%,-10%,0)
 
 
+	&-default
+		background-color $Gris[2]
+		color #fff
+		display block
+		margin 3rem auto
+		padding 1rem 2rem
+		text-align center
+		text-decoration none
+		text-transform uppercase
+		
+		&:hover
+			background-color $Amarillo
+			color $Azul
+			text-decoration none
+			
 
 	&-filtro
 		background-color $Amarillo
@@ -98,6 +109,9 @@ button.close
 			path
 				fill $Azul
 
+	&-full
+		width 100%
+		
 	&-login-g
 		background-color $Azul !important
 		background-image none !important

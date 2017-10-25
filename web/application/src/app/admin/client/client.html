@@ -189,10 +189,16 @@
   </div>
 </header>
 <!--/-Header-->
-<div>
-  <input type="text" placeholder="Nombre" value="{{client.nombre}}" [(ngModel)]="client.nombre"/>
-</div>
-<div>
-  <input type="text" placeholder="Imagen" value="{{client.imagen}}"/>
-</div>
-<button class="btn btn-submit" (click)="editClient()">Editar Cliente</button>
+<section class="container-fluid container-clients">
+  <div class="row">
+    <article class="client-edit active">
+      <div class="form-group">
+        <input type="text" placeholder="Nombre" value="{{client.nombre}}" [(ngModel)]="client.nombre"/>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Imagen" value="{{client.imagen}}"/>
+      </div>
+      <button class="btn btn-submit btn-full" (click)="editClient()">Editar Cliente</button>
+    </article>
+  </div>
+</section>

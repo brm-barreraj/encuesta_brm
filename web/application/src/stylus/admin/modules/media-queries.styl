@@ -1,5 +1,21 @@
+@media (min-width:640px)
+	.btn
+		&-section
+			display inline-block
+			vertical-align middle
+			margin 1rem
+			max-width 20rem
+
+
 @media (min-width:$screen-sm)
 	.container
+		&-dashboard
+			// padding-bottom 15%
+			// padding-top @padding-bottom
+			
+			.text-dashboard
+				max-width 66rem
+				
 		&-reports
 			margin 1rem auto
 			
@@ -24,3 +40,52 @@
 			strong
 				display block
 			
+
+	.client
+		&-brand
+			&:hover
+				&::before
+					opacity: 0.5
+					transform translate3d(-50%, -50%,0) scale(1)
+					
+
+			&::before
+				background-color $Azul
+				color white
+				mix-blend-mode normal
+				opacity 0
+				transform translate3d(-50%, -50%,0) scale(0)
+							
+		&-create,
+		&-edit
+			.form-group
+				border none
+				
+				input
+					border-bottom 2px solid $Azul
+					
+			.btn-submit
+				display block
+				margin 1rem auto
+				max-width 66.6%
+					
+		&-item
+			border none
+			
+			.btn-create
+				float right
+	.row
+		&-create
+			.btn-blue
+				margin 1rem auto
+				max-width 66.6%
+					
+
+@media (min-width: 920px)
+	.client
+		&-create
+			.btn-submit
+				float right
+				margin 0 auto
+				max-width 33.3%
+				// width 100%

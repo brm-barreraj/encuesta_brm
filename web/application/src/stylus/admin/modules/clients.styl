@@ -1,0 +1,108 @@
+.btn
+	&-blue
+		display block
+		margin 3rem auto
+		padding 1rem 2rem
+		text-align center
+		text-decoration none
+		text-transform uppercase
+		
+		&.active
+			background-color #fff
+			color $Azul
+			
+			.glyphicon
+				&::before
+					content '\2212'
+		
+		
+
+.client
+	&-brand
+		border-radius 100%
+		box-shadow 0px 0px 5px 0px rgba(0, 0, 0, 0.5)
+		cursor pointer
+		height 0
+		overflow hidden
+		padding-bottom 10rem
+		width @padding-bottom
+		position relative
+		
+		&::before
+			background-color $Gris[3]
+			border-radius 100%
+			color black
+			content "\270f"
+			font-family $Icons
+			font-size 4rem
+			left 50%
+			mix-blend-mode multiply
+			opacity 0.5
+			padding-bottom 2.2rem
+			padding-top @padding-bottom
+			pointer-events none
+			position absolute
+			text-align center
+			top 50%
+			transform translate3d(-@left, -@top,0)
+			transitionBase()
+			width 100%
+			z-index 4
+		
+		img
+			img-responsive(block)
+			max-width 7.5rem
+			margin 1rem auto
+			position relative
+			z-index 1
+			
+	&-create
+		border-bottom 2px solid $Gris[1]
+		height 100%
+		max-height 0
+		opacity 0
+		padding-bottom 1rem
+		padding-top @padding-bottom
+		transitionBase()
+		
+
+		&.active
+			opacity 0.99
+			max-height 40rem
+			
+
+		.form-group
+			make-sm-column(4)
+			
+	&-edit
+		.form-group
+			make-sm-column(6)
+
+	&-item
+		clearfix()
+		border-bottom 2px dotted $Gris[1]
+		margin 2rem auto
+		
+		.btn-create
+			// border 1px solid $Azul
+			display block
+			margin 1rem auto
+			text-align center
+			padding 1rem 0.5rem
+			
+		.client-brand,
+		.client-user
+			display inline-block
+			vertical-align top
+			
+		.client-user
+			margin 0.5rem auto
+			max-width 45%
+			text-align left
+			
+
+			h3
+				font-weight $Normal
+			
+			
+			

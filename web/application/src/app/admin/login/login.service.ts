@@ -10,15 +10,15 @@ export class LoginAdminService {
   }
 
   public getSession():any{
-    return JSON.parse( window.localStorage.getItem('!us3r4pp#'));
+    return JSON.parse( window.localStorage.getItem('!us3r4dmIn#'));
   }
 
   public setSession(data:any):any{
-    window.localStorage.setItem('!us3r4pp#', JSON.stringify(data));
+    window.localStorage.setItem('!us3r4dmIn#', JSON.stringify(data));
   }
 
   public deleteSession():any{
-    window.localStorage.removeItem('!us3r4pp#');
+    window.localStorage.removeItem('!us3r4dmIn#');
   }
 
 }

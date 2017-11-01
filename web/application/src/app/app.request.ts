@@ -13,7 +13,7 @@ export class RequestService {
     //url = url.replace("https://enc.brm.co/","http://127.0.0.1/encuestas_brm/web/server/");
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers, method: "post" });
-    return this.http.post(url, parameters, options)
+    return this.http.post(url, this.serialized(parameters), options)
                   .map(this.extractData)
                   .catch(this.handleError);
   }
@@ -36,4 +36,12 @@ export class RequestService {
     console.error(errMsg);
     return Promise.reject(errMsg);
   }
+
+  private serialized(obj:any){
+    let result = [];
+    for (let property in obj)
+        result.push(encodeURIComponent(property) + "=" + encodeURIComponent(obj[property]));
+    return result.join("&");
+  }
+
 }

@@ -27,6 +27,7 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'form', component: Form },
   { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full'},
 
 
   { path: 'admin', component: AdminComponent, 

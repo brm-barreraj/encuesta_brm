@@ -7,6 +7,11 @@ import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@a
 import { RequestService } from './app.request';
 
 
+//Components
+import { SignOutComponent }      from './admin/components/sign-out/sign-out';
+
+
+
 // App
 import { AppComponent } from './app.component';
 import { Login }      from './public/login/login';
@@ -36,6 +41,8 @@ import { routing } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
+
+    SignOutComponent,
 
     Login,
     Form,

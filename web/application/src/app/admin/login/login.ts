@@ -12,7 +12,7 @@ import { LoginAdminService } from './login.service';
 })
 
 export class AdminLogin {
-	usuario:string = '';
+	correo:string = '';
 	contrasena:string = '';
 	activeI=false;
 	activeO=false;
@@ -23,14 +23,14 @@ export class AdminLogin {
 
 	ngOnInit() {
 		if (this.serviceLogin.validateSession()) {
-			this.router.navigate(['form']);
+			this.router.navigate(['admin/dashboard']);
 		}
 
 		document.body.classList.add('login')
 	}
 
 	login(){
-		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})
+		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'loginAdmin', correo: this.correo, contrasena: this.contrasena})
 			.subscribe(
 			(result) => {
 				switch (result.error) {
@@ -39,7 +39,7 @@ export class AdminLogin {
 						break;
 					case 1:
 						this.serviceLogin.setSession(result.data);
-						this.router.navigate(['form']);
+						this.router.navigate(['admin/dashboard']);
 						break;
 					case 2:
 						alert("Usuario incorrecto");

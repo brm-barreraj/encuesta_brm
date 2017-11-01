@@ -13,9 +13,9 @@ use Models\Respuesta;
 use Models\CategoriaHistorial;
 use Models\PreguntaHistorial;
 use Models\Cuenta;
+use Models\Admin;
 
-
-$request = json_decode(file_get_contents("php://input"));
+$request = (object) $_POST;
 $accion = (isset($request->accion)) ? $request->accion : null ;
 //$accion = $_GET['accion'];
 $data = null;
@@ -152,7 +152,7 @@ switch ($accion) {
 				}
 				$encuestas[$i]['totalPromedioPeso'] = $totalPromedioPeso;
 				$encuestas[$i]['totalPorcentajeCategoria'] = $totalPorcentajeCategoria;
-				$encuestas[$i]['total'] = (100 * $totalPromedioPeso)/ $totalPorcentajeCategoria;
+				$encuestas[$i]['total'] = round((100 * $totalPromedioPeso)/ $totalPorcentajeCategoria,2);
 			}
 			if (count($encuestas) > 0) {
 				$data = $encuestas;
@@ -170,7 +170,7 @@ switch ($accion) {
 				$data = Usuario::select('usuario.id','usuario.nombre','usuario.apellido','usuario.idCuenta','cuenta.nombre AS nombreCuenta','cuenta.imagen AS imagenCuenta')
 				->join('cuenta', 'usuario.idCuenta', '=', 'cuenta.id')
 				->where('usuario',$usuario)
-				->where('contrasena',$contrasena)
+				->where('contrasena',requestHash("encode", $contrasena))
 				->first();
 				if (count($data) > 0 && isset($data->id)) {
 					$data = (object) $data->toArray();
@@ -269,6 +269,31 @@ switch ($accion) {
 			}
 			break;
 	// Admin
+
+		// Login: Realiza la validación del usuario
+		case "loginAdmin":
+			if (isset($request->correo) && $request->correo != "" && isset($request->contrasena) && $request->contrasena != "") {
+				$correo = $request->correo;
+				$contrasena = $request->contrasena;
+				$data = Admin::select('admin.id','admin.nombre','admin.apellido')
+				->where('correo',$correo)
+				->where('contrasena',requestHash("encode", $contrasena))
+				->first();
+				if (count($data) > 0 && isset($data->id)) {
+					$data = (object) $data->toArray();
+					$data->id = requestHash('encode',$data->id);
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 2: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
 			
 		// getClientes: Retorna todas los clientes de brm con sus usuarios
 		case "upAdminCliente":

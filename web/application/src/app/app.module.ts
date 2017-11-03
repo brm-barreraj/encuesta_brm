@@ -9,6 +9,7 @@ import { RequestService } from './app.request';
 
 //Components
 import { SignOutComponent }      from './admin/components/sign-out/sign-out';
+import { FormClientComponent }      from './admin/components/form-client/form-client';
 
 
 
@@ -43,6 +44,7 @@ import { routing } from './app.routes';
     AppComponent,
 
     SignOutComponent,
+    FormClientComponent,
 
     Login,
     Form,

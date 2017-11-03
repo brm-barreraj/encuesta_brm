@@ -4,11 +4,14 @@ include ../../includes/header-admin
 section.container-fluid.container-clients
 
 	div.row
+
 		article.client-edit.active
 
-			div.form-group
-				input(type="text",placeholder="Nombre", value="{{client.nombre}}",[(ngModel)]="client.nombre")
-			div.form-group
-				input(type="text",placeholder="Imagen", value="{{client.imagen}}")
+			form-client(typeForm="edit")
+			//
+				div.form-group
+					input(type="text",placeholder="Nombre", value="{{client.nombre}}",[(ngModel)]="client.nombre")
+				div.form-group
+					input(type="text",placeholder="Imagen", value="{{client.imagen}}")
 
-			button.btn.btn-submit.btn-full((click)="editClient()") Editar Cliente
+				button.btn.btn-submit.btn-full((click)="editClient()") Editar Cliente

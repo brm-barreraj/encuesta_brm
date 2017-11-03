@@ -1,6 +1,8 @@
 *.sublime-*
 # Build and Release Folders
 
+web/application/src/assets/css/
+
 bin/
 bin-debug/
 bin-release/

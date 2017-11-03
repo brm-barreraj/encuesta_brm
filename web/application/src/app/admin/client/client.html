@@ -192,13 +192,15 @@
 <section class="container-fluid container-clients">
   <div class="row">
     <article class="client-edit active">
-      <div class="form-group">
-        <input type="text" placeholder="Nombre" value="{{client.nombre}}" [(ngModel)]="client.nombre"/>
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Imagen" value="{{client.imagen}}"/>
-      </div>
-      <button class="btn btn-submit btn-full" (click)="editClient()">Editar Cliente</button>
+      <form-client typeForm="edit"></form-client>
+      <!--
+      div.form-group
+      	input(type="text",placeholder="Nombre", value="{{client.nombre}}",[(ngModel)]="client.nombre")
+      div.form-group
+      	input(type="text",placeholder="Imagen", value="{{client.imagen}}")
+      
+      button.btn.btn-submit.btn-full((click)="editClient()") Editar Cliente
+      -->
     </article>
   </div>
 </section>

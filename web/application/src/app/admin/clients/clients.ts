@@ -43,6 +43,7 @@ export class AdminClients {
 	}
 
 	goToClient(idClient){
+		console.log(idClient);
 		this.router.navigate(['admin/client', { i: idClient } ]);
 	}
 

@@ -28,8 +28,8 @@ section.container-fluid.container-clients
 			//- 	img((click)="goToClient(cliente.idCuenta)", src="assets/images/{{cliente.imagenCuenta}}", alt="{{cliente.nombreCuenta}}")
 
 			//Logo Marca
-			figure.client-brand(style="background-color:#e8252b")
-				+image('{{cliente.imagenCuenta}}', '{{cliente.nombreCuenta}}')((click)="goToClient(cliente.idCuenta)")
+			figure.client-brand(style="background-color:#e8252b",(click)="goToClient(cliente.idCuenta)")
+				+image('{{cliente.imagenCuenta}}', '{{cliente.nombreCuenta}}')
 			///-Logo Marca
 
 

@@ -204,7 +204,7 @@
     <article class="client client-item" *ngFor="let cliente of clientes">
       <!--Logo Marca-->
       <!--Logo Marca-->
-      <figure class="client-brand" style="background-color:#e8252b;"><img src="assets/images/{{cliente.imagenCuenta}}" title="{{cliente.nombreCuenta}}" alt="{{cliente.nombreCuenta}}" (click)="goToClient(cliente.idCuenta)"/>
+      <figure class="client-brand" style="background-color:#e8252b;" (click)="goToClient(cliente.idCuenta)"><img src="assets/images/{{cliente.imagenCuenta}}" title="{{cliente.nombreCuenta}}" alt="{{cliente.nombreCuenta}}"/>
       </figure>
       <!--/-Logo Marca-->
       <!--/-Logo Marca-->

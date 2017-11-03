@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../app.request';
-
+import { LoginAdminService } from '../login/login.service';
 
 @Component({
   templateUrl: './client.html',
   // styleUrls: ['./reports.css'],
-  providers: [RequestService]
+  providers: [RequestService, LoginAdminService]
 })
 
 export class AdminClient {
 	client:any = [];
 	idClient: any;
-	constructor(private route: ActivatedRoute,
+	constructor(private serviceLoginAdmin: LoginAdminService,
+		private route: ActivatedRoute,
 		private serviceRequest: RequestService,
 		private router: Router) { }
 

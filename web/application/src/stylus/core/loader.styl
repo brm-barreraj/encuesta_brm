@@ -1,0 +1,27 @@
+.loader
+	cuadrado(5rem)
+	position relative
+	margin 25vh auto
+	&::after,
+	&::before
+		border-radius: 50%
+		border: solid 8px transparent
+		content: ''
+		cuadrado(5rem)
+		position: absolute
+		animation: wiggle 1.4s ease infinite
+	&::before
+		border-bottom-color: $Amarillo
+		border-top-color: $Azul
+	&::after
+		animation-delay: .7s
+		border-left-color: $Cyan
+		border-right-color: $Verde
+	
+@keyframes wiggle
+	0%
+		transform: rotate(0deg) scale(1)
+	50%
+		transform: rotate(180deg) scale(.5)
+	100%
+		transform: rotate(360deg) scale(1)

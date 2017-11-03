@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Thu Nov 02 2017 15:24:11 GMT-0500 (COT)
+ *Thu Nov 02 2017 22:36:51 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2073,6 +2073,9 @@ header .logo svg {
   max-width: 20rem;
   width: 100%;
 }
+.container-login .form-group {
+  border: none;
+}
 .marca {
   border-radius: 100%;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
@@ -2116,6 +2119,131 @@ header .logo svg {
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   width: 100%;
+}
+.loader {
+  height: 5rem;
+  width: 5rem;
+  position: relative;
+  margin: 25vh auto;
+}
+.loader::after,
+.loader::before {
+  border-radius: 50%;
+  border: solid 8px transparent;
+  content: '';
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  -o-animation: wiggle 1.4s ease infinite;
+  -ms-animation: wiggle 1.4s ease infinite;
+  -webkit-animation: wiggle 1.4s ease infinite;
+  -moz-animation: wiggle 1.4s ease infinite;
+  animation: wiggle 1.4s ease infinite;
+}
+.loader::before {
+  border-bottom-color: #c3b578;
+  border-top-color: #0d2d6c;
+}
+.loader::after {
+  -o-animation-delay: 0.7s;
+  -ms-animation-delay: 0.7s;
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  border-left-color: #4f8fcc;
+  border-right-color: #45634f;
+}
+@-moz-keyframes wiggle {
+  0% {
+    -o-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -o-transform: rotate(180deg) scale(0.5);
+    -ms-transform: rotate(180deg) scale(0.5);
+    -webkit-transform: rotate(180deg) scale(0.5);
+    -moz-transform: rotate(180deg) scale(0.5);
+    transform: rotate(180deg) scale(0.5);
+  }
+  100% {
+    -o-transform: rotate(360deg) scale(1);
+    -ms-transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(360deg) scale(1);
+    -moz-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+@-webkit-keyframes wiggle {
+  0% {
+    -o-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -o-transform: rotate(180deg) scale(0.5);
+    -ms-transform: rotate(180deg) scale(0.5);
+    -webkit-transform: rotate(180deg) scale(0.5);
+    -moz-transform: rotate(180deg) scale(0.5);
+    transform: rotate(180deg) scale(0.5);
+  }
+  100% {
+    -o-transform: rotate(360deg) scale(1);
+    -ms-transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(360deg) scale(1);
+    -moz-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+@-o-keyframes wiggle {
+  0% {
+    -o-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -o-transform: rotate(180deg) scale(0.5);
+    -ms-transform: rotate(180deg) scale(0.5);
+    -webkit-transform: rotate(180deg) scale(0.5);
+    -moz-transform: rotate(180deg) scale(0.5);
+    transform: rotate(180deg) scale(0.5);
+  }
+  100% {
+    -o-transform: rotate(360deg) scale(1);
+    -ms-transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(360deg) scale(1);
+    -moz-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes wiggle {
+  0% {
+    -o-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -o-transform: rotate(180deg) scale(0.5);
+    -ms-transform: rotate(180deg) scale(0.5);
+    -webkit-transform: rotate(180deg) scale(0.5);
+    -moz-transform: rotate(180deg) scale(0.5);
+    transform: rotate(180deg) scale(0.5);
+  }
+  100% {
+    -o-transform: rotate(360deg) scale(1);
+    -ms-transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(360deg) scale(1);
+    -moz-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
 }
 .container-clients .row-create {
   clear: both;
@@ -2187,6 +2315,14 @@ header .logo svg {
     float: left;
     width: 33.33333333333333%;
   }
+}
+.container-admin .btn-logout {
+  background-color: rgba(0,0,0,0.5);
+  border: 1px solid #fff;
+  color: #fff;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
 }
 .container-admin .logo {
   background-color: transparent;

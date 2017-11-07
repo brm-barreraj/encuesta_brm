@@ -1,0 +1,18 @@
+
+<div class="form-group">
+  <input type="text" placeholder="Nombre" value="{{user.nombre}}" [(ngModel)]="user.nombre"/>
+</div>
+<div class="form-group">
+  <input type="text" placeholder="Apellido" value="{{user.apellido}}" [(ngModel)]="user.apellido"/>
+</div>
+<div class="form-group">
+  <input type="email" placeholder="Correo" value="{{user.correo}}" [(ngModel)]="user.correo"/>
+</div>
+<div class="form-group">
+  <input type="text" placeholder="Usuario" value="{{user.usuario}}" [(ngModel)]="user.usuario"/>
+</div>
+<div class="form-group">
+  <input type="password" placeholder="Contraseña" value="{{user.contrasena}}" [(ngModel)]="user.contrasena"/>
+</div>
+<button class="btn btn-submit btn-full" type="button" *ngIf="idUser == null ||idUser == ''" (click)="setUser()">Crear Usuario</button>
+<button class="btn btn-submit btn-full" type="button" *ngIf="idUser != null &amp;&amp; idUser != ''" (click)="setUser()">Editar Usuario</button>

@@ -1,51 +1,32 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../app.request';
-
+import { LoginAdminService } from '../login/login.service';
+import { FormClientComponent } from '../components/form-client/form-client';
 
 
 @Component({
   templateUrl: './user-client.html',
   // styleUrls: ['./reports.css'],
-  providers: [RequestService]
+  providers: [RequestService, LoginAdminService,FormClientComponent]
 })
 
 export class AdminUserClient {
-	clientes:any = [];
-	constructor(private serviceRequest: RequestService,
+	client:any = [];
+	idUser: any;
+	idClient: any;
+	constructor(private serviceLoginAdmin: LoginAdminService,
+		private route: ActivatedRoute,
+		private serviceRequest: RequestService,
 		private router: Router) { }
 
 	ngOnInit() {
-		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getAdminClientes'})
-			.subscribe(
-			(result) => {
-				switch (result.error) {
-					case 0:
-						alert("Ocurrió un error");
-						break;
-					case 1:
-						this.clientes = result.data;
-						break;
-					case 2:
-						alert("Usuario incorrecto");
-						break;
-				}
-			},
-			(error) =>  {
-				console.log(error)
-			});
-	}
+		if (!this.serviceLoginAdmin.validateSession()) {
+			this.router.navigate(['admin']);
+		}else{
 
-	goToClient(idClient){
-		this.router.navigate(['admin/client', {i: idClient}]);
+			this.idUser = this.route.snapshot.params['iu'];
+			this.idClient = this.route.snapshot.params['ic'];
+		}
 	}
-
-	goToUserClient(idUser){
-		this.router.navigate(['admin/user-client', { i: idUser}]);
-	}
-
-	goToReports(){
-		
-	}
-
 }

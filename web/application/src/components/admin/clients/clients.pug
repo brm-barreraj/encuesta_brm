@@ -13,7 +13,7 @@ section.container-fluid.container-clients
 			| Nuevo cliente
 
 		article.client-create([class.active]="activeS")
-			form-client
+			form-client([idClient]="")
 		///-Crear clientes
 
 	
@@ -28,20 +28,18 @@ section.container-fluid.container-clients
 			//- 	img((click)="goToClient(cliente.idCuenta)", src="assets/images/{{cliente.imagenCuenta}}", alt="{{cliente.nombreCuenta}}")
 
 			//Logo Marca
-			figure.client-brand(style="background-color:#e8252b",(click)="goToClient(cliente.idCuenta)")
+			figure.client-brand([style.background-color] = 'cliente.colorCuenta',(click)="goToClient(cliente.idCuenta)")
 				+image('{{cliente.imagenCuenta}}', '{{cliente.nombreCuenta}}')
 			///-Logo Marca
 
-
-			///-Logo Marca
 			//Usuario por marca
 			aside.client.client-user
 				h3 Usuarios registrados:
 				div.user(*ngFor="let usuario of cliente.usuarios")
-					p((click)="goToUserClient(usuario.idUsuario)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+					p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
 			
 			///-Usuario por marca
-			a.btn.btn-create() Registrar Usuario
+			a.btn.btn-create((click)="goToUserClient('',cliente.idCuenta)") Registrar Usuario
 		
 		///-Cliente
 

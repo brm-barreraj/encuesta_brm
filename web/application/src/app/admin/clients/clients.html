@@ -194,7 +194,7 @@
   <div class="row row-create">
     <!--Crear clientes--><a class="btn btn-blue" (click)="toggleClass()" [class.active]="activeS"><i class="glyphicon glyphicon-plus"></i>Nuevo cliente</a>
     <article class="client-create" [class.active]="activeS">
-      <form-client></form-client>
+      <form-client [idClient]=""></form-client>
     </article>
     <!--/-Crear clientes-->
   </div>
@@ -204,18 +204,17 @@
     <article class="client client-item" *ngFor="let cliente of clientes">
       <!--Logo Marca-->
       <!--Logo Marca-->
-      <figure class="client-brand" style="background-color:#e8252b;" (click)="goToClient(cliente.idCuenta)"><img src="assets/images/{{cliente.imagenCuenta}}" title="{{cliente.nombreCuenta}}" alt="{{cliente.nombreCuenta}}"/>
+      <figure class="client-brand" [style.background-color]="cliente.colorCuenta" (click)="goToClient(cliente.idCuenta)"><img src="assets/images/{{cliente.imagenCuenta}}" title="{{cliente.nombreCuenta}}" alt="{{cliente.nombreCuenta}}"/>
       </figure>
-      <!--/-Logo Marca-->
       <!--/-Logo Marca-->
       <!--Usuario por marca-->
       <aside class="client client-user">
         <h3>Usuarios registrados:</h3>
         <div class="user" *ngFor="let usuario of cliente.usuarios">
-          <p (click)="goToUserClient(usuario.idUsuario)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p>
+          <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p>
         </div>
       </aside>
-      <!--/-Usuario por marca--><a class="btn btn-create">Registrar Usuario</a>
+      <!--/-Usuario por marca--><a class="btn btn-create" (click)="goToUserClient('',cliente.idCuenta)">Registrar Usuario</a>
     </article>
     <!--/-Cliente-->
   </div>

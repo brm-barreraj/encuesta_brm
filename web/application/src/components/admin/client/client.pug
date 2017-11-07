@@ -7,11 +7,4 @@ section.container-fluid.container-clients
 
 		article.client-edit.active
 
-			form-client
-			//
-				div.form-group
-					input(type="text",placeholder="Nombre", value="{{client.nombre}}",[(ngModel)]="client.nombre")
-				div.form-group
-					input(type="text",placeholder="Imagen", value="{{client.imagen}}")
-
-				button.btn.btn-submit.btn-full((click)="editClient()") Editar Cliente
+			form-client([idClient]="idClient")

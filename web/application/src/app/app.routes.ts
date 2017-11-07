@@ -37,7 +37,7 @@ export const routes: Routes = [
   		{path: 'dashboard', component: AdminDashboard},
   		{path: 'clients', component: AdminClients},
   		{path: 'client', component: AdminClient},
-  		{path: 'user-client', component: AdminClients},
+  		{path: 'user-client', component: AdminUserClient},
 
 
   	]

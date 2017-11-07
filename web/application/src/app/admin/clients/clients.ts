@@ -21,7 +21,7 @@ export class AdminClients {
 		if (!this.serviceLoginAdmin.validateSession()) {
 			this.router.navigate(['admin']);
 		}else{
-			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getAdminUsuariosClientes'})
+			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getAdminClientes'})
 				.subscribe(
 				(result) => {
 					switch (result.error) {
@@ -43,12 +43,11 @@ export class AdminClients {
 	}
 
 	goToClient(idClient){
-		console.log(idClient);
 		this.router.navigate(['admin/client', { i: idClient } ]);
 	}
 
-	goToUserClient(idUser){
-		this.router.navigate(['admin/user-client', { i: idUser}]);
+	goToUserClient(idUser,idClient){
+		this.router.navigate(['admin/user-client', { iu: idUser, ic: idClient}]);
 	}
 	goToReports(){
 		

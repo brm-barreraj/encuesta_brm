@@ -295,17 +295,29 @@ switch ($accion) {
 			}
 			break;
 			
-		// getClientes: Retorna todas los clientes de brm con sus usuarios
-		case "upAdminCliente":
-			if (isset($request->idCuenta) && $request->idCuenta != "" &&
-				isset($request->nombre) && $request->nombre != "") {
-				$idCuenta = requestHash('decode',$request->idCuenta);
+		// setClientes: Retorna todas los clientes de brm con sus usuarios
+		case "setAdminCliente":
+			if (isset($request->idCuenta) &&
+				isset($request->nombre) && $request->nombre != "" &&
+				isset($request->imagen) && $request->imagen != "" &&
+				isset($request->color) && $request->color != "" &&
+				isset($request->idAdmin) && $request->idAdmin != "") {
 
-				$nResult = Cuenta::where('id', $idCuenta)
-					->update(['nombre' => $request->nombre]);
-
-				printVar($cliente);
-				if (count($cliente) > 0) {
+				$idAdmin = requestHash('decode',$request->idAdmin);
+				if ($request->idCuenta != "") {
+					$idCuenta = requestHash('decode',$request->idCuenta);
+					$nResult = Cuenta::where('id', $idCuenta)
+						->update(['nombre' => $request->nombre,'imagen' => $request->imagen,'color' => $request->color,'idAdmin' => $idAdmin]);
+				}else{
+					$cliente = new Cuenta;
+					$cliente->nombre = $request->nombre;
+					$cliente->imagen = $request->imagen;
+					$cliente->color = $request->color;
+					$cliente->idAdmin = $idAdmin;
+					$cliente->fecha = date("Y-m-d H:i:s");
+					$nResult = $cliente->save();
+				}
+				if (count($nResult) > 0) {
 					
 					$data = $nResult;
 					// Error 1: Los datos de usuario son corerectos
@@ -321,9 +333,8 @@ switch ($accion) {
 			}
 			break;
 
-
 		// getClientes: Retorna todas los clientes de brm con sus usuarios
-		case "getAdminClientes":
+		case "getAdminCliente":
 			if (isset($request->idCuenta) && $request->idCuenta != "") {
 				$idCuenta = requestHash('decode',$request->idCuenta);
 				$cliente = Cuenta::where("id",$idCuenta)->first();
@@ -338,21 +349,25 @@ switch ($accion) {
 					// Error 1: Los datos de usuario son incorerectos
 					$error = 2;
 				}
+			}else{
+				$data = null;
+				// Error 1: Los datos son incorerectos
+				$error = 3;
 			}
 			break;
-
 	
 		// getClientes: Retorna todas los clientes de brm con sus usuarios
-		case "getAdminUsuariosClientes":
-			$clientes = Usuario::select('cuenta.id AS idCuenta',
+		case "getAdminClientes":
+			$clientes = Cuenta::select('cuenta.id AS idCuenta',
 				'cuenta.nombre AS nombreCuenta',
 				'cuenta.imagen AS imagenCuenta',
+				'cuenta.color AS colorCuenta',
 				'usuario.id AS idUsuario',
 				'usuario.nombre AS nombreUsuario',
 				'usuario.apellido AS apellidoUsuario',
 				'usuario.correo AS correoUsuario'
 				)
-			->join('cuenta', 'cuenta.id', '=', 'usuario.idCuenta')
+			->leftJoin('usuario', 'cuenta.id', '=', 'usuario.idCuenta')
 			->get();
 			if (count($clientes) > 0) {
 				$clientes = $clientes->toArray();
@@ -362,7 +377,7 @@ switch ($accion) {
 					$clientes[$clienteKey]['idUsuario'] = requestHash('encode',$clientes[$clienteKey]['idUsuario']);
 				}
 
-				$newClientes = groupArray($clientes,array('idCuenta','nombreCuenta','imagenCuenta'),'usuarios');
+				$newClientes = groupArray($clientes,array('idCuenta','nombreCuenta','imagenCuenta','colorCuenta'),'usuarios');
 				$data = $newClientes;
 				// Error 1: Los datos de usuario son corerectos
 				$error = 1;
@@ -372,6 +387,76 @@ switch ($accion) {
 				$error = 2;
 			}
 			break;
+
+		// setUsuario: Retorna todas los clientes de brm con sus usuarios
+		case "setAdminUsuario":
+			if (isset($request->id) &&
+				isset($request->nombre) && $request->nombre != "" &&
+				isset($request->apellido) && $request->apellido != "" &&
+				isset($request->correo) && $request->correo != "" &&
+				isset($request->usuario) && $request->usuario != "" &&
+				isset($request->contrasena) &&
+				isset($request->idAdmin) && $request->idAdmin != "" &&
+				isset($request->idCuenta) && $request->idCuenta != "") {
+
+				$idAdmin = requestHash('decode',$request->idAdmin);
+				$idCuenta = requestHash('decode',$request->idCuenta);
+				if ($request->id != "") {
+					$id = requestHash('decode',$request->id);
+					$nResult = Usuario::where('id', $id)
+						->update(['nombre' => $request->nombre,'apellido' => $request->apellido,'correo' => $request->correo,'usuario' => $request->usuario,'contrasena' => $request->contrasena,'idAdmin' => $idAdmin,'idCuenta' => $idCuenta]);
+				}else{
+					$usuario = new Usuario;
+					$usuario->nombre = $request->nombre;
+					$usuario->apellido = $request->apellido;
+					$usuario->correo = $request->correo;
+					$usuario->usuario = $request->usuario;
+					$usuario->contrasena = requestHash('encode',$request->contrasena);
+					$usuario->idCuenta = $idCuenta;
+					$usuario->idAdmin = $idAdmin;
+					$usuario->fecha = date("Y-m-d H:i:s");
+					$nResult = $usuario->save();
+				}
+				if (count($nResult) > 0) {
+					
+					$data = $nResult;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		case "getAdminUsuario":
+			if (isset($request->idUsuario) && $request->idUsuario != "") {
+				$idUsuario = requestHash('decode',$request->idUsuario);
+				$usuario = Usuario::select('id','nombre','apellido','correo','usuario')
+					->where("id",$idUsuario)->first();
+				if (count($usuario) > 0) {
+					$usuario = $usuario->toArray();
+					$usuario['id'] = requestHash('encode',$usuario['id']);
+					$data = $usuario;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				$data = null;
+				// Error 1: Los datos son incorerectos
+				$error = 3;
+			}
+			break;
+
 	// Acción no encontrada
 	default:
 		$data = "Ups 404";

@@ -388,6 +388,30 @@ switch ($accion) {
 			}
 			break;
 
+		
+		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		case "deleteAdminCliente":
+			if (isset($request->idCuenta) && $request->idCuenta != "") {
+				$idCuenta = requestHash('decode',$request->idCuenta);
+				$cliente = Cuenta::where("id",$idCuenta)->first();
+				if (count($cliente) > 0) {
+					$cliente = $cliente->toArray();
+					$cliente['id'] = requestHash('encode',$cliente['id']);
+					$data = $cliente;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				$data = null;
+				// Error 1: Los datos son incorerectos
+				$error = 3;
+			}
+			break;
+
 		// setUsuario: Retorna todas los clientes de brm con sus usuarios
 		case "setAdminUsuario":
 			if (isset($request->id) &&

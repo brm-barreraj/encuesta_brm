@@ -57,4 +57,28 @@ export class AdminClients {
       this.activeS = !this.activeS;
   	}
 
+  	deleteClient(idClient){
+		var conf = confirm("Desea eliminar el cliente?");
+		if (conf == true) {
+	  		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'deleteAdminCliente',idCliente: idClient})
+				.subscribe(
+				(result) => {
+					switch (result.error) {
+						case 0:
+							alert("Ocurrió un error");
+							break;
+						case 1:
+							this.clientes = result.data;
+							break;
+						case 2:
+							alert("Usuario incorrecto");
+							break;
+					}
+				},
+				(error) =>  {
+					console.log(error)
+				});
+		}
+  	}
+
 }

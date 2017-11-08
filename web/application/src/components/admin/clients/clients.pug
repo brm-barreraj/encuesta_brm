@@ -21,25 +21,29 @@ section.container-fluid.container-clients
 	div.row.row-client-list
 
 		//Cliente	
+		div(*ngFor="let cliente of clientes; let keyCliente = index")
+			article.client.client-item
+				//Logo Marca
+				//- figure.marca(style="background:#")
+				//- 	img((click)="goToClient(cliente.idCuenta)", src="assets/images/{{cliente.imagenCuenta}}", alt="{{cliente.nombreCuenta}}")
 
-		article.client.client-item(*ngFor="let cliente of clientes")
-			//Logo Marca
-			//- figure.marca(style="background:#")
-			//- 	img((click)="goToClient(cliente.idCuenta)", src="assets/images/{{cliente.imagenCuenta}}", alt="{{cliente.nombreCuenta}}")
+				//Logo Marca
+				figure.client-brand([style.background-color] = 'cliente.colorCuenta',(click)="goToClient(cliente.idCuenta)")
+					+image('{{cliente.imagenCuenta}}', '{{cliente.nombreCuenta}}')
+				///-Logo Marca
 
-			//Logo Marca
-			figure.client-brand([style.background-color] = 'cliente.colorCuenta',(click)="goToClient(cliente.idCuenta)")
-				+image('{{cliente.imagenCuenta}}', '{{cliente.nombreCuenta}}')
-			///-Logo Marca
+				//Usuario por marca
+				aside.client.client-user
+					a.btn.btn-create((click)="deleteClient(cliente.idCuenta)") X
+					h3 Usuarios registrados:
 
-			//Usuario por marca
-			aside.client.client-user
-				h3 Usuarios registrados:
-				div.user(*ngFor="let usuario of cliente.usuarios")
-					p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
-			
-			///-Usuario por marca
-			a.btn.btn-create((click)="goToUserClient('',cliente.idCuenta)") Registrar Usuario
+					div.user(*ngFor="let usuario of cliente.usuarios")
+						p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+				
+				///-Usuario por marca
+				a.btn.btn-create((click)="goToUserClient('',cliente.idCuenta)") Registrar Usuario
+
+			div([ngClass]="{'clearfix': ((keyCliente+1) % 3) == 0}")
 		
 		///-Cliente
 

@@ -201,21 +201,24 @@
   <!--Listado de clientes BRM-->
   <div class="row row-client-list">
     <!--Cliente	-->
-    <article class="client client-item" *ngFor="let cliente of clientes">
-      <!--Logo Marca-->
-      <!--Logo Marca-->
-      <figure class="client-brand" [style.background-color]="cliente.colorCuenta" (click)="goToClient(cliente.idCuenta)"><img src="assets/images/{{cliente.imagenCuenta}}" title="{{cliente.nombreCuenta}}" alt="{{cliente.nombreCuenta}}"/>
-      </figure>
-      <!--/-Logo Marca-->
-      <!--Usuario por marca-->
-      <aside class="client client-user">
-        <h3>Usuarios registrados:</h3>
-        <div class="user" *ngFor="let usuario of cliente.usuarios">
-          <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p>
-        </div>
-      </aside>
-      <!--/-Usuario por marca--><a class="btn btn-create" (click)="goToUserClient('',cliente.idCuenta)">Registrar Usuario</a>
-    </article>
+    <div *ngFor="let cliente of clientes; let keyCliente = index">
+      <article class="client client-item">
+        <!--Logo Marca-->
+        <!--Logo Marca-->
+        <figure class="client-brand" [style.background-color]="cliente.colorCuenta" (click)="goToClient(cliente.idCuenta)"><img src="assets/images/{{cliente.imagenCuenta}}" title="{{cliente.nombreCuenta}}" alt="{{cliente.nombreCuenta}}"/>
+        </figure>
+        <!--/-Logo Marca-->
+        <!--Usuario por marca-->
+        <aside class="client client-user"><a class="btn btn-create" (click)="deleteClient(cliente.idCuenta)">X</a>
+          <h3>Usuarios registrados:</h3>
+          <div class="user" *ngFor="let usuario of cliente.usuarios">
+            <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p>
+          </div>
+        </aside>
+        <!--/-Usuario por marca--><a class="btn btn-create" (click)="goToUserClient('',cliente.idCuenta)">Registrar Usuario</a>
+      </article>
+      <div [ngClass]="{'clearfix': ((keyCliente+1) % 3) == 0}"></div>
+    </div>
     <!--/-Cliente-->
   </div>
   <!--/-Listado de clientes BRM-->

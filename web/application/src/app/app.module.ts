@@ -11,6 +11,7 @@ import { RequestService } from './app.request';
 import { SignOutComponent }      from './admin/components/sign-out/sign-out';
 import { FormClientComponent }      from './admin/components/form-client/form-client';
 import { FormUserClientComponent }      from './admin/components/form-user-client/form-user-client';
+import { AlertToastComponent }      from './admin/components/alert-toast/alert-toast';
 
 
 
@@ -48,6 +49,7 @@ import { routing } from './app.routes';
     SignOutComponent,
     FormClientComponent,
     FormUserClientComponent,
+    AlertToastComponent,
 
     Login,
     Form,

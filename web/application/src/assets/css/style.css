@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Wed Nov 08 2017 23:15:11 GMT-0500 (COT)
+ *Thu Nov 09 2017 00:03:18 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2484,6 +2484,52 @@ header .logo svg {
     -moz-transform: rotate(360deg) scale(1);
     transform: rotate(360deg) scale(1);
   }
+}
+.container-toast {
+  background-color: #323232;
+  bottom: 0;
+  -webkit-box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.3);
+  color: #fff;
+  left: 50%;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  margin: 0;
+  padding: 1rem 2rem;
+  position: fixed;
+  text-align: center;
+  -o-transform: translateX(-50%) translateY(120%);
+  -ms-transform: translateX(-50%) translateY(120%);
+  -webkit-transform: translateX(-50%) translateY(120%);
+  -moz-transform: translateX(-50%) translateY(120%);
+  transform: translateX(-50%) translateY(120%);
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.container-toast.active {
+  opacity: 0.99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+  -o-transform: translateX(-50%) translateY(0);
+  -ms-transform: translateX(-50%) translateY(0);
+  -webkit-transform: translateX(-50%) translateY(0);
+  -moz-transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0);
+}
+.container-toast span {
+  color: #fff;
+  margin: 0;
+  max-width: 80%;
+  padding: 0;
+}
+.container-toast .btn-toast {
+  display: inline-block;
+  color: #c3b578;
+  margin-left: 4.8rem;
 }
 .container-clients .row-create {
   clear: both;

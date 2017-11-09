@@ -15,6 +15,7 @@ import { Form } from './public/form/form';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLogin } from './admin/login/login';
 import { AdminReports } from './admin/reports/reports';
+import { AdminReportsPeriod } from './admin/reports-period/reports-period';
 import { AdminDashboard } from './admin/dashboard/dashboard';
 import { AdminClients } from './admin/clients/clients';
 import { AdminClient } from './admin/client/client';
@@ -33,7 +34,8 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent, 
   	children: [
   		{path: 'login', component: AdminLogin},
-  		{path: 'reports', component: AdminReports},
+      {path: 'reports', component: AdminReports},
+  		{path: 'reports-period', component: AdminReportsPeriod},
   		{path: 'dashboard', component: AdminDashboard},
   		{path: 'clients', component: AdminClients},
   		{path: 'client', component: AdminClient},

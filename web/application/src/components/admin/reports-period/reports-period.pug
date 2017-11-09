@@ -1,0 +1,54 @@
+include ../../includes/mixins
+include ../../includes/header-admin
+
+
+//Logo marca
+figure.marca(style="background-color:#e8252b")
+	+image('test.png', 'Hola')
+//Logo marca
+
+
+section.container-fluid.container-reports
+		
+	div.row
+
+		h1.text-intro
+			| Resultados
+
+
+
+		//- div.categoria-rep(*ngFor="let encuesta of encuestas")
+		//- 	div.categoria-resume
+		//- 		//Nombre Cuenta
+		//- 		h2.text-cuenta {{encuesta.cuenta}}
+		//- 		///-Nombre Cuenta
+		//- 		//Total
+		//- 		p.categoria-total
+		//- 			span TOTAL:  
+		//- 			strong {{encuesta.total}}%
+		//- 		///-Total
+			
+		//- 	div.categorias.categoria-content.active(*ngFor="let categoria of encuesta.categorias", [ngClass]="{ active: catShow==keyCategoria}", )
+		//- 		//Categoria pregunta y calificacion
+		//- 		div.categoria-head
+
+		//- 			h3.categoria-text {{categoria.categoria}}
+		//- 			h3.categoria-pts {{categoria.porcentajeCategoria}}% 
+		//- 			//- | {{categoria.promedioPregunta}}
+
+		//- 		///-Categoria pregunta y calificacion
+
+		//- 		div.respuesta(*ngFor="let usuario of categoria.usuarios" class="usuarios")
+		//- 			p.respuesta-usuario: strong {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}:
+					
+		//- 			div.respuesta-body(*ngFor="let respuesta of usuario.respuestas; let keyRespuesta = index " class="respuestas")
+		//- 				p.respuesta-num {{(keyRespuesta+1)}}
+						
+		//- 				p.respuesta-content
+		//- 					| {{respuesta.pregunta}}
+
+		//- 				p.respuesta-pts
+		//- 					| {{respuesta.puntaje}}
+					
+			
+

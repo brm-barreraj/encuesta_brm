@@ -27,6 +27,7 @@ import { LoginService }      from './public/login/login.service';
 import { AdminComponent }      from './admin/admin.component';
 import { AdminLogin }      from './admin/login/login';
 import { AdminReports }      from './admin/reports/reports';
+import { AdminReportsPeriod }      from './admin/reports-period/reports-period';
 import { AdminDashboard }      from './admin/dashboard/dashboard';
 import { AdminClients }      from './admin/clients/clients';
 import { AdminClient }      from './admin/client/client';
@@ -55,6 +56,7 @@ import { routing } from './app.routes';
     AdminComponent,
     AdminLogin,
     AdminReports,
+    AdminReportsPeriod,
     AdminDashboard,
     AdminClients,
     AdminClient,

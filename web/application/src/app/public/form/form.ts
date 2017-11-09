@@ -41,13 +41,13 @@ export class Form {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							this.toast.openToast("Ocurrió un error",null,5);
+							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
 							this.categorias = result.data;
 							break;
 						case 2:
-							this.toast.openToast("Usuario incorrecto",null,5);
+							this.toast.openToast("Usuario incorrecto",null,5,null);
 							break;
 						
 					}
@@ -94,7 +94,7 @@ export class Form {
 	siguienteCat(idCategoria){
 		let respCompletas = this.validarRespuestas(idCategoria);
 		if (!respCompletas) {
-			this.toast.openToast("Por favor, responda todas las preguntas",null,5);
+			this.toast.openToast("Por favor, responda todas las preguntas",null,5,null);
 		}else if (this.catShow < this.categorias.length) {
 			this.resShow = null;
 			this.catShow++;
@@ -194,7 +194,7 @@ export class Form {
 	enviarEncuesta(idCategoria): void{
 		let respCompletas = this.validarRespuestas(idCategoria);
 		if (!respCompletas) {
-			this.toast.openToast("Por favor, responda todas las preguntas",null,5);
+			this.toast.openToast("Por favor, responda todas las preguntas",null,5,null);
 		}else if (this.catShow < this.categorias.length) {
 			let idUsuario = this.serviceLogin.getSession().id;
 			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: JSON.stringify(this.respuestas), comentarios: JSON.stringify(this.comentarios)})
@@ -202,15 +202,15 @@ export class Form {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							this.toast.openToast("Ocurrió un error",null,5);
+							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
-							this.toast.openToast("Se ha insertado la encuesta correctamente",null,5);
+							this.toast.openToast("Se ha insertado la encuesta correctamente",null,5,null);
 							this.serviceLogin.deleteSession();
     						this.router.navigate(['login']);
 							break;
 						case 2:
-							this.toast.openToast("Ya se ha respondido esta encuesta",null,5);
+							this.toast.openToast("Ya se ha respondido esta encuesta",null,5,null);
 							break;
 						
 					}

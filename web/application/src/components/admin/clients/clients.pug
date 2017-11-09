@@ -40,8 +40,9 @@ section.container-fluid.container-clients
 
 					div.user(*ngFor="let usuario of cliente.usuarios")
 						div(*ngIf="usuario.estadoUsuario =='A'")
-							p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
-							a.btn((click)="removeUser(usuario.idUsuario)"): i.glyphicon.glyphicon-remove
+							p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)")
+								| {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+								a((click)="removeUser(usuario.idUsuario)"): i.glyphicon.glyphicon-remove
 						
 				///-Usuario por marca
 				a.btn.btn-create((click)="goToUserClient('',cliente.idCuenta)") Registrar Usuario

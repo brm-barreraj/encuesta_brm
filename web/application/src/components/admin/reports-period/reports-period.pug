@@ -38,42 +38,10 @@ section.container-fluid.container-reports.all
 				thead
 					tr
 						th.first()
-						//Investigacion
-						th.title-categoria
-							h4 investigación y análisis
-						///-Investigacion
-						//Cuentas
-						th.title-categoria
-							h4 manejo de cuentas
-						///-Cuentas
-						//planeacion
-						th.title-categoria
-							h4 planeación y estrategia
-						///-planeacion
-						//data
-						th.title-categoria
-							h4 data processing
-						///-data
-						//Creatividad
-						th.title-categoria
-							h4 creatividad
-						///-Creatividad
-						//relacion - cliente
-						th.title-categoria
-							h4 equipo relación cliente
-						///-relacion - cliente
-						//Financiero
-						th.title-categoria
-							h4 manejo financiero
-						///-Financiero
-						//compras
-						th.title-categoria
-							h4 producción compras
-						///-compras
-						//tech
-						th.title-categoria
-							h4 tecnología innovación
-						///-tech
+
+						th.title-categoria(*ngFor="let categoria of categorias")
+							h4 {{categoria.categoria}}
+
 						//Total marca
 						th.title-categoria
 							h4 total marca
@@ -82,61 +50,60 @@ section.container-fluid.container-reports.all
 
 				//resumen marca
 				tbody
-					-for(z=0; z < 4; z++)
-						tr
-							//Nombre marca
-							th.marca-list.first((click)="clickMarca()", ): h3.title-marca hola marca ultra larga bebé
-							//Nombre marca
-	
-							//Data
-							td.data-categoria(data-title="investigación y análisis")
-								p.number 55%
-							///-Data
+					tr(*ngFor="let encuesta of encuestas")
+						//Nombre marca
+						th.marca-list.first((click)="clickMarca()", ): h3.title-marca {{encuesta.cuenta}} {{encuestas[0].categorias[0].categoria}}
+						//Nombre marca
 
-							//Data
-							td.data-categoria(data-title="manejo de cuentas")
-								p.number 45%
-							///-Data
+						//Data
+						td.data-categoria(*ngFor="let cate of encuesta.categorias", data-title="{{cate.categoria}}")
+							p.number {{cate.promedioPregunta}}%
+						///-Data
 
-							//Data
-							td.data-categoria(data-title="planeación y estrategia")
-								p.number 25%
-							///-Data
+						//- //Data
+						//- td.data-categoria(data-title="manejo de cuentas")
+						//- 	p.number 45%
+						//- ///-Data
 
-							//Data
-							td.data-categoria(data-title="data processing")
-								p.number 15%
-							///-Data
+						//- //Data
+						//- td.data-categoria(data-title="planeación y estrategia")
+						//- 	p.number 25%
+						//- ///-Data
 
-							//Data
-							td.data-categoria(data-title="creatividad")
-								p.number 75%
-							///-Data
+						//- //Data
+						//- td.data-categoria(data-title="data processing")
+						//- 	p.number 15%
+						//- ///-Data
 
-							//Data
-							td.data-categoria(data-title="equipo relación cliente")
-								p.number 95%
-							///-Data
-							
-							//Data
-							td.data-categoria(data-title="manejo financiero")
-								p.number 55%
-							///-Data
+						//- //Data
+						//- td.data-categoria(data-title="creatividad")
+						//- 	p.number 75%
+						//- ///-Data
 
-							//Data
-							td.data-categoria(data-title="producción compras")
-								p.number 5%
-							///-Data
+						//- //Data
+						//- td.data-categoria(data-title="equipo relación cliente")
+						//- 	p.number 95%
+						//- ///-Data
+						
+						//- //Data
+						//- td.data-categoria(data-title="manejo financiero")
+						//- 	p.number 55%
+						//- ///-Data
 
-							//Data
-							td.data-categoria(data-title="tecnología innovación")
-								p.number 5%
-							///-Data
-	
-							//Data
-							td.data-categoria(data-title="total marca")
-								p.number 5%
-							///-Data
+						//- //Data
+						//- td.data-categoria(data-title="producción compras")
+						//- 	p.number 5%
+						//- ///-Data
+
+						//- //Data
+						//- td.data-categoria(data-title="tecnología innovación")
+						//- 	p.number 5%
+						//- ///-Data
+
+						//Data
+						td.data-categoria(data-title="total marca")
+							p.number {{encuesta.total}}
+						///-Data
 
 
 

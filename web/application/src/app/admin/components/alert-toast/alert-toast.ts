@@ -20,14 +20,14 @@ export class AlertToastComponent {
       this.activeT = false;
   	}
 	
-	openToast(txt1:string="",txt2:string="Listo",time:number=0,reload:boolean=false){
+	openToast(txt1:string="",txt2:string="Listo",time:number=0,callback:any=null){
 		this.txt1 = txt1; 
 		this.txt2 = txt2; 
 		if (time > 0) {
 			setTimeout(()=>{
 				this.closeToast();
-				if (reload) {
-					window.location.reload();
+				if (callback != null) {
+					callback();
 				}
 			},time*1000);
 		}

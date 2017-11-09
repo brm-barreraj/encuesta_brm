@@ -214,7 +214,7 @@
           <h3>{{cliente.nombreCuenta}}</h3>
           <div class="user" *ngFor="let usuario of cliente.usuarios">
             <div *ngIf="usuario.estadoUsuario =='A'">
-              <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p><a class="btn" (click)="removeUser(usuario.idUsuario)"><i class="glyphicon glyphicon-remove"></i></a>
+              <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}<a (click)="removeUser(usuario.idUsuario)"><i class="glyphicon glyphicon-remove"></i></a></p>
             </div>
           </div>
         </aside>

@@ -145,7 +145,7 @@ switch ($accion) {
 						$encuestas[$i]['categorias'][$k]['usuarios'][$l]['promedioUsuarioPregunta'] = $promedioUsuarioPregunta;
 					}
 					$promedioPregunta = ($totalPuntajePregunta/$nUsuarios);
-					$encuestas[$i]['categorias'][$k]['promedioPregunta'] = $promedioPregunta;
+					$encuestas[$i]['categorias'][$k]['promedioPregunta'] = round($promedioPregunta,2);
 					$porcentajeCategoria = $encuestas[$i]['categorias'][$k]['porcentajeCategoria'];
 					$promedioPeso = (($promedioPregunta*$porcentajeCategoria)/100);
 					$totalPromedioPeso += $promedioPeso;

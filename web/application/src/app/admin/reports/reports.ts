@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginAdminService } from '../login/login.service';
-
+import { AlertToastComponent } from '../components/alert-toast/alert-toast';
 
 @Component({
   templateUrl: './reports.html',
@@ -12,6 +12,9 @@ import { LoginAdminService } from '../login/login.service';
 
 export class AdminReports {
 	encuestas:any = [];
+
+	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
+
 	constructor(private serviceLoginAdmin: LoginAdminService,
 		private serviceRequest: RequestService,
 		private router: Router) { }
@@ -25,13 +28,13 @@ export class AdminReports {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							alert("Ocurrió un error");
+							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
 							this.encuestas = result.data;
 							break;
 						case 2:
-							alert("Usuario incorrecto");
+							this.toast.openToast("Usuario incorrecto",null,5,null);
 							break;
 					}
 				},

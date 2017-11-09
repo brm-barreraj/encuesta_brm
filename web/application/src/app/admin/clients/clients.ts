@@ -29,13 +29,13 @@ export class AdminClients {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							this.toast.openToast("Ocurrió un error",null,5);
+							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
 							this.clientes = result.data;
 							break;
 						case 2:
-							this.toast.openToast("Usuario incorrecto",null,5);
+							this.toast.openToast("Usuario incorrecto",null,5,null);
 							break;
 					}
 				},
@@ -68,13 +68,15 @@ export class AdminClients {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							this.toast.openToast("Ocurrió un error",null,5);
+							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
-							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,true);
+							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,()=>{
+								window.location.reload();
+							});
 							break;
 						case 2:
-							this.toast.openToast("Usuario incorrecto",null,5);
+							this.toast.openToast("Usuario incorrecto",null,5,null);
 							break;
 					}
 				},
@@ -92,13 +94,15 @@ export class AdminClients {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							this.toast.openToast("Ocurrió un error",null,5);
+							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
-							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,true);
+							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,()=>{
+								window.location.reload();
+							});
 							break;
 						case 2:
-							this.toast.openToast("Usuario incorrecto",null,5);
+							this.toast.openToast("Usuario incorrecto",null,5,null);
 							break;
 					}
 				},

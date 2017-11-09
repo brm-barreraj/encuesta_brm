@@ -223,51 +223,9 @@
         <thead>
           <tr>
             <th class="first"></th>
-            <!--Investigacion-->
-            <th class="title-categoria">
-              <h4>investigación y análisis</h4>
+            <th class="title-categoria" *ngFor="let categoria of categorias">
+              <h4>{{categoria.categoria}}</h4>
             </th>
-            <!--/-Investigacion-->
-            <!--Cuentas-->
-            <th class="title-categoria">
-              <h4>manejo de cuentas</h4>
-            </th>
-            <!--/-Cuentas-->
-            <!--planeacion-->
-            <th class="title-categoria">
-              <h4>planeación y estrategia</h4>
-            </th>
-            <!--/-planeacion-->
-            <!--data-->
-            <th class="title-categoria">
-              <h4>data processing</h4>
-            </th>
-            <!--/-data-->
-            <!--Creatividad-->
-            <th class="title-categoria">
-              <h4>creatividad</h4>
-            </th>
-            <!--/-Creatividad-->
-            <!--relacion - cliente-->
-            <th class="title-categoria">
-              <h4>equipo relación cliente</h4>
-            </th>
-            <!--/-relacion - cliente-->
-            <!--Financiero-->
-            <th class="title-categoria">
-              <h4>manejo financiero</h4>
-            </th>
-            <!--/-Financiero-->
-            <!--compras-->
-            <th class="title-categoria">
-              <h4>producción compras</h4>
-            </th>
-            <!--/-compras-->
-            <!--tech-->
-            <th class="title-categoria">
-              <h4>tecnología innovación</h4>
-            </th>
-            <!--/-tech-->
             <!--Total marca-->
             <th class="title-categoria">
               <h4>total marca</h4>
@@ -278,231 +236,20 @@
         <!--/-titulos-->
         <!--resumen marca-->
         <tbody>
-          <tr>
+          <tr *ngFor="let encuesta of encuestas">
             <!--Nombre marca-->
             <th class="marca-list first" (click)="clickMarca()">
-              <h3 class="title-marca">hola marca ultra larga bebé</h3>
+              <h3 class="title-marca">{{encuesta.cuenta}} {{encuestas[0].categorias[0].categoria}}</h3>
             </th>
             <!--Nombre marca-->
             <!--Data-->
-            <td class="data-categoria" data-title="investigación y análisis">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo de cuentas">
-              <p class="number">45%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="planeación y estrategia">
-              <p class="number">25%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="data processing">
-              <p class="number">15%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="creatividad">
-              <p class="number">75%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="equipo relación cliente">
-              <p class="number">95%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo financiero">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="producción compras">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="tecnología innovación">
-              <p class="number">5%</p>
+            <td class="data-categoria" *ngFor="let cate of encuesta.categorias" data-title="{{cate.categoria}}">
+              <p class="number">{{cate.promedioPregunta}}%</p>
             </td>
             <!--/-Data-->
             <!--Data-->
             <td class="data-categoria" data-title="total marca">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-          </tr>
-          <tr>
-            <!--Nombre marca-->
-            <th class="marca-list first" (click)="clickMarca()">
-              <h3 class="title-marca">hola marca ultra larga bebé</h3>
-            </th>
-            <!--Nombre marca-->
-            <!--Data-->
-            <td class="data-categoria" data-title="investigación y análisis">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo de cuentas">
-              <p class="number">45%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="planeación y estrategia">
-              <p class="number">25%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="data processing">
-              <p class="number">15%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="creatividad">
-              <p class="number">75%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="equipo relación cliente">
-              <p class="number">95%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo financiero">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="producción compras">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="tecnología innovación">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="total marca">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-          </tr>
-          <tr>
-            <!--Nombre marca-->
-            <th class="marca-list first" (click)="clickMarca()">
-              <h3 class="title-marca">hola marca ultra larga bebé</h3>
-            </th>
-            <!--Nombre marca-->
-            <!--Data-->
-            <td class="data-categoria" data-title="investigación y análisis">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo de cuentas">
-              <p class="number">45%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="planeación y estrategia">
-              <p class="number">25%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="data processing">
-              <p class="number">15%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="creatividad">
-              <p class="number">75%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="equipo relación cliente">
-              <p class="number">95%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo financiero">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="producción compras">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="tecnología innovación">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="total marca">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-          </tr>
-          <tr>
-            <!--Nombre marca-->
-            <th class="marca-list first" (click)="clickMarca()">
-              <h3 class="title-marca">hola marca ultra larga bebé</h3>
-            </th>
-            <!--Nombre marca-->
-            <!--Data-->
-            <td class="data-categoria" data-title="investigación y análisis">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo de cuentas">
-              <p class="number">45%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="planeación y estrategia">
-              <p class="number">25%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="data processing">
-              <p class="number">15%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="creatividad">
-              <p class="number">75%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="equipo relación cliente">
-              <p class="number">95%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="manejo financiero">
-              <p class="number">55%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="producción compras">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="tecnología innovación">
-              <p class="number">5%</p>
-            </td>
-            <!--/-Data-->
-            <!--Data-->
-            <td class="data-categoria" data-title="total marca">
-              <p class="number">5%</p>
+              <p class="number">{{encuesta.total}}</p>
             </td>
             <!--/-Data-->
           </tr>

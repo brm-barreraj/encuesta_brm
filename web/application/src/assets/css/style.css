@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Wed Nov 08 2017 22:12:48 GMT-0500 (COT)
+ *Wed Nov 08 2017 23:15:11 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2556,6 +2556,23 @@ header .logo svg {
     width: 33.33333333333333%;
   }
 }
+.col-total {
+  position: relative;
+  min-height: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+@media (min-width: 770px) {
+  .col-total {
+    float: left;
+    width: 33.33333333333333%;
+  }
+}
+@media (min-width: 770px) {
+  .col-total {
+    margin-left: 33.33333333333333%;
+  }
+}
 .row-periods .form-group {
   position: relative;
   min-height: 1px;
@@ -2692,6 +2709,11 @@ header .logo svg {
   color: #000;
   display: block;
   font-size: 120%;
+}
+.total-perc {
+  font-size: 6rem;
+  margin-bottom: 3rem;
+  text-align: center;
 }
 .btn-blue {
   display: block;
@@ -2841,6 +2863,17 @@ header .logo svg {
 }
 .table {
   text-align: center;
+  overflow: hidden;
+}
+.table tr,
+.table tbody,
+.table tfood,
+.table thead {
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .table tr td,
 .table tbody td,
@@ -2850,9 +2883,408 @@ header .logo svg {
 .table tbody th,
 .table tfood th,
 .table thead th {
+  border: none !important;
   padding: 0.5rem !important;
+  position: relative;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   vertical-align: middle !important;
-  width: 8.166666666666666% !important;
+  width: 8.166666666666666%;
+}
+.table tr td::after,
+.table tbody td::after,
+.table tfood td::after,
+.table thead td::after,
+.table tr th::after,
+.table tbody th::after,
+.table tfood th::after,
+.table thead th::after {
+  background-color: #0d2d6c;
+  content: '';
+  height: 1000rem;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  left: 0;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: -500rem;
+  width: 100%;
+  z-index: -1;
+}
+.table tr td:not(.first):hover,
+.table tbody td:not(.first):hover,
+.table tfood td:not(.first):hover,
+.table thead td:not(.first):hover,
+.table tr th:not(.first):hover,
+.table tbody th:not(.first):hover,
+.table tfood th:not(.first):hover,
+.table thead th:not(.first):hover {
+  background-color: transparent;
+}
+.table tr td:not(.first):hover h3,
+.table tbody td:not(.first):hover h3,
+.table tfood td:not(.first):hover h3,
+.table thead td:not(.first):hover h3,
+.table tr th:not(.first):hover h3,
+.table tbody th:not(.first):hover h3,
+.table tfood th:not(.first):hover h3,
+.table thead th:not(.first):hover h3,
+.table tr td:not(.first):hover h4,
+.table tbody td:not(.first):hover h4,
+.table tfood td:not(.first):hover h4,
+.table thead td:not(.first):hover h4,
+.table tr th:not(.first):hover h4,
+.table tbody th:not(.first):hover h4,
+.table tfood th:not(.first):hover h4,
+.table thead th:not(.first):hover h4 {
+  color: #fff;
+}
+.table tr td:not(.first):hover::after,
+.table tbody td:not(.first):hover::after,
+.table tfood td:not(.first):hover::after,
+.table thead td:not(.first):hover::after,
+.table tr th:not(.first):hover::after,
+.table tbody th:not(.first):hover::after,
+.table tfood th:not(.first):hover::after,
+.table thead th:not(.first):hover::after {
+  opacity: 0.99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+}
+.table tr:hover {
+  background-color: #0d2d6c;
+  color: #fff;
+}
+.table tr:hover td,
+.table tr:hover th {
+  color: #fff;
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(2) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25), -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25), -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(3) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(4) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(5) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(6) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(7) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(8) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(9) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(10) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(1) td:nth-of-type(11) {
+  -webkit-box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+  box-shadow: 0 -5px 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(2) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(3) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(4) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(5) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(6) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(7) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(8) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(9) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(10) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(11) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(12) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(13) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(14) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(15) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(16) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(17) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(18) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(19) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(20) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(21) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(22) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(23) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(24) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(25) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(26) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(27) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(28) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(29) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(30) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(31) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(32) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(33) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(34) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(35) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(36) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(37) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(38) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(39) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(40) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(41) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(42) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(43) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(44) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(45) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(46) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(47) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(48) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(49) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(50) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(51) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(52) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(53) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(54) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(55) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(56) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(57) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(58) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(59) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-of-type(60) td:nth-of-type(2) {
+  -webkit-box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+  box-shadow: -5px 0 5px -5px rgba(0,0,0,0.25);
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(2) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25), -5px 0 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25), -5px 0 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(3) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(4) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(5) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(6) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(7) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(8) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(9) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(10) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table tbody tr:nth-last-of-type(1) td:nth-of-type(11) {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+  box-shadow: 0 5px 5px -5px rgba(0,0,0,0.25) !important;
+}
+.table .totales {
+  background-color: #f5f5f5;
 }
 .table-responsive {
   margin: 2rem auto;
@@ -2861,10 +3293,15 @@ header .logo svg {
   background-color: transparent;
   width: 16%;
 }
+.table .marca-list {
+  background-color: #f5f5f5;
+  border-bottom: 2px dotted #a6a8ab !important;
+}
 .table .title-categoria h4 {
   font-size: 0.9rem;
   font-weight: 300;
   line-height: 1;
+  letter-spacing: 0.1rem;
   text-align: center;
 }
 .table .title-marca {

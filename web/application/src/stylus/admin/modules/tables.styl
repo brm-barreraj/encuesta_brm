@@ -1,0 +1,113 @@
+.table
+	text-align center
+	overflow hidden
+	
+	tr,
+	tbody,
+	tfood,
+	thead
+		transitionBase()
+		td,
+		th
+			border none !important
+			padding 0.5rem !important
+			position relative
+			transitionBase()
+			vertical-align middle !important
+			width (98%/12)
+
+			&::after
+				background-color $Azul
+				content ''
+				height 1000rem
+				opacity 0
+				left 0
+				transitionBase()
+				position absolute
+				top -500rem
+				width 100%
+				z-index: -1
+		
+
+			&:not(.first)
+				&:hover
+					background-color transparent
+					h3,
+					h4
+						color white
+					&::after
+						opacity 0.99
+
+	tr
+		&:hover
+			background-color $Azul
+			color white
+			
+			td,
+			th
+				color white
+				
+
+	//sombra
+	tbody
+		tr
+			&:nth-of-type(1)
+				td
+					&:nth-of-type(2)
+						box-shadow 0 -5px 5px -5px rgba(0, 0, 0, 0.25),
+									-5px 0 5px -5px rgba(0, 0, 0, 0.25)
+				
+					//superiores
+					for x in 3..11
+						&:nth-of-type({x})
+							box-shadow 0 -5px 5px -5px rgba(0, 0, 0, 0.25)
+		
+			//laterales
+			for x in 2..60
+				&:nth-of-type({x})
+					td
+						&:nth-of-type(2)
+							box-shadow -5px 0 5px -5px rgba(0, 0, 0, 0.25)
+			
+						
+			&:nth-last-of-type(1)
+				td
+					//esquina inferior izquierda
+					&:nth-of-type(2)
+						box-shadow 0 5px 5px -5px rgba(0, 0, 0, 0.25),
+									-5px 0 5px -5px rgba(0, 0, 0, 0.25) !important
+		
+					//bottom
+					for x in 3..11
+						&:nth-of-type({x})
+							box-shadow 0 5px 5px -5px rgba(0, 0, 0, 0.25) !important
+
+			
+	.totales
+		background-color $Gris[3]
+						
+	
+	&-responsive
+		margin 2rem auto
+		
+	.first
+		background-color transparent
+		width 16%
+	
+	.marca-list
+		background-color $Gris[3]
+		border-bottom 2px dotted $Gris[1] !important
+		
+	.title
+		&-categoria
+			h4
+				font-size 0.9rem
+				font-weight $Light
+				line-height 1
+				letter-spacing 0.1rem
+				text-align center
+				
+		&-marca
+			color black
+			cursor pointer
+			font-size 1.3rem

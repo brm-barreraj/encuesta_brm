@@ -82,21 +82,22 @@ section.container-fluid.container-reports
 
 				//resumen marca
 				tbody
-					tr
-						//Nombre marca
-						td.first((click)="clickMarca()", ): h3.title-marca hola marca ultra larga bebé
-						//Nombre marca
-					
-						-for(y=0; y < 10;y++)
-							//Data
-							td.data-categoria
-								p.number #{y}%
-							///-Data
+					-for(z=0; z < 4; z++)
+						tr
+							//Nombre marca
+							td.marca-list.first((click)="clickMarca()", ): h3.title-marca hola marca ultra larga bebé
+							//Nombre marca
+						
+							-for(y=0; y < 10;y++)
+								//Data
+								td.data-categoria
+									p.number #{y}%
+								///-Data
 
 				///-resumen marca
 
 				//Totales
-				tfoot
+				tfoot.totales
 					tr
 						td.first(): h4 total categoría
 						-for(x=0; x < 9;x++)

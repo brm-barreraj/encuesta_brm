@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Thu Nov 09 2017 00:31:11 GMT-0500 (COT)
+ *Thu Nov 09 2017 01:19:58 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2264,6 +2264,14 @@ button.close span {
   background-color: #fff !important;
   color: #0d2d6c !important;
 }
+.btn-logout {
+  background-color: rgba(0,0,0,0.5);
+  border: 1px solid #fff !important;
+  color: #fff;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
 .btn-vacante {
   background-color: #fff;
   color: #0d2d6c;
@@ -2635,14 +2643,6 @@ header .logo svg {
   .row-periods .form-group:nth-of-type(1) {
     margin-left: 25%;
   }
-}
-.container-admin .btn-logout {
-  background-color: rgba(0,0,0,0.5);
-  border: 1px solid #fff;
-  color: #fff;
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
 }
 .container-admin .logo {
   background-color: transparent;
@@ -3646,6 +3646,10 @@ body.login p {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.categoria-comment textarea {
+  resize: none;
+  width: 100%;
 }
 .categoria-controls:before,
 .categoria-controls:after {

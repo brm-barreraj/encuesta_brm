@@ -67,8 +67,9 @@ section.container-fluid.container-encuesta
 
 			///-Pregunta
 			//actions
-			div
-				textarea(placeholder="Comentario",[(ngModel)]="comentario[keyCategoria]")
+			div.categoria-comment
+				label(for="comment") ¿Quieres contarno algo más?:
+				textarea([(ngModel)]="comentario[keyCategoria]", id="comment")
 			div.categoria-controls
 				//- -if(x !=0)
 				a.btn.btn-prev((click)="volverCat()", *ngIf="catShow > 0") Volver

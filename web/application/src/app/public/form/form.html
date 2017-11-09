@@ -231,8 +231,9 @@
       </article>
       <!--/-Pregunta-->
       <!--actions-->
-      <div>
-        <textarea placeholder="Comentario" [(ngModel)]="comentario[keyCategoria]"></textarea>
+      <div class="categoria-comment">
+        <label for="comment">¿Quieres contarno algo más?:</label>
+        <textarea [(ngModel)]="comentario[keyCategoria]" id="comment"></textarea>
       </div>
       <div class="categoria-controls"><a class="btn btn-prev" (click)="volverCat()" *ngIf="catShow &gt; 0">Volver</a><a class="btn btn-next" (click)="siguienteCat(categoria.idCategoria); guardarComentario(categoria.idCategoria,comentario[keyCategoria])" *ngIf="catShow &lt; categorias.length - 1">Continuar</a>
         <!-- -if(x == 4)-->

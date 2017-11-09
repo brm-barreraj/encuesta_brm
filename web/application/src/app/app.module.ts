@@ -13,6 +13,7 @@ import { Form }      from './public/form/form';
 
 //Components App
 import { SignOutComponent as SignOutComponentApp }      from './public/components/sign-out/sign-out';
+import { AlertToastComponent as AlertToastComponentApp }      from './public/components/alert-toast/alert-toast';
 
 
 // App services
@@ -34,7 +35,7 @@ import { AdminUserClient }      from './admin/user-client/user-client';
 import { SignOutComponent as SignOutComponentAdmin}      from './admin/components/sign-out/sign-out';
 import { FormClientComponent }      from './admin/components/form-client/form-client';
 import { FormUserClientComponent }      from './admin/components/form-user-client/form-user-client';
-import { AlertToastComponent }      from './admin/components/alert-toast/alert-toast';
+import { AlertToastComponent as AlertToastComponentAdmin }      from './admin/components/alert-toast/alert-toast';
 
 
 // Admin services
@@ -49,11 +50,12 @@ import { routing } from './app.routes';
     AppComponent,
 
     SignOutComponentApp,
+    AlertToastComponentApp,
 
     SignOutComponentAdmin,
     FormClientComponent,
     FormUserClientComponent,
-    AlertToastComponent,
+    AlertToastComponentAdmin,
 
     Login,
     Form,

@@ -6,10 +6,6 @@ import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@a
 //General
 import { RequestService } from './app.request';
 
-
-
-
-
 // App
 import { AppComponent } from './app.component';
 import { Login }      from './public/login/login';
@@ -38,7 +34,7 @@ import { AdminUserClient }      from './admin/user-client/user-client';
 import { SignOutComponent as SignOutComponentAdmin}      from './admin/components/sign-out/sign-out';
 import { FormClientComponent }      from './admin/components/form-client/form-client';
 import { FormUserClientComponent }      from './admin/components/form-user-client/form-user-client';
-
+import { AlertToastComponent }      from './admin/components/alert-toast/alert-toast';
 
 
 // Admin services
@@ -57,6 +53,7 @@ import { routing } from './app.routes';
     SignOutComponentAdmin,
     FormClientComponent,
     FormUserClientComponent,
+    AlertToastComponent,
 
     Login,
     Form,

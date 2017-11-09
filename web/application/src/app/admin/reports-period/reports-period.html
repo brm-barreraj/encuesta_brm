@@ -190,12 +190,386 @@
   </div>
 </header>
 <!--/-Header-->
-<!--Logo marca-->
-<figure class="marca" style="background-color:#e8252b;"><img src="assets/images/test.png" title="Hola" alt="Hola"/>
-</figure>
-<!--Logo marca-->
 <section class="container-fluid container-reports">
-  <div class="row">
+  <div class="row row-periods">
     <h1 class="text-intro">Resultados</h1>
+    <!--Año-->
+    <div class="form-group">
+      <div class="form-select">
+        <select id="year" name="year">
+          <option value="">- año -</option>
+        </select>
+      </div>
+    </div>
+    <!--/-Año-->
+    <!--Año-->
+    <div class="form-group">
+      <div class="form-select">
+        <select id="period" name="period">
+          <option value="">- periodo -</option>
+        </select>
+      </div>
+    </div>
+    <!--/-Año-->
   </div>
 </section>
+<!--Reporte completo-->
+<section class="container-fluid container-reports">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table">
+        <!--titulos-->
+        <thead>
+          <tr>
+            <th class="first">&nbsp;</th>
+            <!--Investigacion-->
+            <th class="title-categoria">
+              <h4>investigación y análisis</h4>
+            </th>
+            <!--/-Investigacion-->
+            <!--Cuentas-->
+            <th class="title-categoria">
+              <h4>manejo de cuentas</h4>
+            </th>
+            <!--/-Cuentas-->
+            <!--planeacion-->
+            <th class="title-categoria">
+              <h4>planeación y estrategia</h4>
+            </th>
+            <!--/-planeacion-->
+            <!--data-->
+            <th class="title-categoria">
+              <h4>data processing</h4>
+            </th>
+            <!--/-data-->
+            <!--Creatividad-->
+            <th class="title-categoria">
+              <h4>creatividad</h4>
+            </th>
+            <!--/-Creatividad-->
+            <!--relacion - cliente-->
+            <th class="title-categoria">
+              <h4>equipo relación cliente</h4>
+            </th>
+            <!--/-relacion - cliente-->
+            <!--Financiero-->
+            <th class="title-categoria">
+              <h4>manejo financiero</h4>
+            </th>
+            <!--/-Financiero-->
+            <!--compras-->
+            <th class="title-categoria">
+              <h4>producción compras</h4>
+            </th>
+            <!--/-compras-->
+            <!--tech-->
+            <th class="title-categoria">
+              <h4>tecnología innovación</h4>
+            </th>
+            <!--/-tech-->
+            <!--Total marca-->
+            <th class="title-categoria">
+              <h4>total marca</h4>
+            </th>
+            <!--/-Total marca-->
+          </tr>
+        </thead>
+        <!--/-titulos-->
+        <!--resumen marca-->
+        <tbody>
+          <tr>
+            <!--Nombre marca-->
+            <td class="marca-list first" (click)="clickMarca()">
+              <h3 class="title-marca">hola marca ultra larga bebé</h3>
+            </td>
+            <!--Nombre marca-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">9%</p>
+            </td>
+            <!--/-Data-->
+          </tr>
+          <tr>
+            <!--Nombre marca-->
+            <td class="marca-list first" (click)="clickMarca()">
+              <h3 class="title-marca">hola marca ultra larga bebé</h3>
+            </td>
+            <!--Nombre marca-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">9%</p>
+            </td>
+            <!--/-Data-->
+          </tr>
+          <tr>
+            <!--Nombre marca-->
+            <td class="marca-list first" (click)="clickMarca()">
+              <h3 class="title-marca">hola marca ultra larga bebé</h3>
+            </td>
+            <!--Nombre marca-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">9%</p>
+            </td>
+            <!--/-Data-->
+          </tr>
+          <tr>
+            <!--Nombre marca-->
+            <td class="marca-list first" (click)="clickMarca()">
+              <h3 class="title-marca">hola marca ultra larga bebé</h3>
+            </td>
+            <!--Nombre marca-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">9%</p>
+            </td>
+            <!--/-Data-->
+          </tr>
+        </tbody>
+        <!--/-resumen marca-->
+        <!--Totales-->
+        <tfoot class="totales">
+          <tr>
+            <td class="first">
+              <h4>total categoría</h4>
+            </td>
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <td>&nbsp;</td>
+          </tr>
+        </tfoot>
+        <!--/-Totales-->
+      </table>
+    </div>
+    <!--Total periodo-->
+    <div class="col-total">
+      <h3 class="text-intro">total periodo</h3>
+      <h2 class="total-perc">50,56%</h2>
+    </div>
+    <!--/-Total periodo-->
+  </div>
+</section>
+<!--/-Reporte completo-->

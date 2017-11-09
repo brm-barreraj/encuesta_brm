@@ -1,7 +1,8 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginService } from '../login/login.service';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './form.html',
@@ -21,10 +22,11 @@ export class Form {
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
 		private router: Router,
+		@Inject(DOCUMENT) private document: any,
 		private elementRef: ElementRef) { }
 
 	ngOnInit() {
-		document.body.classList.remove('login');
+		this.document.body.classList.remove('login');
 		this.dataSesssion = this.serviceLogin.getSession();
 		if (!this.serviceLogin.validateSession()) {
 			this.router.navigate(['login']);

@@ -189,6 +189,7 @@
     <sign-out></sign-out>
   </div>
 </header>
+<alert-toast></alert-toast>
 <!--/-Header-->
 <section class="container-fluid container-clients">
   <div class="row row-create">
@@ -209,10 +210,12 @@
         </figure>
         <!--/-Logo Marca-->
         <!--Usuario por marca-->
-        <aside class="client client-user"><a class="btn btn-remove" (click)="deleteClient(cliente.idCuenta)"><i class="glyphicon glyphicon-remove"></i></a>
-          <h3>Usuarios registrados:</h3>
+        <aside class="client client-user"><a class="btn btn-remove" (click)="removeClient(cliente.idCuenta)"><i class="glyphicon glyphicon-remove"></i></a>
+          <h3>{{cliente.nombreCuenta}}</h3>
           <div class="user" *ngFor="let usuario of cliente.usuarios">
-            <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p>
+            <div *ngIf="usuario.estadoUsuario =='A'">
+              <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p><a class="btn" (click)="removeUser(usuario.idUsuario)"><i class="glyphicon glyphicon-remove"></i></a>
+            </div>
           </div>
         </aside>
         <!--/-Usuario por marca--><a class="btn btn-create" (click)="goToUserClient('',cliente.idCuenta)">Registrar Usuario</a>

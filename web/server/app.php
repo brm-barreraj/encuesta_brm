@@ -325,7 +325,7 @@ switch ($accion) {
 			}
 			break;
 			
-		// setClientes: Retorna todas los clientes de brm con sus usuarios
+		// setAdminCliente: Retorna todas los clientes de brm con sus usuarios
 		case "setAdminCliente":
 			if (isset($request->idCuenta) &&
 				isset($request->nombre) && $request->nombre != "" &&
@@ -363,11 +363,11 @@ switch ($accion) {
 			}
 			break;
 
-		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		// getAdminCliente: Retorna todas los clientes de brm con sus usuarios
 		case "getAdminCliente":
 			if (isset($request->idCuenta) && $request->idCuenta != "") {
 				$idCuenta = requestHash('decode',$request->idCuenta);
-				$cliente = Cuenta::where("id",$idCuenta)->first();
+				$cliente = Cuenta::where("id",$idCuenta)->where("estado","A")->first();
 				if (count($cliente) > 0) {
 					$cliente = $cliente->toArray();
 					$cliente['id'] = requestHash('encode',$cliente['id']);
@@ -386,7 +386,7 @@ switch ($accion) {
 			}
 			break;
 	
-		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		// getAdminClientes: Retorna todas los clientes de brm con sus usuarios
 		case "getAdminClientes":
 			$clientes = Cuenta::select('cuenta.id AS idCuenta',
 				'cuenta.nombre AS nombreCuenta',
@@ -395,9 +395,11 @@ switch ($accion) {
 				'usuario.id AS idUsuario',
 				'usuario.nombre AS nombreUsuario',
 				'usuario.apellido AS apellidoUsuario',
+				'usuario.estado AS estadoUsuario',
 				'usuario.correo AS correoUsuario'
 				)
 			->leftJoin('usuario', 'cuenta.id', '=', 'usuario.idCuenta')
+			->where("cuenta.estado","A")
 			->get();
 			if (count($clientes) > 0) {
 				$clientes = $clientes->toArray();
@@ -418,7 +420,28 @@ switch ($accion) {
 			}
 			break;
 
-		// setUsuario: Retorna todas los clientes de brm con sus usuarios
+		// removeAdminCliente: Cambia de estado al Cliente como inactivo
+		case "removeAdminCliente":
+			if (isset($request->id) && $request->id != "") {
+				$id = requestHash('decode',$request->id);
+				$nResult = Cuenta::where('id', $id)
+						->update(['estado' => "I"]);
+				if (count($nResult) > 0) {
+					$data = $nResult;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+		// setAdminUsuario: Retorna todas los clientes de brm con sus usuarios
 		case "setAdminUsuario":
 			if (isset($request->id) &&
 				isset($request->nombre) && $request->nombre != "" &&
@@ -463,7 +486,28 @@ switch ($accion) {
 			}
 			break;
 
-		// getClientes: Retorna todas los clientes de brm con sus usuarios
+		// removeAdminUsuario: Cambia de estado al usuario como inactivo
+		case "removeAdminUsuario":
+			if (isset($request->id) && $request->id != "") {
+				$id = requestHash('decode',$request->id);
+				$nResult = Usuario::where('id', $id)
+						->update(['estado' => "I"]);
+				if (count($nResult) > 0) {
+					$data = $nResult;
+					// Error 1: Los datos de usuario son corerectos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 1: Los datos de usuario son incorerectos
+					$error = 2;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+		// getAdminUsuario: Retorna todas los clientes de brm con sus usuarios
 		case "getAdminUsuario":
 			if (isset($request->idUsuario) && $request->idUsuario != "") {
 				$idUsuario = requestHash('decode',$request->idUsuario);

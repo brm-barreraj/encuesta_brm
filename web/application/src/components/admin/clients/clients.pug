@@ -34,13 +34,15 @@ section.container-fluid.container-clients
 
 				//Usuario por marca
 				aside.client.client-user
-					a.btn.btn-remove((click)="deleteClient(cliente.idCuenta)"): i.glyphicon.glyphicon-remove
+					a.btn.btn-remove((click)="removeClient(cliente.idCuenta)"): i.glyphicon.glyphicon-remove
 
-					h3 Usuarios registrados:
+					h3 {{cliente.nombreCuenta}}
 
 					div.user(*ngFor="let usuario of cliente.usuarios")
-						p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
-				
+						div(*ngIf="usuario.estadoUsuario =='A'")
+							p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)") {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
+							a.btn((click)="removeUser(usuario.idUsuario)"): i.glyphicon.glyphicon-remove
+						
 				///-Usuario por marca
 				a.btn.btn-create((click)="goToUserClient('',cliente.idCuenta)") Registrar Usuario
 

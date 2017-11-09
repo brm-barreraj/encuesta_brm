@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginAdminService } from '../login/login.service';
-
+import { AlertToastComponent } from '../components/alert-toast/alert-toast';
 
 @Component({
   templateUrl: './clients.html',
@@ -13,6 +13,9 @@ import { LoginAdminService } from '../login/login.service';
 export class AdminClients {
 	clientes:any = [];
 	activeS:boolean = false;
+
+	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
+
 	constructor(private serviceLoginAdmin: LoginAdminService,
 		private serviceRequest: RequestService,
 		private router: Router) { }
@@ -26,13 +29,13 @@ export class AdminClients {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							alert("Ocurrió un error");
+							this.toast.openToast("Ocurrió un error",null,5);
 							break;
 						case 1:
 							this.clientes = result.data;
 							break;
 						case 2:
-							alert("Usuario incorrecto");
+							this.toast.openToast("Usuario incorrecto",null,5);
 							break;
 					}
 				},
@@ -57,21 +60,45 @@ export class AdminClients {
       this.activeS = !this.activeS;
   	}
 
-  	deleteClient(idClient){
+  	removeClient(idClient){
 		var conf = confirm("Desea eliminar el cliente?");
 		if (conf == true) {
-	  		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'deleteAdminCliente',idCliente: idClient})
+	  		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'removeAdminCliente',id: idClient})
 				.subscribe(
 				(result) => {
 					switch (result.error) {
 						case 0:
-							alert("Ocurrió un error");
+							this.toast.openToast("Ocurrió un error",null,5);
 							break;
 						case 1:
-							this.clientes = result.data;
+							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,true);
 							break;
 						case 2:
-							alert("Usuario incorrecto");
+							this.toast.openToast("Usuario incorrecto",null,5);
+							break;
+					}
+				},
+				(error) =>  {
+					console.log(error)
+				});
+		}
+  	}
+
+  	removeUser(idClient){
+		var conf = confirm("Desea eliminar al usuario?");
+		if (conf == true) {
+	  		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'removeAdminUsuario',id: idClient})
+				.subscribe(
+				(result) => {
+					switch (result.error) {
+						case 0:
+							this.toast.openToast("Ocurrió un error",null,5);
+							break;
+						case 1:
+							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,true);
+							break;
+						case 2:
+							this.toast.openToast("Usuario incorrecto",null,5);
 							break;
 					}
 				},

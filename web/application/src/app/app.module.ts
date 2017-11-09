@@ -7,10 +7,6 @@ import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@a
 import { RequestService } from './app.request';
 
 
-//Components
-import { SignOutComponent }      from './admin/components/sign-out/sign-out';
-import { FormClientComponent }      from './admin/components/form-client/form-client';
-import { FormUserClientComponent }      from './admin/components/form-user-client/form-user-client';
 
 
 
@@ -18,6 +14,10 @@ import { FormUserClientComponent }      from './admin/components/form-user-clien
 import { AppComponent } from './app.component';
 import { Login }      from './public/login/login';
 import { Form }      from './public/form/form';
+
+//Components App
+import { SignOutComponent as SignOutComponentApp }      from './public/components/sign-out/sign-out';
+
 
 // App services
 import { LoginService }      from './public/login/login.service';
@@ -34,6 +34,13 @@ import { AdminClient }      from './admin/client/client';
 import { AdminUserClient }      from './admin/user-client/user-client';
 
 
+//Components Admin
+import { SignOutComponent as SignOutComponentAdmin}      from './admin/components/sign-out/sign-out';
+import { FormClientComponent }      from './admin/components/form-client/form-client';
+import { FormUserClientComponent }      from './admin/components/form-user-client/form-user-client';
+
+
+
 // Admin services
 import { LoginAdminService }      from './admin/login/login.service';
 
@@ -45,7 +52,9 @@ import { routing } from './app.routes';
   declarations: [
     AppComponent,
 
-    SignOutComponent,
+    SignOutComponentApp,
+
+    SignOutComponentAdmin,
     FormClientComponent,
     FormUserClientComponent,
 

@@ -15,6 +15,9 @@ export class Form {
 	nombreUsuario = null;
 	dataSesssion = null;
 	respuestas:Array<{idCategoria:number,idPregunta:number,puntaje:number}> = [];
+	comentarios:Array<{idCategoria:number,texto:string}> = [];
+	comentario:Array<any> = [];
+
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
 		private router: Router,
@@ -59,7 +62,7 @@ export class Form {
 		}
 	}
 
-	siguienteCat(idCategoria){
+	validarRespuestas(idCategoria){
 		let tempPreg = document.querySelectorAll(".cat-"+idCategoria+" > .pregunta");
 		let respCompletas = true;
 		let respuestaEsta = false;
@@ -78,17 +81,49 @@ export class Form {
 				break;
 			}
 		}
+		return respCompletas;
+	}
 
+	siguienteCat(idCategoria){
+		let respCompletas = this.validarRespuestas(idCategoria);
 		if (!respCompletas) {
 			alert("Por favor, responda todas las preguntas");
 		}else if (this.catShow < this.categorias.length) {
 			this.resShow = null;
 			this.catShow++;
+			document.body.scrollTop = 0;
+		}
+	}
+
+	guardarComentario(idCategoria,comentario){
+		if (comentario!="" && comentario!=undefined) {
+			let key = -1;
+			// Valida si la respuesta ya existe
+			if (this.comentarios.length > 0) {
+				for (var i = 0; i < this.comentarios.length; ++i) {
+					if (this.comentarios[i].idCategoria == idCategoria) {
+						key = i;
+						break;
+					}
+				}
+			}
+
+			if (key >= 0) {
+				// Actualiza el comentario si ya existe
+				this.comentarios[key].texto = comentario;
+			}else{
+				// Crea un nuevo comentario si no existe
+				this.comentarios.push({
+					idCategoria:idCategoria,
+					texto:comentario
+				});
+			}
+			console.log(this.comentarios,"comentarios");
 		}
 	}
 
 	votoPregunta(e,idCategoria, idPregunta, puntaje): void{
-		let activo = e.toElement.parentNode.querySelectorAll('a.active');
+		let activo = e.target.parentNode.querySelectorAll('a.active');
 		let resp = document.querySelector('.resp-'+idPregunta).classList;
 		let restTitle = document.querySelector('.respTitle-'+idPregunta);
 
@@ -136,7 +171,7 @@ export class Form {
 		}
 
 		if (key >= 0) {
-			// Actualiza el pintaje si ya existe la respuesta
+			// Actualiza el puntaje si ya existe la respuesta
 			this.respuestas[key].puntaje = puntaje;
 		}else{
 			// Crea una nueva respuesta si no existe
@@ -149,27 +184,34 @@ export class Form {
 		console.log(this.respuestas,"this.respuestas");
 	}
 
-	enviarEncuesta(): void{
-		let idUsuario = this.serviceLogin.getSession().id;
-		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: this.respuestas})
-			.subscribe(
-			(result) => {
-				switch (result.error) {
-					case 0:
-						alert("Ocurrió un error");
-						break;
-					case 1:
-						alert("Se ha insertado la encuesta correctamente");
-						break;
-					case 2:
-						alert("Ya se ha respondido esta encuesta");
-						break;
-					
-				}
-			},
-			(error) =>  {
-				console.log(error)
-			});
+	enviarEncuesta(idCategoria): void{
+		let respCompletas = this.validarRespuestas(idCategoria);
+		if (!respCompletas) {
+			alert("Por favor, responda todas las preguntas");
+		}else if (this.catShow < this.categorias.length) {
+			let idUsuario = this.serviceLogin.getSession().id;
+			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: JSON.stringify(this.respuestas), comentarios: JSON.stringify(this.comentarios)})
+				.subscribe(
+				(result) => {
+					switch (result.error) {
+						case 0:
+							alert("Ocurrió un error");
+							break;
+						case 1:
+							alert("Se ha insertado la encuesta correctamente");
+							this.serviceLogin.deleteSession();
+    						this.router.navigate(['login']);
+							break;
+						case 2:
+							alert("Ya se ha respondido esta encuesta");
+							break;
+						
+					}
+				},
+				(error) =>  {
+					console.log(error)
+				});
+		}
 	}
 
 }

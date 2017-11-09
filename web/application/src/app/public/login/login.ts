@@ -44,6 +44,12 @@ export class Login {
 					case 2:
 						alert("Usuario incorrecto");
 						break;
+					case 3:
+						alert("Usuario incorrecto");
+						break;
+					case 4:
+						alert("La encuesta ya se respondió correctamente");
+						break;
 				}
 			},
 			(error) =>  {

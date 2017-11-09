@@ -1,30 +1,17 @@
 include ../../includes/mixins
-//- div(*ngFor="let categoria of categorias")
-//- 	h2 {{categoria.categoria}}
-
-//- 	div( *ngFor="let pregunta of categoria.preguntas")
-//- 		p {{pregunta.pregunta}}
-
-//- 		div
-//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,1)") 1
-//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,2)") 2
-//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,3)") 3
-//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,4)") 4
-//- 			span( (click)="votoPregunta(categoria.idCategoria,pregunta.idPregunta,5)") 0
-//- button((click)="enviarEncuesta()") Terminar
 header.container-fluid
 	div.row
 		//Logo brm login
 		div.logo
 			include ../../includes/logo-brm.svg
 		///-Logo brm login
+		sign-out-app
 
 		h1.encuesta-title Encuesta BRM
 
 //Logo marca
-figure.marca(style="background-color:#e8252b")
+figure.marca([style.background-color] = 'dataSesssion.colorCuenta')
 	+image('{{dataSesssion.imagenCuenta}}', '{{dataSesssion.nombreCuenta}}')
-//Logo marca
 
 section.container-fluid.container-encuesta
 	div.row
@@ -80,15 +67,17 @@ section.container-fluid.container-encuesta
 
 			///-Pregunta
 			//actions
+			div
+				textarea(placeholder="Comentario",[(ngModel)]="comentario[keyCategoria]")
 			div.categoria-controls
 				//- -if(x !=0)
 				a.btn.btn-prev((click)="volverCat()", *ngIf="catShow > 0") Volver
 
 				//- -if(x !=4)
-				a.btn.btn-next((click)="siguienteCat(categoria.idCategoria)", *ngIf="catShow < categorias.length - 1") Continuar
+				a.btn.btn-next((click)="siguienteCat(categoria.idCategoria); guardarComentario(categoria.idCategoria,comentario[keyCategoria])", *ngIf="catShow < categorias.length - 1") Continuar
 				
 				// -if(x == 4)
-				button.btn.btn-submit((click)="enviarEncuesta()", *ngIf="catShow == categorias.length - 1") Terminar
+				button.btn.btn-submit((click)="guardarComentario(categoria.idCategoria,comentario[keyCategoria]);enviarEncuesta(categoria.idCategoria);", *ngIf="catShow == categorias.length - 1") Terminar
 
 			//actions
 

@@ -14,6 +14,8 @@ use Models\CategoriaHistorial;
 use Models\PreguntaHistorial;
 use Models\Cuenta;
 use Models\Admin;
+use Models\CategoriaRespuesta;
+
 
 $request = (object) $_POST;
 $accion = (isset($request->accion)) ? $request->accion : null ;
@@ -167,17 +169,29 @@ switch ($accion) {
 			if (isset($request->usuario) && $request->usuario != "" && isset($request->contrasena) && $request->contrasena != "") {
 				$usuario = $request->usuario;
 				$contrasena = $request->contrasena;
-				$data = Usuario::select('usuario.id','usuario.nombre','usuario.apellido','usuario.idCuenta','cuenta.nombre AS nombreCuenta','cuenta.imagen AS imagenCuenta')
+				$data = Usuario::select('usuario.id','usuario.nombre','usuario.apellido','usuario.idCuenta','cuenta.nombre AS nombreCuenta','cuenta.imagen AS imagenCuenta','cuenta.color AS colorCuenta')
 				->join('cuenta', 'usuario.idCuenta', '=', 'cuenta.id')
 				->where('usuario',$usuario)
 				->where('contrasena',requestHash("encode", $contrasena))
 				->first();
 				if (count($data) > 0 && isset($data->id)) {
 					$data = (object) $data->toArray();
-					$data->id = requestHash('encode',$data->id);
-					$data->idCuenta= requestHash('encode',$data->idCuenta);
-					// Error 1: Los datos de usuario son corerectos
-					$error = 1;
+					// Valida si el usuario no ha realizado la encuesta el semestre actual
+					$encuestaCreada = Encuesta::select('id')
+					->where('fecha','>=',getRangoSemestre()->desde)
+					->where('fecha','<=',getRangoSemestre()->hasta)
+					->where('idUsuario',$data->id)
+					->first();
+					if (!isset($encuestaCreada) || $encuestaCreada == null || $encuestaCreada == '') {
+						$data->id = requestHash('encode',$data->id);
+						$data->idCuenta= requestHash('encode',$data->idCuenta);
+						// Error 1: Los datos de usuario son corerectos
+						$error = 1;
+					}else{
+						$data = null;
+						// Error 4: El usuario ya respondio la encuesta este semestre
+						$error = 4;
+					}
 				}else{
 					$data = null;
 					// Error 2: Los datos de usuario son incorerectos
@@ -223,10 +237,10 @@ switch ($accion) {
 
 		// setEncuesta: Guarda el formulario de una encuesta
 		case "setEncuesta":
-			if (isset($request->idUsuario) && $request->idUsuario != "" && isset($request->respuestas) && count($request->respuestas) > 0) {
+			if (isset($request->idUsuario) && $request->idUsuario != "" && isset($request->respuestas) && count($request->respuestas) > 0 && isset($request->comentarios) && count($request->comentarios) > 0) {
 				$idUsuario = requestHash('decode',$request->idUsuario);
-				$respuestas = $request->respuestas;
-
+				$respuestas = json_decode($request->respuestas);
+				$comentarios = json_decode($request->comentarios);
 				// Valida si el usuario no ha realizado la encuesta el semestre actual
 				$data = Encuesta::select('id')
 				->where('fecha','>=',getRangoSemestre()->desde)
@@ -240,6 +254,7 @@ switch ($accion) {
 					$encuesta->idUsuario = $idUsuario;
 					$encuesta->save();
 					$idEncuesta = $encuesta->id;
+					// Inserta cada respuesta
 					foreach ($respuestas as $respuesta) {
 						if ($respuesta->idCategoria > 0 && $respuesta->idPregunta > 0 && $respuesta->puntaje > 0) {
 							$idCategoria = $respuesta->idCategoria;
@@ -256,11 +271,26 @@ switch ($accion) {
 							unset($respuesta);
 						}
 					}
+					// Inserta comentarios por cada categoría
+					foreach ($comentarios as $comentario) {
+						if ($comentario->idCategoria > 0 && $comentario->texto != "") {
+							$idCategoria = $comentario->idCategoria;
+							$texto = $comentario->texto;
+							// Inserta las respuestas de una encuesta
+							$comentario = new CategoriaRespuesta;
+							$comentario->comentario = $texto;
+							$comentario->fecha = date("Y-m-d H:i:s");
+							$comentario->idEncuesta = $idEncuesta;
+							$comentario->idCategoriaHistorial = $idCategoria;
+							$comentario->save();
+							unset($comentario);
+						}
+					}
 					// Error 1: Los datos de usuario son corerectos
 					$error = 1;
 				}else{
 					$data = null;
-					// Error 1: Los datos de usuario son incorerectos
+					// Error 2: El usuario ya respondio la encuesta este semestre
 					$error = 2;
 				}
 			}else{
@@ -388,30 +418,6 @@ switch ($accion) {
 			}
 			break;
 
-		
-		// getClientes: Retorna todas los clientes de brm con sus usuarios
-		case "deleteAdminCliente":
-			if (isset($request->idCuenta) && $request->idCuenta != "") {
-				$idCuenta = requestHash('decode',$request->idCuenta);
-				$cliente = Cuenta::where("id",$idCuenta)->first();
-				if (count($cliente) > 0) {
-					$cliente = $cliente->toArray();
-					$cliente['id'] = requestHash('encode',$cliente['id']);
-					$data = $cliente;
-					// Error 1: Los datos de usuario son corerectos
-					$error = 1;
-				}else{
-					$data = null;
-					// Error 1: Los datos de usuario son incorerectos
-					$error = 2;
-				}
-			}else{
-				$data = null;
-				// Error 1: Los datos son incorerectos
-				$error = 3;
-			}
-			break;
-
 		// setUsuario: Retorna todas los clientes de brm con sus usuarios
 		case "setAdminUsuario":
 			if (isset($request->id) &&
@@ -428,7 +434,7 @@ switch ($accion) {
 				if ($request->id != "") {
 					$id = requestHash('decode',$request->id);
 					$nResult = Usuario::where('id', $id)
-						->update(['nombre' => $request->nombre,'apellido' => $request->apellido,'correo' => $request->correo,'usuario' => $request->usuario,'contrasena' => $request->contrasena,'idAdmin' => $idAdmin,'idCuenta' => $idCuenta]);
+						->update(['nombre' => $request->nombre,'apellido' => $request->apellido,'correo' => $request->correo,'usuario' => $request->usuario,'contrasena' => requestHash('encode',$request->contrasena),'idAdmin' => $idAdmin,'idCuenta' => $idCuenta]);
 				}else{
 					$usuario = new Usuario;
 					$usuario->nombre = $request->nombre;

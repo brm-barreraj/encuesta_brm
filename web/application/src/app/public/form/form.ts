@@ -10,7 +10,6 @@ import { AlertToastComponent } from '../components/alert-toast/alert-toast';
 @Component({
 	templateUrl: './form.html',
   // styleUrls: ['./form.css'],
-	providers:[AlertToastComponent]
 })
 
 export class Form {

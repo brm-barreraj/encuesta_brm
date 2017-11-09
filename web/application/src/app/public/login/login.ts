@@ -1,9 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginService } from './login.service';
 import { DOCUMENT } from '@angular/platform-browser';
-
+import { AlertToastComponent } from '../components/alert-toast/alert-toast';
 
 
 @Component({
@@ -17,6 +17,8 @@ export class Login {
 	contrasena:string = '';
 	activeI=false;
 	activeO=false;
+
+	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
 
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
@@ -32,30 +34,34 @@ export class Login {
 	}
 
 	login(){
-		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})
-			.subscribe(
-			(result) => {
-				switch (result.error) {
-					case 0:
-						alert("Ocurrió un error");
-						break;
-					case 1:
-						this.serviceLogin.setSession(result.data);
-						this.router.navigate(['form']);
-						break;
-					case 2:
-						alert("Usuario incorrecto");
-						break;
-					case 3:
-						alert("Usuario incorrecto");
-						break;
-					case 4:
-						alert("La encuesta ya se respondió correctamente");
-						break;
-				}
-			},
-			(error) =>  {
-				console.log(error)
-			});
+		if (this.usuario == "" || this.usuario == undefined || this.contrasena == "" || this.contrasena == undefined) {
+			this.toast.openToast("Datos incorrectos, por favor ingrese datos",null,5);
+		}else{
+			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})
+				.subscribe(
+				(result) => {
+					switch (result.error) {
+						case 0:
+							this.toast.openToast("Ocurrió un error",null,5);
+							break;
+						case 1:
+							this.serviceLogin.setSession(result.data);
+							this.router.navigate(['form']);
+							break;
+						case 2:
+							this.toast.openToast("Usuario incorrecto, verifique sus datos",null,5);
+							break;
+						case 3:
+							this.toast.openToast("Usuario incorrecto, verifique sus datos",null,5);
+							break;
+						case 4:
+							this.toast.openToast("La encuesta ya se respondió correctamente",null,5);
+							break;
+					}
+				},
+				(error) =>  {
+					console.log(error)
+				});
+		}
 	}
 }

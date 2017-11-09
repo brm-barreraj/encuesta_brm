@@ -1,8 +1,8 @@
 
 <!--toast-->
-<div class="container-toast" [class.active]="activeT">
-  <div class="toast-main"><span class="text-toast">ya respondió esta encuesta</span>
-    <!--Btn de accion--><a class="btn btn-toast" (click)="closeToast()">listo</a>
+<div class="container-toast active" *ngIf="activeT">
+  <div class="toast-main"><span class="text-toast">{{txt1}}</span>
+    <!--Btn de accion--><a class="btn btn-toast" (click)="closeToast()">{{txt2}}</a>
     <!--/-Btn de accion		-->
   </div>
 </div>

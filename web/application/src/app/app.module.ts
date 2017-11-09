@@ -76,7 +76,9 @@ import { routing } from './app.routes';
     HttpModule,
     routing
   ],
-  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy}, RequestService, LoginService],
+  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy},
+   RequestService,
+   LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

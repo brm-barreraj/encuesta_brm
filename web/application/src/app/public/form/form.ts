@@ -1,12 +1,16 @@
-import { Component, ElementRef, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { RequestService } from '../../app.request';
-import { LoginService } from '../login/login.service';
 import { DOCUMENT } from '@angular/platform-browser';
 
+import { RequestService } from '../../app.request';
+import { LoginService } from '../login/login.service';
+import { AlertToastComponent } from '../components/alert-toast/alert-toast';
+
+
 @Component({
-  templateUrl: './form.html',
-  // styleUrls: ['./form.css']
+	templateUrl: './form.html',
+  // styleUrls: ['./form.css'],
+	providers:[AlertToastComponent]
 })
 
 export class Form {
@@ -18,6 +22,8 @@ export class Form {
 	respuestas:Array<{idCategoria:number,idPregunta:number,puntaje:number}> = [];
 	comentarios:Array<{idCategoria:number,texto:string}> = [];
 	comentario:Array<any> = [];
+
+	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
 
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
@@ -36,13 +42,13 @@ export class Form {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							alert("Ocurrió un error");
+							this.toast.openToast("Ocurrió un error",null,5);
 							break;
 						case 1:
 							this.categorias = result.data;
 							break;
 						case 2:
-							alert("Usuario incorrecto");
+							this.toast.openToast("Usuario incorrecto",null,5);
 							break;
 						
 					}
@@ -89,7 +95,7 @@ export class Form {
 	siguienteCat(idCategoria){
 		let respCompletas = this.validarRespuestas(idCategoria);
 		if (!respCompletas) {
-			alert("Por favor, responda todas las preguntas");
+			this.toast.openToast("Por favor, responda todas las preguntas",null,5);
 		}else if (this.catShow < this.categorias.length) {
 			this.resShow = null;
 			this.catShow++;
@@ -189,7 +195,7 @@ export class Form {
 	enviarEncuesta(idCategoria): void{
 		let respCompletas = this.validarRespuestas(idCategoria);
 		if (!respCompletas) {
-			alert("Por favor, responda todas las preguntas");
+			this.toast.openToast("Por favor, responda todas las preguntas",null,5);
 		}else if (this.catShow < this.categorias.length) {
 			let idUsuario = this.serviceLogin.getSession().id;
 			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setEncuesta', idUsuario: idUsuario, respuestas: JSON.stringify(this.respuestas), comentarios: JSON.stringify(this.comentarios)})
@@ -197,15 +203,15 @@ export class Form {
 				(result) => {
 					switch (result.error) {
 						case 0:
-							alert("Ocurrió un error");
+							this.toast.openToast("Ocurrió un error",null,5);
 							break;
 						case 1:
-							alert("Se ha insertado la encuesta correctamente");
+							this.toast.openToast("Se ha insertado la encuesta correctamente",null,5);
 							this.serviceLogin.deleteSession();
     						this.router.navigate(['login']);
 							break;
 						case 2:
-							alert("Ya se ha respondido esta encuesta");
+							this.toast.openToast("Ya se ha respondido esta encuesta",null,5);
 							break;
 						
 					}

@@ -1,54 +1,116 @@
 include ../../includes/mixins
 include ../../includes/header-admin
 
-
-//Logo marca
-figure.marca(style="background-color:#e8252b")
-	+image('test.png', 'Hola')
-//Logo marca
-
-
 section.container-fluid.container-reports
 		
-	div.row
+	div.row.row-periods
 
 		h1.text-intro
 			| Resultados
+		
 
+		//Año
+		div.form-group
+			label(for="year") Año
+			select#year(name="year")
+				option(value="") - año -
 
+		///-Año
 
-		//- div.categoria-rep(*ngFor="let encuesta of encuestas")
-		//- 	div.categoria-resume
-		//- 		//Nombre Cuenta
-		//- 		h2.text-cuenta {{encuesta.cuenta}}
-		//- 		///-Nombre Cuenta
-		//- 		//Total
-		//- 		p.categoria-total
-		//- 			span TOTAL:  
-		//- 			strong {{encuesta.total}}%
-		//- 		///-Total
-			
-		//- 	div.categorias.categoria-content.active(*ngFor="let categoria of encuesta.categorias", [ngClass]="{ active: catShow==keyCategoria}", )
-		//- 		//Categoria pregunta y calificacion
-		//- 		div.categoria-head
+		//Año
+		div.form-group
+			label(for="period") Periodo
+			select#period(name="period")
+				option(value="") - 
 
-		//- 			h3.categoria-text {{categoria.categoria}}
-		//- 			h3.categoria-pts {{categoria.porcentajeCategoria}}% 
-		//- 			//- | {{categoria.promedioPregunta}}
+		///-Año
 
-		//- 		///-Categoria pregunta y calificacion
+//Reporte completo
+section.container-fluid.container-reports
 
-		//- 		div.respuesta(*ngFor="let usuario of categoria.usuarios" class="usuarios")
-		//- 			p.respuesta-usuario: strong {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}:
+	div.row
+
+		div.table-responsive
+			table.table
+				//titulos
+				thead
+					tr
+						td.first() &nbsp;
+						//Investigacion
+						td.title-categoria
+							h4 investigación y análisis
+						///-Investigacion
+						//Cuentas
+						td.title-categoria
+							h4 manejo de cuentas
+						///-Cuentas
+						//planeacion
+						td.title-categoria
+							h4 planeación y estrategia
+						///-planeacion
+						//data
+						td.title-categoria
+							h4 data processing
+						///-data
+						//Creatividad
+						td.title-categoria
+							h4 creatividad
+						///-Creatividad
+						//relacion - cliente
+						td.title-categoria
+							h4 equipo relación cliente
+						///-relacion - cliente
+						//Financiero
+						td.title-categoria
+							h4 manejo financiero
+						///-Financiero
+						//compras
+						td.title-categoria
+							h4 producción compras
+						///-compras
+						//tech
+						td.title-categoria
+							h4 tecnología innovación
+						///-tech
+						//Total marca
+						td.title-categoria
+							h4 total marca
+						///-Total marca
+				///-titulos
+
+				//resumen marca
+				tbody
+					tr
+						td.first((click)="clickMarca()", ): h3.title hola marca ultra larga bebé
 					
-		//- 			div.respuesta-body(*ngFor="let respuesta of usuario.respuestas; let keyRespuesta = index " class="respuestas")
-		//- 				p.respuesta-num {{(keyRespuesta+1)}}
+						-for(y=0; y < 10;y++)
+							//Data
+							td.data-categoria
+								p.number #{y}%
+							///-Data
+
+				///-resumen marca
+
+				//Totales
+				tfoot
+					tr
+						td.first(): h4 total categoría
+						-for(x=0; x < 9;x++)
+							//Data
+							td.data-total-categoria
+								p.number #{x}%
+							///-Data
 						
-		//- 				p.respuesta-content
-		//- 					| {{respuesta.pregunta}}
+						td &nbsp;
 
-		//- 				p.respuesta-pts
-		//- 					| {{respuesta.puntaje}}
-					
-			
+				///-Totales
 
+		
+		//Total periodo
+		div.col-total
+			h3.text-intro total periodo
+			h2.total-perc 50,56%
+
+		///-Total periodo
+
+///-Reporte completo

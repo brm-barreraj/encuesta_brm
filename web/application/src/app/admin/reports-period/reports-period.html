@@ -190,12 +190,211 @@
   </div>
 </header>
 <!--/-Header-->
-<!--Logo marca-->
-<figure class="marca" style="background-color:#e8252b;"><img src="assets/images/test.png" title="Hola" alt="Hola"/>
-</figure>
-<!--Logo marca-->
 <section class="container-fluid container-reports">
-  <div class="row">
-    <h1 class="text-intro">Resultados de<strong>satisfacción</strong></h1>
+  <div class="row row-periods">
+    <h1 class="text-intro">Resultados</h1>
+    <!--Año-->
+    <div class="form-group">
+      <label for="year">Año</label>
+      <select id="year" name="year">
+        <option value="">- año -</option>
+      </select>
+    </div>
+    <!--/-Año-->
+    <!--Año-->
+    <div class="form-group">
+      <label for="period">Periodo</label>
+      <select id="period" name="period">
+        <option value="">- </option>
+      </select>
+    </div>
+    <!--/-Año-->
   </div>
 </section>
+<!--Reporte completo-->
+<section class="container-fluid container-reports">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table">
+        <!--titulos-->
+        <thead>
+          <tr>
+            <td class="first">&nbsp;</td>
+            <!--Investigacion-->
+            <td class="title-categoria">
+              <h4>investigación y análisis</h4>
+            </td>
+            <!--/-Investigacion-->
+            <!--Cuentas-->
+            <td class="title-categoria">
+              <h4>manejo de cuentas</h4>
+            </td>
+            <!--/-Cuentas-->
+            <!--planeacion-->
+            <td class="title-categoria">
+              <h4>planeación y estrategia</h4>
+            </td>
+            <!--/-planeacion-->
+            <!--data-->
+            <td class="title-categoria">
+              <h4>data processing</h4>
+            </td>
+            <!--/-data-->
+            <!--Creatividad-->
+            <td class="title-categoria">
+              <h4>creatividad</h4>
+            </td>
+            <!--/-Creatividad-->
+            <!--relacion - cliente-->
+            <td class="title-categoria">
+              <h4>equipo relación cliente</h4>
+            </td>
+            <!--/-relacion - cliente-->
+            <!--Financiero-->
+            <td class="title-categoria">
+              <h4>manejo financiero</h4>
+            </td>
+            <!--/-Financiero-->
+            <!--compras-->
+            <td class="title-categoria">
+              <h4>producción compras</h4>
+            </td>
+            <!--/-compras-->
+            <!--tech-->
+            <td class="title-categoria">
+              <h4>tecnología innovación</h4>
+            </td>
+            <!--/-tech-->
+            <!--Total marca-->
+            <td class="title-categoria">
+              <h4>total marca</h4>
+            </td>
+            <!--/-Total marca-->
+          </tr>
+        </thead>
+        <!--/-titulos-->
+        <!--resumen marca-->
+        <tbody>
+          <tr>
+            <td class="first" (click)="clickMarca()">
+              <h3 class="title">hola marca ultra larga bebé</h3>
+            </td>
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-categoria">
+              <p class="number">9%</p>
+            </td>
+            <!--/-Data-->
+          </tr>
+        </tbody>
+        <!--/-resumen marca-->
+        <!--Totales-->
+        <tfoot>
+          <tr>
+            <td class="first">
+              <h4>total categoría</h4>
+            </td>
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">0%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">1%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">2%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">3%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">4%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">5%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">6%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">7%</p>
+            </td>
+            <!--/-Data-->
+            <!--Data-->
+            <td class="data-total-categoria">
+              <p class="number">8%</p>
+            </td>
+            <!--/-Data-->
+            <td>&nbsp;</td>
+          </tr>
+        </tfoot>
+        <!--/-Totales-->
+      </table>
+    </div>
+    <!--Total periodo-->
+    <div class="col-total">
+      <h3 class="text-intro">total periodo</h3>
+      <h2 class="total-perc">50,56%</h2>
+    </div>
+    <!--/-Total periodo-->
+  </div>
+</section>
+<!--/-Reporte completo-->

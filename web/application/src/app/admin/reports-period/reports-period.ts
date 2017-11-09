@@ -41,4 +41,8 @@ export class AdminReportsPeriod {
 		}
 	}
 
+	clickMarca(){
+		console.log('aca llevaría al detalle de la marca')
+	}
+
 }

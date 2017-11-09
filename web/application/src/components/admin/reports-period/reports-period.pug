@@ -11,7 +11,7 @@ section.container-fluid.container-reports
 
 		//Año
 		div.form-group
-			label(for="year") Año
+			//- label(for="year") Año
 			div.form-select
 				select#year(name="year")
 					option(value="") - año -
@@ -20,10 +20,10 @@ section.container-fluid.container-reports
 
 		//Año
 		div.form-group
-			label(for="period") Periodo
+			//- label(for="period") Periodo
 			div.form-select
 				select#period(name="period")
-					option(value="") - 
+					option(value="") - periodo -
 
 		///-Año
 
@@ -37,45 +37,45 @@ section.container-fluid.container-reports
 				//titulos
 				thead
 					tr
-						td.first() &nbsp;
+						th.first() &nbsp;
 						//Investigacion
-						td.title-categoria
+						th.title-categoria
 							h4 investigación y análisis
 						///-Investigacion
 						//Cuentas
-						td.title-categoria
+						th.title-categoria
 							h4 manejo de cuentas
 						///-Cuentas
 						//planeacion
-						td.title-categoria
+						th.title-categoria
 							h4 planeación y estrategia
 						///-planeacion
 						//data
-						td.title-categoria
+						th.title-categoria
 							h4 data processing
 						///-data
 						//Creatividad
-						td.title-categoria
+						th.title-categoria
 							h4 creatividad
 						///-Creatividad
 						//relacion - cliente
-						td.title-categoria
+						th.title-categoria
 							h4 equipo relación cliente
 						///-relacion - cliente
 						//Financiero
-						td.title-categoria
+						th.title-categoria
 							h4 manejo financiero
 						///-Financiero
 						//compras
-						td.title-categoria
+						th.title-categoria
 							h4 producción compras
 						///-compras
 						//tech
-						td.title-categoria
+						th.title-categoria
 							h4 tecnología innovación
 						///-tech
 						//Total marca
-						td.title-categoria
+						th.title-categoria
 							h4 total marca
 						///-Total marca
 				///-titulos
@@ -83,7 +83,9 @@ section.container-fluid.container-reports
 				//resumen marca
 				tbody
 					tr
-						td.first((click)="clickMarca()", ): h3.title hola marca ultra larga bebé
+						//Nombre marca
+						td.first((click)="clickMarca()", ): h3.title-marca hola marca ultra larga bebé
+						//Nombre marca
 					
 						-for(y=0; y < 10;y++)
 							//Data

@@ -195,7 +195,6 @@
     <h1 class="text-intro">Resultados</h1>
     <!--Año-->
     <div class="form-group">
-      <label for="year">Año</label>
       <div class="form-select">
         <select id="year" name="year">
           <option value="">- año -</option>
@@ -205,10 +204,9 @@
     <!--/-Año-->
     <!--Año-->
     <div class="form-group">
-      <label for="period">Periodo</label>
       <div class="form-select">
         <select id="period" name="period">
-          <option value="">- </option>
+          <option value="">- periodo -</option>
         </select>
       </div>
     </div>
@@ -223,56 +221,56 @@
         <!--titulos-->
         <thead>
           <tr>
-            <td class="first">&nbsp;</td>
+            <th class="first">&nbsp;</th>
             <!--Investigacion-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>investigación y análisis</h4>
-            </td>
+            </th>
             <!--/-Investigacion-->
             <!--Cuentas-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>manejo de cuentas</h4>
-            </td>
+            </th>
             <!--/-Cuentas-->
             <!--planeacion-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>planeación y estrategia</h4>
-            </td>
+            </th>
             <!--/-planeacion-->
             <!--data-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>data processing</h4>
-            </td>
+            </th>
             <!--/-data-->
             <!--Creatividad-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>creatividad</h4>
-            </td>
+            </th>
             <!--/-Creatividad-->
             <!--relacion - cliente-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>equipo relación cliente</h4>
-            </td>
+            </th>
             <!--/-relacion - cliente-->
             <!--Financiero-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>manejo financiero</h4>
-            </td>
+            </th>
             <!--/-Financiero-->
             <!--compras-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>producción compras</h4>
-            </td>
+            </th>
             <!--/-compras-->
             <!--tech-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>tecnología innovación</h4>
-            </td>
+            </th>
             <!--/-tech-->
             <!--Total marca-->
-            <td class="title-categoria">
+            <th class="title-categoria">
               <h4>total marca</h4>
-            </td>
+            </th>
             <!--/-Total marca-->
           </tr>
         </thead>
@@ -280,9 +278,11 @@
         <!--resumen marca-->
         <tbody>
           <tr>
+            <!--Nombre marca-->
             <td class="first" (click)="clickMarca()">
-              <h3 class="title">hola marca ultra larga bebé</h3>
+              <h3 class="title-marca">hola marca ultra larga bebé</h3>
             </td>
+            <!--Nombre marca-->
             <!--Data-->
             <td class="data-categoria">
               <p class="number">0%</p>

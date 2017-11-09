@@ -33,11 +33,11 @@ section.container-fluid.container-reports
 	div.row
 
 		div.table-responsive
-			table.table
+			table.table.table-results
 				//titulos
 				thead
 					tr
-						th.first() &nbsp;
+						th.first()
 						//Investigacion
 						th.title-categoria
 							h4 investigación y análisis
@@ -85,14 +85,60 @@ section.container-fluid.container-reports
 					-for(z=0; z < 4; z++)
 						tr
 							//Nombre marca
-							td.marca-list.first((click)="clickMarca()", ): h3.title-marca hola marca ultra larga bebé
+							th.marca-list.first((click)="clickMarca()", ): h3.title-marca hola marca ultra larga bebé
 							//Nombre marca
-						
-							-for(y=0; y < 10;y++)
-								//Data
-								td.data-categoria
-									p.number #{y}%
-								///-Data
+	
+							//Data
+							td.data-categoria(data-title="investigación y análisis")
+								p.number 55%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="manejo de cuentas")
+								p.number 45%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="planeación y estrategia")
+								p.number 25%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="data processing")
+								p.number 15%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="creatividad")
+								p.number 75%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="equipo relación cliente")
+								p.number 95%
+							///-Data
+							
+							//Data
+							td.data-categoria(data-title="manejo financiero")
+								p.number 55%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="producción compras")
+								p.number 5%
+							///-Data
+
+							//Data
+							td.data-categoria(data-title="tecnología innovación")
+								p.number 5%
+							///-Data
+	
+							//Data
+							td.data-categoria(data-title="total marca")
+								p.number 5%
+							///-Data
+
+
 
 				///-resumen marca
 
@@ -106,7 +152,7 @@ section.container-fluid.container-reports
 								p.number #{x}%
 							///-Data
 						
-						td &nbsp;
+						td
 
 				///-Totales
 

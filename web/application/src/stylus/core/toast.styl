@@ -11,6 +11,7 @@
 	text-align center
 	transform translateX(-50%) translateY(120%)
 	transitionBase()
+	width 100%
 	z-index 30
 
 	
@@ -26,6 +27,18 @@
 		padding 0
 	
 	.btn-toast
-		display inline-block
+		display block
 		color $Amarillo
-		margin-left 4.8rem
+		
+
+
+
+@media (min-width:640px)
+	.container-toast
+		.btn-toast
+			display inline-block
+			margin-left 4.8rem
+			
+@media (min-width:$screen-sm)
+	.container-toast
+		width auto

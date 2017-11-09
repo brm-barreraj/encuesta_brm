@@ -34,7 +34,8 @@ section.container-fluid.container-clients
 
 				//Usuario por marca
 				aside.client.client-user
-					a.btn.btn-create((click)="deleteClient(cliente.idCuenta)") X
+					a.btn.btn-remove((click)="deleteClient(cliente.idCuenta)"): i.glyphicon.glyphicon-remove
+
 					h3 Usuarios registrados:
 
 					div.user(*ngFor="let usuario of cliente.usuarios")

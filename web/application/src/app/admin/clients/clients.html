@@ -209,7 +209,7 @@
         </figure>
         <!--/-Logo Marca-->
         <!--Usuario por marca-->
-        <aside class="client client-user"><a class="btn btn-create" (click)="deleteClient(cliente.idCuenta)">X</a>
+        <aside class="client client-user"><a class="btn btn-remove" (click)="deleteClient(cliente.idCuenta)"><i class="glyphicon glyphicon-remove"></i></a>
           <h3>Usuarios registrados:</h3>
           <div class="user" *ngFor="let usuario of cliente.usuarios">
             <p (click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</p>

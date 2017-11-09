@@ -49,6 +49,21 @@
 		margin 1rem auto
 		label
 			color black
+			display block
+			padding-left 2rem
+			position relative
+			
+			&::before
+				color black
+				content '\270f'
+				display block
+				font-family $Icons
+				left 0
+				position absolute
+				top 50%
+				transform translateY(-@top)
+				
+
 		textarea
 			border none
 			border-bottom 1px solid black
@@ -96,6 +111,10 @@
 .pregunta-select
 	display inline-block
 	vertical-align middle
+	
+
+.marca-front
+	top 29.3rem
 
 .opciones
 	background-color $Azul

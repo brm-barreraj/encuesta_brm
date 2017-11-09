@@ -137,9 +137,10 @@ button.close
 		background-color rgba(black,0.5)
 		border 1px solid white !important
 		color white
-		position absolute
-		right 0.5rem
-		top 0.5rem
+		// position absolute
+		// right 0.5rem
+		// top 0.5rem
+		margin 1rem auto 6rem
 
 	&-vacante
 		background-color #fff
@@ -155,3 +156,10 @@ button.close
 	&-vacante-completa
 		float right
 		padding 0 1.2rem
+		
+@media (min-width:640px)
+	.btn-logout
+		margin 0
+		position absolute
+		right 0.5rem
+		top 0.5rem

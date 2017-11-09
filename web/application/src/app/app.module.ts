@@ -29,6 +29,7 @@ import { AdminDashboard }      from './admin/dashboard/dashboard';
 import { AdminClients }      from './admin/clients/clients';
 import { AdminClient }      from './admin/client/client';
 import { AdminUserClient }      from './admin/user-client/user-client';
+import { AdminCategories }      from './admin/categories/categories';
 
 
 //Components Admin
@@ -69,6 +70,7 @@ import { routing } from './app.routes';
     AdminClients,
     AdminClient,
     AdminUserClient,
+    AdminCategories,
   ],
   imports: [
     BrowserModule,

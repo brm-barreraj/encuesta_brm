@@ -20,6 +20,7 @@ import { AdminDashboard } from './admin/dashboard/dashboard';
 import { AdminClients } from './admin/clients/clients';
 import { AdminClient } from './admin/client/client';
 import { AdminUserClient } from './admin/user-client/user-client';
+import { AdminCategories } from './admin/categories/categories';
 
 
 
@@ -39,7 +40,8 @@ export const routes: Routes = [
   		{path: 'dashboard', component: AdminDashboard},
   		{path: 'clients', component: AdminClients},
   		{path: 'client', component: AdminClient},
-  		{path: 'user-client', component: AdminUserClient},
+      {path: 'user-client', component: AdminUserClient},
+  		{path: 'categories', component: AdminCategories},
 
 
   	]

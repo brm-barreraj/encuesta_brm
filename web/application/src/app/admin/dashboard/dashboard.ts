@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginAdminService } from '../login/login.service';
+import { DOCUMENT } from '@angular/platform-browser';
 
 
 @Component({
@@ -14,13 +15,14 @@ export class AdminDashboard {
 	encuestas:any = [];
 	constructor(private serviceLoginAdmin: LoginAdminService,
 		private serviceRequest: RequestService,
+		@Inject(DOCUMENT) private document: any,
 		private router: Router) { }
 
 	ngOnInit() {
 		if (!this.serviceLoginAdmin.validateSession()) {
 			this.router.navigate(['admin']);
 		}else{
-			document.body.classList.remove('login');
+			this.document.body.classList.remove('login');
 			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getEncuestas'})
 				.subscribe(
 				(result) => {

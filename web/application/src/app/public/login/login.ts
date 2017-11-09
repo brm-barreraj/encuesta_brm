@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from '../../app.request';
 import { LoginService } from './login.service';
+import { DOCUMENT } from '@angular/platform-browser';
 
 
 
@@ -19,6 +20,7 @@ export class Login {
 
 	constructor(private serviceLogin: LoginService,
 		private serviceRequest: RequestService,
+		@Inject(DOCUMENT) private document: any,
 		private router: Router) { }
 
 	ngOnInit() {
@@ -26,7 +28,7 @@ export class Login {
 			this.router.navigate(['form']);
 		}
 
-		document.body.classList.add('login')
+		this.document.body.classList.add('login')
 	}
 
 	login(){

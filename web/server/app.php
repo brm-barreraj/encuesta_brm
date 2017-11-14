@@ -262,7 +262,7 @@ switch ($accion) {
 							$puntaje = $respuesta->puntaje;
 							// Inserta las respuestas de una encuesta
 							$respuesta = new Respuesta;
-							$respuesta->puntaje = $puntaje;
+							$respuesta->puntaje = ($puntaje*25);
 							$respuesta->fecha = date("Y-m-d H:i:s");
 							$respuesta->idEncuesta = $idEncuesta;
 							$respuesta->idPreguntaHistorial = $idPregunta;

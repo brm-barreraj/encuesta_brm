@@ -205,9 +205,11 @@ export class Form {
 							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
-							this.toast.openToast("Se ha insertado la encuesta correctamente",null,5,null);
-							this.serviceLogin.deleteSession();
-    						this.router.navigate(['login']);
+							this.toast.openToast("Se ha insertado la encuesta correctamente",null,5,()=>{
+								this.serviceLogin.deleteSession();
+    							this.router.navigate(['login']);
+							});
+							
 							break;
 						case 2:
 							this.toast.openToast("Ya se ha respondido esta encuesta",null,5,null);

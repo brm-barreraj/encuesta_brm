@@ -531,6 +531,21 @@ switch ($accion) {
 			}
 			break;
 
+		// getCategorias: Retorna todas los clientes de brm con sus usuarios
+		case "getCategorias":
+			$categorias = Categoria::select('id','nombre','porcentaje')->get();
+			if (count($categorias) > 0) {
+				$categorias = $categorias->toArray();
+				$data = $categorias;
+				// Error 1: Los datos de la categoría son correctos
+				$error = 1;
+			}else{
+				$data = null;
+				// Error 2: No hay categorías
+				$error = 2;
+			}
+			break;
+
 	// Acción no encontrada
 	default:
 		$data = "Ups 404";

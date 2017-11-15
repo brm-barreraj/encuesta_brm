@@ -33,17 +33,16 @@ section.container-fluid.container-categories
 			
 			ul.category-list
 
-				-for(x=0;x <9;x++)
-					li.category-item
-						div.category-control
-							input(readonly, value="Categoría", type="text")
-							a.btn-edit(href="#"): i.glyphicon.glyphicon-pencil
-							a.btn-remove(href="#"): i.glyphicon.glyphicon-remove
-							input.peso(value="10", type="number", min="0")
-							
-							button.btn.btn-submit
-								i.glyphicon.glyphicon-floppy-saved
-								span Guardar
+				li.category-item(*ngFor="let categoria of categorias; let keyCategoria = index",[class.active]="categoria.activo")
+					div.category-control
+						input(readonly, value="{{categoria.nombre}}", type="text")
+						a.btn-edit((click)="showEdit(keyCategoria)"): i.glyphicon.glyphicon-pencil
+						a.btn-remove(href="#"): i.glyphicon.glyphicon-remove
+						input.peso(value="10", type="number", min="0")
+						
+						button.btn.btn-submit
+							i.glyphicon.glyphicon-floppy-saved
+							span Guardar
 							
 
 

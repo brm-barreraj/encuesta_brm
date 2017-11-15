@@ -218,65 +218,9 @@
       </div>
       <!--/-Crear categoria-->
       <ul class="category-list">
-        <li class="category-item">
+        <li class="category-item" *ngFor="let categoria of categorias; let keyCategoria = index" [class.active]="categoria.activo">
           <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <input readonly="readonly" value="Categoría" type="text"/><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+            <input readonly="readonly" value="{{categoria.nombre}}" type="text"/><a class="btn-edit" (click)="showEdit(keyCategoria)"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
             <input class="peso" value="10" type="number" min="0"/>
             <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
           </div>

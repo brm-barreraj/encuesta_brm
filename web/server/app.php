@@ -133,7 +133,7 @@ switch ($accion) {
 					$usuarios = $encuestas[$i]['categorias'][$k]['usuarios'];
 					$nUsuarios = count($usuarios);
 					$totalPuntajePregunta = 0;
-					for ($l=0; $l < $nUsuarios; $l++) { 
+					for ($l=0; $l < $nUsuarios; $l++) {
 						$respuestas = $encuestas[$i]['categorias'][$k]['usuarios'][$l]['respuestas'];
 						$nRespuestas = count($respuestas);
 						$totalPuntajeUsuario = 0;

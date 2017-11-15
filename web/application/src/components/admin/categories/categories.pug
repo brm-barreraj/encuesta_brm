@@ -1,6 +1,116 @@
 include ../../includes/header-admin
 
 
-section.container-fluid
+section.container-fluid.container-dashboard.container-categories
 	div.row
-		h1 somos las categorías
+		h1 Categorías &amp; Preguntas
+
+section.container-fluid.container-categories
+	div.row
+		//Categorías
+		article.col-cat.col-cat-list
+			div.category-header
+				h2 Categorías
+				button.btn.btn-default(type="button", (click)="toggleClass('activeA')", [class.active]="activeA")
+					i.glyphicon.glyphicon-tag
+					span Nueva Categoría
+
+			
+			//Crear categoria
+			div.category-create([class.active]="activeA")
+				div.form-group
+					label(for="categoriaName") Nombre de la Categoría
+					input(type="text", placeholder="Facturación", id="categoriaName", name="categoriaName")
+
+				div.form-group
+					label(for="categoriaPer") Peso de la categoría (porcentaje)
+					input(type="number", min="0", placeholder="10", id="categoriaPer", name="categoriaPer")
+
+				button.btn.btn-submit
+					i.glyphicon.glyphicon-floppy-saved
+					span Guardar
+			///-Crear categoria
+			
+			ul.category-list
+
+				li.category-item
+					div.category-control
+						input(readonly, value="Categoría", type="text")
+						a(href="#"): i.glyphicon.glyphicon-pencil
+						input.peso(value="10", type="number", min="0")
+
+
+				-for(x=0;x <9;x++)
+					li.category-item
+						div.category-control
+							input(readonly, value="Categoría", type="text")
+							a(href="#"): i.glyphicon.glyphicon-pencil
+							input.peso(value="10", type="number", min="0")
+
+
+
+		///-Categorías
+
+		article.col-cat.col-q-list
+
+			div.category-header
+				h2 Preguntas
+				button.btn.btn-default(type="button", (click)="toggleClass('activeS')", [class.active]="activeS")
+					i.glyphicon.glyphicon-comment
+					span Nueva Pregunta
+			
+
+			div.category-create([class.active]="activeS")
+				//Crear pregunta
+				div.category-create-q
+					div.form-group
+						label(for="preguntaCrea") Pregunta:
+						textarea#preguntaCrea(name="preguntaCrea")
+
+					div.form-group.form-select
+
+						select#preguntaCat(name="preguntaCat")
+							option(value="") - Categoría -
+							option(value="a") Una categoría
+
+				///-Crear pregunta
+				
+				button.btn.btn-default
+					i.glyphicon.glyphicon-plus
+					span Añadir otra pregunta
+
+				button.btn.btn-submit
+					i.glyphicon.glyphicon-floppy-saved
+					span Guardar
+			
+			div.preguntas-header
+				h3 Preguntas en la categoría:
+				div.form-group.form-select
+					select#catShow(name="catShow")
+						option(value="") - Categoría -
+						option(value="a") Una categoría
+			
+			ul.category-q
+
+				li.category-item
+					div.category-control
+						textarea(readonly) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   
+						
+						a(href="#"): i.glyphicon.glyphicon-pencil
+
+						div.form-group.form-select
+							select(name="cat"+y, id="cat"+y)
+								option(value="") - Categoría -
+								option(value="a") Una categoría
+
+				-for(y=0;y <5;y++)
+					li.category-item
+						div.category-control
+							textarea(readonly) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   
+							
+							a(href="#"): i.glyphicon.glyphicon-pencil
+
+							div.form-group.form-select
+								select(name="cat"+y, id="cat"+y)
+									option(value="") - Categoría -
+									option(value="a") Una categoría

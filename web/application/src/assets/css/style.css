@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Thu Nov 09 2017 10:27:31 GMT-0500 (COT)
+ *Tue Nov 14 2017 20:17:00 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2108,6 +2108,8 @@ button.close span {
   display: block;
 }
 .btn {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
   color: #0d2d6c;
   cursor: pointer;
   display: block;
@@ -2116,6 +2118,7 @@ button.close span {
   margin-left: 0;
   padding-left: 0;
   position: relative;
+  text-align: center;
   text-transform: uppercase;
   -o-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -2125,6 +2128,9 @@ button.close span {
 }
 .btn:hover {
   text-decoration: none;
+}
+.btn .glyphicon {
+  margin: 0 1rem;
 }
 .btn-blue {
   background-color: #0d2d6c;
@@ -2631,6 +2637,30 @@ header .logo svg {
     width: 33.33333333333333%;
   }
 }
+.col-cat-list {
+  position: relative;
+  min-height: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+@media (min-width: 770px) {
+  .col-cat-list {
+    float: left;
+    width: 33.33333333333333%;
+  }
+}
+.col-q-list {
+  position: relative;
+  min-height: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+@media (min-width: 770px) {
+  .col-q-list {
+    float: left;
+    width: 66.66666666666666%;
+  }
+}
 .col-total {
   position: relative;
   min-height: 1px;
@@ -2782,6 +2812,187 @@ header .logo svg {
   font-size: 6rem;
   margin-bottom: 3rem;
   text-align: center;
+}
+.category-create {
+  border-bottom: 2px solid #a6a8ab;
+  height: 100%;
+  max-height: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  pointer-events: none;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.category-create.active {
+  max-height: 40rem;
+  opacity: 0.99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+  pointer-events: all;
+}
+.category-header {
+  text-align: center;
+}
+.category-header .btn {
+  margin: 0.5rem auto;
+}
+.category-header .btn.active {
+  background-color: #fff;
+  color: #0d2d6c;
+  outline: 0 !important;
+  outline: none !important;
+}
+.category-item {
+  background-color: transparent;
+  position: relative;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.category-item.active {
+  background-color: transparent;
+}
+.category-item.active input,
+.category-item.active textarea {
+  border-bottom: 1px solid #0d2d6c;
+  display: block;
+  margin: 1rem auto;
+  width: 90%;
+}
+.category-item.active textarea {
+  min-height: 20rem;
+}
+.category-item.active .form-select {
+  display: block;
+}
+.category-item.active .peso {
+  max-height: 10rem;
+  opacity: 0.99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+  overflow: visible;
+  padding: 0 1rem;
+  pointer-events: all;
+}
+.category-item .form-select {
+  border: 1px solid #a6a8ab;
+  padding: 1rem;
+  display: none;
+}
+.category-item .form-select select {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+.category-item .peso {
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+}
+.category-list,
+.category-q {
+  list-style-type: none;
+  padding: 0;
+}
+.category-list li,
+.category-q li {
+  background-color: #e5e5e5;
+  border-bottom: 1px dotted #f5f5f5;
+  display: block;
+  padding: 1rem 0.5rem;
+}
+.category-list li a,
+.category-q li a {
+  color: #0d2d6c;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+.category-list li input,
+.category-q li input,
+.category-list li textarea,
+.category-q li textarea {
+  background-color: transparent;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0 1rem;
+  resize: none;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.category-list li textarea,
+.category-q li textarea {
+  min-height: 14rem;
+  overflow: visible;
+}
+.container-categories h1 {
+  border-bottom: 1px dotted #6d6e70;
+  padding: 1rem 0.5rem;
+}
+.container-categories .btn-submit {
+  background-color: #0d2d6c;
+  color: #fff;
+  width: 100%;
+}
+.container-categories .form-group textarea {
+  background-color: transparent;
+  border: none;
+  display: block;
+  margin: 0;
+  padding: 0 1rem;
+  resize: none;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+.container-categories .form-select {
+  border: 1px solid #a6a8ab;
+  padding: 1rem;
+}
+.container-categories .form-select select {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+.preguntas-header {
+  text-align: center;
+}
+.preguntas-header .form-select {
+  border: none;
+  margin: 0 auto 1rem;
+  padding: 1rem;
+}
+.preguntas-header .form-select select {
+  background-color: transparent;
+  border: none;
+  color: #6d6e70;
+  padding: 0;
+  text-transform: uppercase;
+  width: 100%;
 }
 .btn-blue {
   display: block;
@@ -3517,6 +3728,13 @@ header .logo svg {
     font-size: 1.3rem;
   }
 }
+@media (min-width: 420px) {
+  .category-header h2,
+  .category-header .btn {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
 @media (min-width: 640px) {
   .btn-section {
     display: inline-block;
@@ -3557,6 +3775,16 @@ header .logo svg {
   }
   .categoria-total strong {
     display: block;
+  }
+  .category-header h2 {
+    font-size: 1.8rem;
+  }
+  .category-item.active textarea {
+    min-height: 10rem;
+  }
+  .category-list li textarea,
+  .category-q li textarea {
+    min-height: 8rem;
   }
   .client-brand:hover::before {
     opacity: 0.5;

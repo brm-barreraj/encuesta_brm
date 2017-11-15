@@ -1,0 +1,164 @@
+.category
+	&-create
+		border-bottom 2px solid $Gris[1]
+		height 100%
+		max-height 0
+		opacity 0
+		padding-bottom 1rem
+		padding-top @padding-bottom
+		pointer-events none
+		transitionBase()
+		
+
+		&.active
+			max-height 40rem
+			opacity 0.99
+			pointer-events all
+		
+
+	&-header
+		text-align center
+		
+		.btn
+			margin 0.5rem auto
+			
+			&.active
+				background-color white
+				color $Azul
+				outline 0 !important
+				outline none !important
+	
+	&-item
+		background-color transparent
+		position relative
+		transitionBase()
+		
+		&.active
+			background-color transparent
+			
+			input,
+			textarea
+				border-bottom 1px solid $Azul
+				display block
+				margin 1rem auto
+				width 90%
+			
+			textarea
+				min-height 20rem
+				
+			.form-select
+				display block
+			.peso
+				// display inline-block
+				max-height 10rem
+				opacity 0.99
+				overflow visible
+				padding 0 1rem
+				pointer-events all
+
+		
+		.form-select
+			border 1px solid $Gris[1]
+			padding 1rem
+			display none
+			
+			select
+				background-color transparent
+				border none
+				padding 0
+				width 100%
+				
+		
+		.peso
+			display block
+			max-height 0
+			opacity 0
+			overflow hidden
+			padding 0
+			pointer-events none
+			
+
+	&-list,
+	&-q
+		list-style-type none
+		padding 0
+		
+		li
+			background-color $Gris[0]
+			border-bottom 1px dotted $Gris[3]
+			display block
+			padding 1rem 0.5rem
+			
+
+			a
+				color $Azul
+				padding 0
+				position absolute
+				right 1rem
+				top @right
+				
+			input,
+			textarea
+				background-color transparent
+				border none
+				display block
+				margin 0
+				padding 0 1rem
+				resize none
+				transitionBase()
+				width 100%
+				
+			textarea
+				min-height 14rem
+				overflow visible
+				
+
+.container-categories
+	h1
+		border-bottom 1px dotted $Gris[2]
+		padding 1rem 0.5rem
+
+	.btn-submit
+		background-color $Azul
+		color white
+		width 100%
+		
+		
+	.form
+		&-group
+			textarea
+				background-color transparent
+				border none
+				display block
+				margin 0
+				padding 0 1rem
+				resize none
+				transitionBase()
+				width 100%
+				
+		&-select
+			border 1px solid $Gris[1]
+			padding 1rem
+			
+			select
+				background-color transparent
+				border none
+				padding 0
+				width 100%
+
+.preguntas
+	&-header
+		text-align center
+		.form-select
+			border none
+			margin 0 auto 1rem
+			padding 1rem
+			
+			select
+				background-color transparent
+				border none
+				color $Gris[2]
+				padding 0
+				text-transform uppercase
+				width 100%
+		

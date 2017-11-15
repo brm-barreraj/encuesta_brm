@@ -9,29 +9,33 @@ div.form-group
 
 div.clearfix
 div.categories-selector
+	
+	p
+		| Categorías:  
+		a((click)="toggleClass()") - selecccionar -
+
+
 
 	div.categories-selected
 		p.chip(href="#")
 			span planeación y estrategia
 			a.glyphicon.glyphicon-remove
-
-
-
-
-	div.form-group.form-select
-
-		label(for="asignaCat") Categorías:
-		select#asignaCat(name="asignaCat", multiple)
-			option(value="") Todas
-			option(value="") a
-			option(value="") b
-			option(value="") c
-			option(value="") d
-			option(value="") e
-			option(value="") f
-			option(value="") g
-			option(value="") planeación y estrategia
-			option(value="") i
+	
+	//Selector de categorias
+	div.asigna-cat( [class.active]="activeS")
+		p Todas
+		p a
+		p b
+		p c
+		p d
+		p e
+		p f
+		p g
+		p.active planeación y estrategia
+		p i
+		p i
+		p i
+	///-Selector de categorias
 
 div.clearfix
 

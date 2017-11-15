@@ -20,27 +20,27 @@ section.container-fluid.container-categories
 			div.category-create([class.active]="activeA")
 				div.form-group
 					label(for="categoriaName") Nombre de la Categoría
-					input(type="text", placeholder="Facturación", id="categoriaName", name="categoriaName")
+					input(type="text", placeholder="Facturación", [(ngModel)]="categoria.nombre", id="categoriaName", name="categoriaName")
 
 				div.form-group
 					label(for="categoriaPer") Peso de la categoría (porcentaje)
-					input(type="number", min="0", placeholder="10", id="categoriaPer", name="categoriaPer")
+					input(type="number", min="0", placeholder="10", [(ngModel)]="categoria.porcentaje", id="categoriaPer", name="categoriaPer")
 
-				button.btn.btn-submit
+				button.btn.btn-submit((click)="saveCategory(categoria)")
 					i.glyphicon.glyphicon-floppy-saved
 					span Guardar
 			///-Crear categoria
 			
 			ul.category-list
 
-				li.category-item(*ngFor="let categoria of categorias; let keyCategoria = index",[class.active]="categoria.activo")
+				li.category-item(*ngFor="let cat of categorias; let keyCategoria = index",[class.active]="cat.activo")
 					div.category-control
-						input(readonly, value="{{categoria.nombre}}", type="text")
-						a.btn-edit((click)="showEdit(keyCategoria)"): i.glyphicon.glyphicon-pencil
-						a.btn-remove(href="#"): i.glyphicon.glyphicon-remove
-						input.peso(value="10", type="number", min="0")
+						input([readonly]="!cat.activo", (click)="cat.activo || showQuestions(cat.id)", [(ngModel)]="cat.nombre", value="{{cat.nombre}}", type="text")
+						a.btn-edit((click)="showEditCategory(keyCategoria)"): i.glyphicon.glyphicon-pencil
+						a.btn-remove((click)="removeCategory(cat.id,keyCategoria)"): i.glyphicon.glyphicon-trash
+						input.peso([readonly]="!cat.activo", [(ngModel)]="cat.porcentaje", value="{{cat.porcentaje}}", type="number", min="0")
 						
-						button.btn.btn-submit
+						button.btn.btn-submit((click)="saveCategory(cat,keyCategoria)")
 							i.glyphicon.glyphicon-floppy-saved
 							span Guardar
 							
@@ -48,7 +48,7 @@ section.container-fluid.container-categories
 
 		///-Categorías
 
-		article.col-cat.col-q-list
+		article.col-cat.col-q-list(*ngIf="statusPreg")
 
 			div.category-header
 				h2 Preguntas
@@ -62,9 +62,9 @@ section.container-fluid.container-categories
 				div.category-create-q
 					div.form-group
 						label(for="preguntaCrea") Pregunta:
-						textarea#preguntaCrea(name="preguntaCrea")
+						textarea#preguntaCrea(name="preguntaCrea", [(ngModel)]="pregunta.titulo")
 
-					div.form-group.form-select
+					//div.form-group.form-select
 
 						select#preguntaCat(name="preguntaCat")
 							option(value="") - Categoría -
@@ -72,32 +72,31 @@ section.container-fluid.container-categories
 
 				///-Crear pregunta
 				
-				button.btn.btn-default
+				//button.btn.btn-default
 					i.glyphicon.glyphicon-plus
 					span Añadir otra pregunta
 
-				button.btn.btn-submit
+				button.btn.btn-submit((click)="saveQuestion(pregunta)")
 					i.glyphicon.glyphicon-floppy-saved
 					span Guardar
 			
-			div.preguntas-header
+			div.preguntas-header(*ngIf="preguntas.length > 0")
 				h3 Preguntas en la categoría:
-				div.form-group.form-select
+				//div.form-group.form-select
 					select#catShow(name="catShow")
 						option(value="") - Categoría -
 						option(value="a") Una categoría
 			
-			ul.category-q
+			ul.category-q(*ngIf="preguntas.length > 0")
 
-				-for(y=0;y <5;y++)
-					li.category-item
-						div.category-control
-							textarea(readonly) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   
-							
-							a.btn-edit(href="#"): i.glyphicon.glyphicon-pencil
-							a.btn-remove(href="#"): i.glyphicon.glyphicon-remove
+				li.category-item(*ngFor="let preg of preguntas; let keyPregunta = index", [class.active]="preg.activo")
+					div.category-control
+						textarea([readonly]="!preg.activo", [(ngModel)]="preg.titulo") {{preg.titulo}} 
+						
+						a.btn-edit((click)="showEditQuestion(keyPregunta)"): i.glyphicon.glyphicon-pencil
+						a.btn-remove((click)="removeQuestion(preg.id,keyPregunta)"): i.glyphicon.glyphicon-trash
 
-							button.btn.btn-submit
-								i.glyphicon.glyphicon-floppy-saved
-								span Guardar
+						button.btn.btn-submit((click)="saveQuestion(preg,keyPregunta)")
+							i.glyphicon.glyphicon-floppy-saved
+							span Guardar
 							

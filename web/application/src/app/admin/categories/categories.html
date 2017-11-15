@@ -208,27 +208,27 @@
       <div class="category-create" [class.active]="activeA">
         <div class="form-group">
           <label for="categoriaName">Nombre de la Categoría</label>
-          <input type="text" placeholder="Facturación" id="categoriaName" name="categoriaName"/>
+          <input type="text" placeholder="Facturación" [(ngModel)]="categoria.nombre" id="categoriaName" name="categoriaName"/>
         </div>
         <div class="form-group">
           <label for="categoriaPer">Peso de la categoría (porcentaje)</label>
-          <input type="number" min="0" placeholder="10" id="categoriaPer" name="categoriaPer"/>
+          <input type="number" min="0" placeholder="10" [(ngModel)]="categoria.porcentaje" id="categoriaPer" name="categoriaPer"/>
         </div>
-        <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
+        <button class="btn btn-submit" (click)="saveCategory(categoria)"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
       </div>
       <!--/-Crear categoria-->
       <ul class="category-list">
-        <li class="category-item" *ngFor="let categoria of categorias; let keyCategoria = index" [class.active]="categoria.activo">
+        <li class="category-item" *ngFor="let cat of categorias; let keyCategoria = index" [class.active]="cat.activo">
           <div class="category-control">
-            <input readonly="readonly" value="{{categoria.nombre}}" type="text"/><a class="btn-edit" (click)="showEdit(keyCategoria)"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <input class="peso" value="10" type="number" min="0"/>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
+            <input [readonly]="!cat.activo" (click)="cat.activo || showQuestions(cat.id)" [(ngModel)]="cat.nombre" value="{{cat.nombre}}" type="text"/><a class="btn-edit" (click)="showEditCategory(keyCategoria)"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" (click)="removeCategory(cat.id,keyCategoria)"><i class="glyphicon glyphicon-trash"></i></a>
+            <input class="peso" [readonly]="!cat.activo" [(ngModel)]="cat.porcentaje" value="{{cat.porcentaje}}" type="number" min="0"/>
+            <button class="btn btn-submit" (click)="saveCategory(cat,keyCategoria)"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
           </div>
         </li>
       </ul>
     </article>
     <!--/-Categorías-->
-    <article class="col-cat col-q-list">
+    <article class="col-cat col-q-list" *ngIf="statusPreg">
       <div class="category-header">
         <h2>Preguntas</h2>
         <button class="btn btn-default" type="button" (click)="toggleClass('activeS')" [class.active]="activeS"><i class="glyphicon glyphicon-comment"></i><span>Nueva Pregunta</span></button>
@@ -238,57 +238,37 @@
         <div class="category-create-q">
           <div class="form-group">
             <label for="preguntaCrea">Pregunta:</label>
-            <textarea id="preguntaCrea" name="preguntaCrea"></textarea>
+            <textarea id="preguntaCrea" name="preguntaCrea" [(ngModel)]="pregunta.titulo"></textarea>
           </div>
-          <div class="form-group form-select">
-            <select id="preguntaCat" name="preguntaCat">
-              <option value="">- Categoría -</option>
-              <option value="a">Una categoría</option>
-            </select>
-          </div>
+          <!--div.form-group.form-select
+          select#preguntaCat(name="preguntaCat")
+          	option(value="") - Categoría -
+          	option(value="a") Una categoría
+          
+          -->
         </div>
         <!--/-Crear pregunta-->
-        <button class="btn btn-default"><i class="glyphicon glyphicon-plus"></i><span>Añadir otra pregunta</span></button>
-        <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
+        <!--button.btn.btn-default
+        i.glyphicon.glyphicon-plus
+        span Añadir otra pregunta
+        
+        -->
+        <button class="btn btn-submit" (click)="saveQuestion(pregunta)"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
       </div>
-      <div class="preguntas-header">
+      <div class="preguntas-header" *ngIf="preguntas.length &gt; 0">
         <h3>Preguntas en la categoría:</h3>
-        <div class="form-group form-select">
-          <select id="catShow" name="catShow">
-            <option value="">- Categoría -</option>
-            <option value="a">Una categoría</option>
-          </select>
-        </div>
+        <!--div.form-group.form-select
+        select#catShow(name="catShow")
+        	option(value="") - Categoría -
+        	option(value="a") Una categoría
+        
+        -->
       </div>
-      <ul class="category-q">
-        <li class="category-item">
+      <ul class="category-q" *ngIf="preguntas.length &gt; 0">
+        <li class="category-item" *ngFor="let preg of preguntas; let keyPregunta = index" [class.active]="preg.activo">
           <div class="category-control">
-            <textarea readonly="readonly">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   </textarea><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <textarea readonly="readonly">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   </textarea><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <textarea readonly="readonly">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   </textarea><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <textarea readonly="readonly">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   </textarea><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
-          </div>
-        </li>
-        <li class="category-item">
-          <div class="category-control">
-            <textarea readonly="readonly">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   </textarea><a class="btn-edit" href="#"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-            <button class="btn btn-submit"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
+            <textarea [readonly]="!preg.activo" [(ngModel)]="preg.titulo">{{preg.titulo}} </textarea><a class="btn-edit" (click)="showEditQuestion(keyPregunta)"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" (click)="removeQuestion(preg.id,keyPregunta)"><i class="glyphicon glyphicon-trash"></i></a>
+            <button class="btn btn-submit" (click)="saveQuestion(preg,keyPregunta)"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
           </div>
         </li>
       </ul>

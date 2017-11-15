@@ -15,6 +15,8 @@ use Models\PreguntaHistorial;
 use Models\Cuenta;
 use Models\Admin;
 use Models\CategoriaRespuesta;
+use Models\CuentaXCategoria;
+
 
 
 $request = (object) $_POST;
@@ -300,7 +302,7 @@ switch ($accion) {
 			break;
 	// Admin
 
-		// Login: Realiza la validación del usuario
+		// LoginAdmin: Realiza la validación del usuario
 		case "loginAdmin":
 			if (isset($request->correo) && $request->correo != "" && isset($request->contrasena) && $request->contrasena != "") {
 				$correo = $request->correo;
@@ -531,11 +533,16 @@ switch ($accion) {
 			}
 			break;
 
-		// getCategorias: Retorna todas los clientes de brm con sus usuarios
+		// getCategorias: Retorna todas los categorias
 		case "getCategorias":
 			$categorias = Categoria::select('id','nombre','porcentaje')->get();
 			if (count($categorias) > 0) {
 				$categorias = $categorias->toArray();
+				// Ciframos ids 
+				foreach ($categorias as $categoriaKey => $categoriaValue) {
+					$categorias[$categoriaKey]['id'] = requestHash('encode',$categorias[$categoriaKey]['id']);
+				}
+
 				$data = $categorias;
 				// Error 1: Los datos de la categoría son correctos
 				$error = 1;
@@ -546,6 +553,251 @@ switch ($accion) {
 			}
 			break;
 
+		// setCategoria: Inserta o actualiza una categoria
+		case "setCategoria":
+			if (isset($request->id) &&
+				isset($request->nombre) && $request->nombre != "" &&
+				isset($request->porcentaje) && $request->porcentaje != "") {
+				$nResult = false;
+				$idCat = requestHash('decode',$request->id);
+				if (isset($request->id) && $request->id != "" && $request->id != 'undefined') {
+					$categoriaIgual = Categoria::select('id','nombre','porcentaje')
+					->where('nombre',$request->nombre)
+					->where('porcentaje',$request->porcentaje)
+					->where('id',$idCat)
+					->first();
+					if (!isset($categoriaIgual) || $categoriaIgual == null || $categoriaIgual == '') {
+						// inserta  nueva categoría histórica
+						$categoriaHistoria = new CategoriaHistorial;
+						$categoriaHistoria->nombre = $request->nombre;
+						$categoriaHistoria->porcentaje = $request->porcentaje;
+						$categoriaHistoria->fecha = date("Y-m-d H:i:s");
+						$categoriaHistoria->save();
+						$idCategoriaHistorial = $categoriaHistoria->id;
+						// Actializa la categoría
+						$nResult = Categoria::where('id', $idCat)
+							->update(['nombre' => $request->nombre,'porcentaje' => $request->porcentaje,'idCategoriaHistorial' => $idCategoriaHistorial]);
+						if (count($nResult) > 0) {
+							$data = $nResult;
+							// Error 1: Los datos de usuario son corerectos
+							$error = 1;
+						}else{
+							$data = null;
+							// Error 1: Los datos de usuario son incorerectos
+							$error = 3;
+						}
+					}else{
+						$data = null;
+						// Error 4: No se realizaron cambios a la categoría
+						$error = 4;
+					}
+				}else{
+					$categoriaIgual = Categoria::select('id','nombre','porcentaje')
+					->where('nombre',$request->nombre)
+					->first();
+					if (!isset($categoriaIgual) || $categoriaIgual == null || $categoriaIgual == '') {
+						// inserta  nueva categoría histórica
+						$categoriaHistoria = new CategoriaHistorial;
+						$categoriaHistoria->nombre = $request->nombre;
+						$categoriaHistoria->porcentaje = $request->porcentaje;
+						$categoriaHistoria->fecha = date("Y-m-d H:i:s");
+						$categoriaHistoria->save();
+						$idCategoriaHistorial = $categoriaHistoria->id;
+						// inserta  nueva categoría 
+						$categoria = new Categoria;
+						$categoria->nombre = $request->nombre;
+						$categoria->porcentaje = $request->porcentaje;
+						$categoria->fecha = date("Y-m-d H:i:s");
+						$categoria->idCategoriaHistorial = $idCategoriaHistorial;
+						$nResult = $categoria->save();
+						$idCategoriaNueva = $categoria->id;
+						if (count($nResult) > 0) {
+							$data = requestHash('encode',$idCategoriaNueva);
+							// Error 1: Los datos de la categoría son corerectos
+							$error = 1;
+						}else{
+							$data = null;
+							// Error 1: Los datos de la categoría son incorerectos
+							$error = 2;
+						}
+					}else{
+						$data = null;
+						// Error 5: La cateogoría ya existe
+						$error = 5;
+					}
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+		// removeCategoria: remueve una categoría
+		case "removeCategoria":
+			
+			if (isset($request->id) && $request->id != "") {
+				$id = requestHash('decode',$request->id);
+				$categoriaEnUso = CuentaXCategoria::select('id')
+					->where('idCategoria',$id)
+					->first();
+				if (!isset($categoriaEnUso) || $categoriaEnUso == null || $categoriaEnUso == '') {
+					$nResult = Categoria::where('id', $id)->delete();
+					if (count($nResult) > 0) {
+						$data = $nResult;
+						// Error 1: Los datos de la categoría son corerectos
+						$error = 1;
+					}else{
+						$data = null;
+						// Error 1: Los datos de la categoría son incorerectos
+						$error = 2;
+					}
+				}else{
+					// Error 4: Categoría en uso
+					$error = 4;
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+
+			break;
+
+		// getAdminPreguntas: Retorna todas los preguntas
+		case "getAdminPreguntas":
+			if (isset($request->idCategoria) && $request->idCategoria != "") {
+				$idCategoria = requestHash('decode',$request->idCategoria);
+				$preguntas = Pregunta::select('id','titulo','idCategoria')
+					->where('idCategoria',$idCategoria)->get();
+				if (count($preguntas) > 0) {
+					$preguntas = $preguntas->toArray();
+					// Ciframos ids
+					foreach ($preguntas as $preguntaKey => $preguntaValue) {
+						$preguntas[$preguntaKey]['id'] = requestHash('encode',$preguntas[$preguntaKey]['id']);
+						$preguntas[$preguntaKey]['idCategoria'] = requestHash('encode',$preguntas[$preguntaKey]['idCategoria']);
+					}
+					$data = $preguntas;
+					// Error 1: Los datos de la categoría son correctos
+					$error = 1;
+				}else{
+					$data = null;
+					// Error 2: No hay categorías
+					$error = 2;
+				}
+			}else{
+
+			}
+			break;
+
+		// setAdminPregunta: Inserta o actualiza una pregunta
+		case "setAdminPregunta":
+			if (isset($request->id) &&
+				isset($request->titulo) && $request->titulo != "" &&
+				isset($request->idCategoria) && $request->idCategoria != "" &&
+				isset($request->idAdmin) && $request->idAdmin != "") {
+				$nResult = false;
+				$idPreg = requestHash('decode',$request->id);
+				$idAdmin = requestHash('decode',$request->idAdmin);
+				$idCategoria = requestHash('decode',$request->idCategoria);
+				if (isset($request->id) && $request->id != "" && $request->id != 'undefined') {
+					$preguntaIgual = Pregunta::select('id','titulo')
+					->where('titulo',$request->titulo)
+					->where('id',$idPreg)
+					->first();
+					if (!isset($preguntaIgual) || $preguntaIgual == null || $preguntaIgual == '') {
+						// inserta  nueva pregunta histórica
+						$preguntaHistoria = new PreguntaHistorial;
+						$preguntaHistoria->titulo = $request->titulo;
+						$preguntaHistoria->fecha = date("Y-m-d H:i:s");
+						$preguntaHistoria->save();
+						$idPreguntaHistorial = $preguntaHistoria->id;
+						// Actializa la pregunta
+						$nResult = Pregunta::where('id', $idPreg)
+							->update(['titulo' => $request->titulo,'idPreguntaHistorial' => $idPreguntaHistorial]);
+						if (count($nResult) > 0) {
+							$data = $nResult;
+							// Error 1: Se actualizó correctamente la pregunta
+							$error = 1;
+						}else{
+							$data = null;
+							// Error 3: Ocurrió un error en la  consulta
+							$error = 3;
+						}
+					}else{
+						$data = null;
+						// Error 4: No se realizó cambio en la pregunta
+						$error = 4;
+					}
+				}else{
+					$preguntaIgual = Pregunta::select('id','titulo')
+					->where('titulo',$request->titulo)
+					->first();
+					if (!isset($preguntaIgual) || $preguntaIgual == null || $preguntaIgual == '') {
+						// inserta  nueva pregunta histórica
+						$preguntaHistoria = new PreguntaHistorial;
+						$preguntaHistoria->titulo = $request->titulo;
+						$preguntaHistoria->fecha = date("Y-m-d H:i:s");
+						$preguntaHistoria->save();
+						$idPreguntaHistorial = $preguntaHistoria->id;
+						// inserta  nueva pregunta 
+						$pregunta = new Pregunta;
+						$pregunta->titulo = $request->titulo;
+						$pregunta->fecha = date("Y-m-d H:i:s");
+						$pregunta->idPreguntaHistorial = $idPreguntaHistorial;
+						$pregunta->idAdmin = $idAdmin;
+						$pregunta->idCategoria = $idCategoria;
+						$nResult = $pregunta->save();
+						$idPreguntaNueva = $pregunta->id;
+						if (count($nResult) > 0) {
+							$data = requestHash('encode',$idPreguntaNueva);
+							// Error 1: Los datos de la pregunta son corerectos
+							$error = 1;
+						}else{
+							$data = null;
+							// Error 1: Los datos de la pregunta son incorerectos
+							$error = 2;
+						}
+					}else{
+						$data = null;
+						// Error 5: La pregunta ya existe
+						$error = 5;
+					}
+				}
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+			break;
+
+		// removePregunta: remueve una categoría
+		case "removePregunta":
+			if (isset($request->id) && $request->id != "") {
+				$id = requestHash('decode',$request->id);
+				/*$preguntaEnUso = Pregunta::select('pregunta.id')
+					->join('pregunta_historial', 'pregunta_historial.id', '=', 'pregunta.idPreguntaHistorial')
+					->join('respuesta', 'pregunta_historial.id', '=', 'respuesta.idPreguntaHistorial')
+					->where('idCategoria',$id)
+					->first();
+				if (!isset($preguntaEnUso) || $preguntaEnUso == null || $preguntaEnUso == '') {*/
+					$nResult = Pregunta::where('id', $id)->delete();
+					if (count($nResult) > 0) {
+						$data = $nResult;
+						// Error 1: Se eliminó la pregunta correctamente
+						$error = 1;
+					}else{
+						$data = null;
+						// Error 1: Ocurrió un error eliminando la consulta
+						$error = 2;
+					}
+				/*}else{
+					// Error 4: Pregunta en uso
+					$error = 4;
+				}*/
+			}else{
+				// Error 3: datos request incorrectos
+				$error = 3;
+			}
+
+			break;
 	// Acción no encontrada
 	default:
 		$data = "Ups 404";

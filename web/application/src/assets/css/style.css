@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Tue Nov 14 2017 20:32:10 GMT-0500 (COT)
+ *Tue Nov 14 2017 23:00:55 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2333,6 +2333,30 @@ header .logo svg {
   max-width: 20rem;
   width: 100%;
 }
+.chip {
+  background-color: #f5f5f5;
+  border-radius: 5rem;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
+  color: #000;
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 2.6rem;
+  position: relative;
+}
+.chip a {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 .container-login .form-group {
   border: none;
 }
@@ -2870,6 +2894,13 @@ header .logo svg {
 .category-item.active textarea {
   min-height: 20rem;
 }
+.category-item.active .btn-edit {
+  display: none;
+}
+.category-item.active .btn-remove,
+.category-item.active .btn-submit {
+  display: block;
+}
 .category-item.active .form-select {
   display: block;
 }
@@ -2881,6 +2912,10 @@ header .logo svg {
   overflow: visible;
   padding: 0 1rem;
   pointer-events: all;
+}
+.category-item .btn-remove,
+.category-item .btn-submit {
+  display: none;
 }
 .category-item .form-select {
   border: 1px solid #a6a8ab;
@@ -3137,10 +3172,15 @@ header .logo svg {
   max-width: 45%;
   text-align: left;
 }
+.client-item .client-user a {
+  cursor: pointer;
+}
 .client-item .client-user h3 {
   font-weight: 400;
 }
 .client-item .client-user .btn-remove {
+  -webkit-box-shadow: none;
+  box-shadow: none;
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
@@ -3737,9 +3777,7 @@ header .logo svg {
 }
 @media (min-width: 640px) {
   .btn-section {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 1rem;
+    min-height: 6rem;
     max-width: 20rem;
   }
   .container-admin .logo {
@@ -3750,6 +3788,10 @@ header .logo svg {
   }
 }
 @media (min-width: 770px) {
+  .btn-section {
+    display: inline-block;
+    vertical-align: middle;
+  }
   .container-dashboard .text-dashboard {
     max-width: 66rem;
   }

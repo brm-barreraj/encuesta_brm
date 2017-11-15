@@ -33,20 +33,18 @@ section.container-fluid.container-categories
 			
 			ul.category-list
 
-				li.category-item
-					div.category-control
-						input(readonly, value="Categoría", type="text")
-						a(href="#"): i.glyphicon.glyphicon-pencil
-						input.peso(value="10", type="number", min="0")
-
-
 				-for(x=0;x <9;x++)
 					li.category-item
 						div.category-control
 							input(readonly, value="Categoría", type="text")
-							a(href="#"): i.glyphicon.glyphicon-pencil
+							a.btn-edit(href="#"): i.glyphicon.glyphicon-pencil
+							a.btn-remove(href="#"): i.glyphicon.glyphicon-remove
 							input.peso(value="10", type="number", min="0")
-
+							
+							button.btn.btn-submit
+								i.glyphicon.glyphicon-floppy-saved
+								span Guardar
+							
 
 
 		///-Categorías
@@ -92,25 +90,15 @@ section.container-fluid.container-categories
 			
 			ul.category-q
 
-				li.category-item
-					div.category-control
-						textarea(readonly) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   
-						
-						a(href="#"): i.glyphicon.glyphicon-pencil
-
-						div.form-group.form-select
-							select(name="cat"+y, id="cat"+y)
-								option(value="") - Categoría -
-								option(value="a") Una categoría
-
 				-for(y=0;y <5;y++)
 					li.category-item
 						div.category-control
 							textarea(readonly) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas minima eligendi, nisi sit magnam perspiciatis sunt tempore nulla, cum inventore, harum, asperiores blanditiis dicta laborum ipsum vitae. Veniam, possimus, minus.   
 							
-							a(href="#"): i.glyphicon.glyphicon-pencil
+							a.btn-edit(href="#"): i.glyphicon.glyphicon-pencil
+							a.btn-remove(href="#"): i.glyphicon.glyphicon-remove
 
-							div.form-group.form-select
-								select(name="cat"+y, id="cat"+y)
-									option(value="") - Categoría -
-									option(value="a") Una categoría
+							button.btn.btn-submit
+								i.glyphicon.glyphicon-floppy-saved
+								span Guardar
+							

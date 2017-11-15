@@ -7,6 +7,34 @@ div.form-group
 div.form-group
 	input(type="text", placeholder="Color HEX", value="{{client.color}}",[(ngModel)]="client.color")
 
+div.clearfix
+div.categories-selector
+
+	div.categories-selected
+		p.chip(href="#")
+			span planeación y estrategia
+			a.glyphicon.glyphicon-remove
+
+
+
+
+	div.form-group.form-select
+
+		label(for="asignaCat") Categorías:
+		select#asignaCat(name="asignaCat", multiple)
+			option(value="") Todas
+			option(value="") a
+			option(value="") b
+			option(value="") c
+			option(value="") d
+			option(value="") e
+			option(value="") f
+			option(value="") g
+			option(value="") planeación y estrategia
+			option(value="") i
+
+div.clearfix
+
 button.btn.btn-submit.btn-full(type="button",*ngIf="idClient == null || idClient == ''", (click)="setClient()") Crear Cliente
 button.btn.btn-submit.btn-full(type="button",*ngIf="idClient != null && idClient != ''", (click)="setClient()") Editar Cliente
 

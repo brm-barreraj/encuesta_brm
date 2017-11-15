@@ -1,9 +1,16 @@
+@media (min-width:420px)
+	
+	.category-header
+		h2,
+		.btn
+			display inline-block
+			vertical-align middle
+
+
 @media (min-width:640px)
 	.btn
 		&-section
-			display inline-block
-			vertical-align middle
-			margin 1rem
+			min-height 6rem
 			max-width 20rem
 		
 
@@ -16,6 +23,12 @@
 		top 16rem
 
 @media (min-width:$screen-sm)
+
+	.btn
+		&-section
+			display inline-block
+			vertical-align middle
+				
 	.container
 		&-dashboard
 			// padding-bottom 15%
@@ -48,7 +61,22 @@
 			strong
 				display block
 			
-
+	//Admin
+	.category
+		&-header
+			h2
+				font-size 1.8rem
+				
+		&-item
+			&.active
+				textarea
+					min-height 10rem
+					
+		&-list,
+		&-q
+			li
+				textarea
+					min-height 8rem
 	.client
 		&-brand
 			&:hover

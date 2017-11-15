@@ -10,6 +10,9 @@ import { LoginAdminService } from '../login/login.service';
 })
 
 export class AdminCategories {
+	activeS:boolean = false;
+	activeA:boolean = false;
+
 	constructor(private serviceLoginAdmin: LoginAdminService,
 		private serviceRequest: RequestService,
 		private router: Router) { }
@@ -22,5 +25,16 @@ export class AdminCategories {
 		}
 	}
 
+	toggleClass(ele){
+	      // this.activeS = !this.activeS;
+
+	      if(ele== 'activeS'){
+		      this.activeS = !this.activeS;
+	      }else  if(ele== 'activeA'){
+		      this.activeA = !this.activeA;
+
+	      }
+
+	  	}
 
 }

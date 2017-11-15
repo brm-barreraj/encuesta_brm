@@ -33,9 +33,9 @@ section.container-fluid.container-categories
 			
 			ul.category-list
 
-				li.category-item(*ngFor="let cat of categorias; let keyCategoria = index",[class.active]="cat.activo", [class.ver-preguntas]="cat.activoColor && !cat.activo")
+				li.category-item(*ngFor="let cat of categorias; let keyCategoria = index",[class.active]="cat.activo", [class.ver-preguntas]="cat.activoColor && !cat.activo", (click)="cat.activo || showQuestions(cat.id,keyCategoria)")
 					div.category-control
-						input([readonly]="!cat.activo", (click)="cat.activo || showQuestions(cat.id,keyCategoria)", [(ngModel)]="cat.nombre", value="{{cat.nombre}}", type="text")
+						input([readonly]="!cat.activo", [(ngModel)]="cat.nombre", value="{{cat.nombre}}", type="text")
 						a.btn-edit((click)="showEditCategory(keyCategoria)"): i.glyphicon.glyphicon-pencil
 						a.btn-remove((click)="removeCategory(cat.id,keyCategoria)"): i.glyphicon.glyphicon-trash
 						input.peso([readonly]="!cat.activo", [(ngModel)]="cat.porcentaje", value="{{cat.porcentaje}}", type="number", min="0")

@@ -10,24 +10,26 @@
 </div>
 <div class="clearfix"></div>
 <div class="categories-selector">
+  <p>Categorías:  <a (click)="toggleClass()">- selecccionar -</a></p>
   <div class="categories-selected">
     <p class="chip" href="#"><span>planeación y estrategia</span><a class="glyphicon glyphicon-remove"></a></p>
   </div>
-  <div class="form-group form-select">
-    <label for="asignaCat">Categorías:</label>
-    <select id="asignaCat" name="asignaCat" multiple="multiple">
-      <option value="">Todas</option>
-      <option value="">a</option>
-      <option value="">b</option>
-      <option value="">c</option>
-      <option value="">d</option>
-      <option value="">e</option>
-      <option value="">f</option>
-      <option value="">g</option>
-      <option value="">planeación y estrategia</option>
-      <option value="">i</option>
-    </select>
+  <!--Selector de categorias-->
+  <div class="asigna-cat" [class.active]="activeS">
+    <p>Todas</p>
+    <p>a</p>
+    <p>b</p>
+    <p>c</p>
+    <p>d</p>
+    <p>e</p>
+    <p>f</p>
+    <p>g</p>
+    <p class="active">planeación y estrategia</p>
+    <p>i</p>
+    <p>i</p>
+    <p>i</p>
   </div>
+  <!--/-Selector de categorias-->
 </div>
 <div class="clearfix"></div>
 <button class="btn btn-submit btn-full" type="button" *ngIf="idClient == null || idClient == ''" (click)="setClient()">Crear Cliente</button>

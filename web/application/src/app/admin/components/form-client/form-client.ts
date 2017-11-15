@@ -11,6 +11,7 @@ import { AlertToastComponent } from '../../components/alert-toast/alert-toast';
 export class FormClientComponent {
 	@Input() idClient;
 	client:any = [];
+	activeS:boolean = false;
 
 	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
 
@@ -74,5 +75,10 @@ export class FormClientComponent {
 				console.log(error)
 			});
 	}
+
+	toggleClass(){
+      this.activeS = !this.activeS;
+  	}
+
 
 }

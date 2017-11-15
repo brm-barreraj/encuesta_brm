@@ -24,6 +24,15 @@
 
 @media (min-width:$screen-sm)
 
+	.asigna-cat
+		left 8rem
+		position absolute
+		top 9rem
+		transform none
+		width: auto
+		
+		&.active
+			max-height 20rem
 	.btn
 		&-section
 			display inline-block
@@ -108,8 +117,8 @@
 		&-item
 			border none
 			
-			.btn-create
-				float right
+			// .btn-create
+			// 	float right
 	.row
 		&-create
 			.btn-blue
@@ -125,3 +134,8 @@
 				margin 0 auto
 				max-width 33.3%
 				// width 100%
+@media (min-width: 990px)
+	.client
+		&-item			
+			.btn-create
+				float right

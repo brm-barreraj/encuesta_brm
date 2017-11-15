@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Tue Nov 14 2017 23:00:55 GMT-0500 (COT)
+ *Tue Nov 14 2017 23:53:57 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2917,6 +2917,10 @@ header .logo svg {
 .category-item .btn-submit {
   display: none;
 }
+.category-item .btn-submit {
+  margin: 1rem auto;
+  width: auto !important;
+}
 .category-item .form-select {
   border: 1px solid #a6a8ab;
   padding: 1rem;
@@ -2987,7 +2991,8 @@ header .logo svg {
 .container-categories .btn-submit {
   background-color: #0d2d6c;
   color: #fff;
-  width: 100%;
+  margin: 1rem auto;
+  width: auto;
 }
 .container-categories .form-group textarea {
   background-color: transparent;
@@ -3028,6 +3033,107 @@ header .logo svg {
   padding: 0;
   text-transform: uppercase;
   width: 100%;
+}
+.asigna-cat {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  height: 100%;
+  left: 0;
+  max-height: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  overflow-y: scroll;
+  padding: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -o-transform-origin: center;
+  -ms-transform-origin: center;
+  -webkit-transform-origin: center;
+  -moz-transform-origin: center;
+  transform-origin: center;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  z-index: 10;
+}
+.asigna-cat.active {
+  opacity: 0.999;
+  -ms-filter: none;
+  filter: none;
+  pointer-events: all;
+  max-height: 36rem;
+}
+.asigna-cat::-webkit-scrollbar-track {
+  background-color: #a6a8ab;
+}
+.asigna-cat::-webkit-scrollbar {
+  background-color: #0d2d6c;
+  width: 1rem;
+}
+.asigna-cat::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #0d2d6c;
+}
+.asigna-cat p {
+  border-bottom: 1px dotted #6d6e70;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  position: relative;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.asigna-cat p.active {
+  background-color: #0d2d6c;
+  color: #fff;
+}
+.asigna-cat p.active::after {
+  opacity: 0.99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+}
+.asigna-cat p:hover {
+  background-color: #0d2d6c;
+  color: #fff;
+}
+.asigna-cat p::after {
+  color: #fff;
+  content: "\e013";
+  display: block;
+  font-family: 'Glyphicons Halflings';
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  pointer-events: none;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.asigna-cat p:nth-last-of-type(1) {
+  border-bottom-color: transparent;
 }
 .btn-blue {
   display: block;
@@ -3113,6 +3219,11 @@ header .logo svg {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 10;
+}
+.client-create a {
+  cursor: pointer;
 }
 .client-create.active {
   opacity: 0.99;
@@ -3131,6 +3242,9 @@ header .logo svg {
     float: left;
     width: 33.33333333333333%;
   }
+}
+.client-edit a {
+  cursor: pointer;
 }
 .client-edit .form-group {
   position: relative;
@@ -3184,6 +3298,9 @@ header .logo svg {
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
+}
+.client-selector {
+  position: relative;
 }
 .table {
   text-align: center;
@@ -3788,6 +3905,20 @@ header .logo svg {
   }
 }
 @media (min-width: 770px) {
+  .asigna-cat {
+    left: 8rem;
+    position: absolute;
+    top: 9rem;
+    -o-transform: none;
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    transform: none;
+    width: auto;
+  }
+  .asigna-cat.active {
+    max-height: 20rem;
+  }
   .btn-section {
     display: inline-block;
     vertical-align: middle;
@@ -3872,9 +4003,6 @@ header .logo svg {
   .client-item {
     border: none;
   }
-  .client-item .btn-create {
-    float: right;
-  }
   .row-create .btn-blue {
     margin: 1rem auto;
     max-width: 66.6%;
@@ -3885,6 +4013,11 @@ header .logo svg {
     float: right;
     margin: 0 auto;
     max-width: 33.3%;
+  }
+}
+@media (min-width: 990px) {
+  .client-item .btn-create {
+    float: right;
   }
 }
 .categoria {

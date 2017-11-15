@@ -12,22 +12,13 @@
 <div class="categories-selector">
   <p>Categorías:  <a (click)="toggleClass()">- selecccionar -</a></p>
   <div class="categories-selected">
-    <p class="chip" href="#"><span>planeación y estrategia</span><a class="glyphicon glyphicon-remove"></a></p>
+    <div *ngFor="let catCliente of categoriasCliente; let keyCatCliente = index">
+      <p class="chip" *ngIf="catCliente.active"><span>{{catCliente.nombre}}</span><a class="glyphicon glyphicon-remove" (click)="toogleCateogriaCliente('i',keyCatCliente)"></a></p>
+    </div>
   </div>
   <!--Selector de categorias-->
   <div class="asigna-cat" [class.active]="activeS">
-    <p>Todas</p>
-    <p>a</p>
-    <p>b</p>
-    <p>c</p>
-    <p>d</p>
-    <p>e</p>
-    <p>f</p>
-    <p>g</p>
-    <p class="active">planeación y estrategia</p>
-    <p>i</p>
-    <p>i</p>
-    <p>i</p>
+    <p *ngFor="let catCliente of categoriasCliente; let keyCatCliente = index" (click)="toogleCateogriaCliente('inv',keyCatCliente)" [class.active]="catCliente.active">{{catCliente.nombre}}</p>
   </div>
   <!--/-Selector de categorias-->
 </div>

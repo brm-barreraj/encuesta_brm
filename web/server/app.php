@@ -374,6 +374,31 @@ switch ($accion) {
 					$cliente = $cliente->toArray();
 					$cliente['id'] = requestHash('encode',$cliente['id']);
 					$data = $cliente;
+
+					// Trae las categorías de la cuenta
+					$categoriasCuenta = Categoria::select('categoria.id')
+						->join('cuenta_x_categoria', 'cuenta_x_categoria.idCategoria', '=', 'categoria.id')
+						->join('cuenta', 'cuenta.id', '=', 'cuenta_x_categoria.idCuenta')
+						->where('cuenta.id',$idCuenta)
+						->pluck('id');
+					if (count($categoriasCuenta) > 0) {
+						$categoriasCuenta = $categoriasCuenta->toArray();
+					}else{
+						$categoriasCuenta = array();
+					}
+					// Trae las categorías
+					$categorias = Categoria::select('categoria.id','categoria.nombre','categoria.porcentaje')->get();
+					$categorias = $categorias->toArray();
+					// Ciframos ids 
+					foreach ($categorias as $categoriaKey => $categoriaValue) {
+						if (in_array($categorias[$categoriaKey]['id'], $categoriasCuenta)) {
+							$categorias[$categoriaKey]['active'] = true;
+						}
+						$categorias[$categoriaKey]['id'] = requestHash('encode',$categorias[$categoriaKey]['id']);
+					}
+					$data['categorias'] = $categorias;
+
+
 					// Error 1: Los datos de usuario son corerectos
 					$error = 1;
 				}else{

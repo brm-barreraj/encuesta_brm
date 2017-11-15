@@ -17,24 +17,26 @@ div.categories-selector
 
 
 	div.categories-selected
-		p.chip(href="#")
-			span planeación y estrategia
-			a.glyphicon.glyphicon-remove
+		div(*ngFor="let catCliente of categoriasCliente; let keyCatCliente = index")
+			p.chip(*ngIf="catCliente.active")
+				span {{catCliente.nombre}}
+				a.glyphicon.glyphicon-remove((click)="toogleCateogriaCliente('i',keyCatCliente)")
 	
 	//Selector de categorias
 	div.asigna-cat( [class.active]="activeS")
-		p Todas
-		p a
-		p b
-		p c
-		p d
-		p e
-		p f
-		p g
-		p.active planeación y estrategia
-		p i
-		p i
-		p i
+		p(*ngFor="let catCliente of categoriasCliente; let keyCatCliente = index",(click)="toogleCateogriaCliente('inv',keyCatCliente)",[class.active]="catCliente.active") {{catCliente.nombre}}
+		//- p Todas
+		//- p a
+		//- p b
+		//- p c
+		//- p d
+		//- p e
+		//- p f
+		//- p g
+		//- p.active planeación y estrategia
+		//- p i
+		//- p i
+		//- p i
 	///-Selector de categorias
 
 div.clearfix

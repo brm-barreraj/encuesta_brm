@@ -37,9 +37,11 @@ export class Login {
 		if (this.usuario == "" || this.usuario == undefined || this.contrasena == "" || this.contrasena == undefined) {
 			this.toast.openToast("Datos incorrectos, por favor ingrese datos",null,5,null);
 		}else{
+			this.toast.openLoader();
 			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'login', usuario: this.usuario, contrasena: this.contrasena})
 				.subscribe(
 				(result) => {
+					this.toast.closeLoader();
 					switch (result.error) {
 						case 0:
 							this.toast.openToast("Ocurrió un error",null,5,null);
@@ -60,6 +62,7 @@ export class Login {
 					}
 				},
 				(error) =>  {
+					this.toast.closeLoader();
 					console.log(error)
 				});
 		}

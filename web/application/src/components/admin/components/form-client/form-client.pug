@@ -2,7 +2,7 @@ div.form-group
 	input(type="text", placeholder="Nombre Cliente", value="{{client.nombre}}",[(ngModel)]="client.nombre")
 
 div.form-group
-	input(type="text", placeholder="Logo ", value="{{client.imagen}}",[(ngModel)]="client.imagen")
+	input(type="file", placeholder="Logo ", value="{{client.imagen}}",[(ngModel)]="client.imagen", (change)="fileChange($event)", accept=".png,.jpg,.jpeg")
 
 div.form-group
 	input(type="text", placeholder="Color HEX", value="{{client.color}}",[(ngModel)]="client.color")
@@ -25,18 +25,7 @@ div.categories-selector
 	//Selector de categorias
 	div.asigna-cat( [class.active]="activeS")
 		p(*ngFor="let catCliente of categoriasCliente; let keyCatCliente = index",(click)="toogleCateogriaCliente('inv',keyCatCliente)",[class.active]="catCliente.active") {{catCliente.nombre}}
-		//- p Todas
-		//- p a
-		//- p b
-		//- p c
-		//- p d
-		//- p e
-		//- p f
-		//- p g
-		//- p.active planeación y estrategia
-		//- p i
-		//- p i
-		//- p i
+
 	///-Selector de categorias
 
 div.clearfix

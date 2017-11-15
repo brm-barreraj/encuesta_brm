@@ -218,9 +218,9 @@
       </div>
       <!--/-Crear categoria-->
       <ul class="category-list">
-        <li class="category-item" *ngFor="let cat of categorias; let keyCategoria = index" [class.active]="cat.activo">
+        <li class="category-item" *ngFor="let cat of categorias; let keyCategoria = index" [class.active]="cat.activo" [class.ver-preguntas]="cat.activoColor &amp;&amp; !cat.activo">
           <div class="category-control">
-            <input [readonly]="!cat.activo" (click)="cat.activo || showQuestions(cat.id)" [(ngModel)]="cat.nombre" value="{{cat.nombre}}" type="text"/><a class="btn-edit" (click)="showEditCategory(keyCategoria)"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" (click)="removeCategory(cat.id,keyCategoria)"><i class="glyphicon glyphicon-trash"></i></a>
+            <input [readonly]="!cat.activo" (click)="cat.activo || showQuestions(cat.id,keyCategoria)" [(ngModel)]="cat.nombre" value="{{cat.nombre}}" type="text"/><a class="btn-edit" (click)="showEditCategory(keyCategoria)"><i class="glyphicon glyphicon-pencil"></i></a><a class="btn-remove" (click)="removeCategory(cat.id,keyCategoria)"><i class="glyphicon glyphicon-trash"></i></a>
             <input class="peso" [readonly]="!cat.activo" [(ngModel)]="cat.porcentaje" value="{{cat.porcentaje}}" type="number" min="0"/>
             <button class="btn btn-submit" (click)="saveCategory(cat,keyCategoria)"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
           </div>

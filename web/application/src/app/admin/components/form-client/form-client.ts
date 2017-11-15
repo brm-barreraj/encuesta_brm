@@ -13,7 +13,7 @@ export class FormClientComponent {
 	client:any = [];
 	activeS:boolean = false;
 	categoriasCliente:any = [];
-
+	fileImage: File;
 	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
 
 	constructor(private serviceLoginAdmin: LoginAdminService,
@@ -66,6 +66,14 @@ export class FormClientComponent {
 		}
 	}
 
+	fileChange(event) {
+		let fileList: FileList = event.target.files;
+    	if(fileList.length > 0) {
+			this.fileImage = fileList[0];
+		}
+		console.log(this.fileImage);
+	}
+
 	toogleCateogriaCliente(action,key){
 		console.log(action);
 		if (action=="a") {
@@ -85,33 +93,45 @@ export class FormClientComponent {
 	}
 
 	setClient(){
-		let user = this.serviceLoginAdmin.getSession();
-		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setAdminCliente', idCuenta: this.idClient, nombre: this.client.nombre, imagen: this.client.imagen, color: this.client.color, idAdmin: user.id})
-			.subscribe(
-			(result) => {
-				switch (result.error) {
-					case 0:
-						this.toast.openToast("Ocurrió un error",null,5,null);
-						break;
-					case 1:
-						if (this.idClient != null) {
-							this.toast.openToast("Actualizó correctamente al cliente",null,5,()=>{
-								this.router.navigate(['admin/clients']);
-							});
-						}else{
-							this.toast.openToast("Agregó correctamente al cliente",null,5,()=>{
-								this.router.navigate(['admin/clients']);
-							});
-						}
-						break;
-					case 2:
-						this.toast.openToast("Usuario incorrecto",null,5,null);
-						break;
-				}
-			},
-			(error) =>  {
-				console.log(error)
-			});
+		if (this.client.nombre != undefined && this.client.nombre != '' && this.fileImage != undefined && this.client.color != undefined && this.client.color != '') {
+			let user = this.serviceLoginAdmin.getSession();
+			let formData:FormData = new FormData();
+			formData.append('imagen', this.fileImage, this.fileImage.name);
+			formData.append('idCuenta', this.idClient);
+			formData.append('nombre', this.client.nombre);
+			formData.append('color', this.client.color);
+			formData.append('accion', 'setAdminCliente');
+			formData.append('idAdmin', user.id);
+
+			this.serviceRequest.post('https://enc.brm.co/app.php', formData, true)
+				.subscribe(
+				(result) => {
+					switch (result.error) {
+						case 0:
+							this.toast.openToast("Ocurrió un error",null,5,null);
+							break;
+						case 1:
+							if (this.idClient != null) {
+								this.toast.openToast("Actualizó correctamente al cliente",null,5,()=>{
+									this.router.navigate(['admin/clients']);
+								});
+							}else{
+								this.toast.openToast("Agregó correctamente al cliente",null,5,()=>{
+									this.router.navigate(['admin/clients']);
+								});
+							}
+							break;
+						case 2:
+							this.toast.openToast("Usuario incorrecto",null,5,null);
+							break;
+					}
+				},
+				(error) =>  {
+					console.log(error)
+				});
+		}else{
+			this.toast.openToast("Datos incompletos",null,5,null);
+		}
 	}
 
 	toggleClass(){

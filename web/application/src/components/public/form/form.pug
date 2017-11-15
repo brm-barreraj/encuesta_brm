@@ -27,7 +27,7 @@ section.container-fluid.container-encuesta
 		section.categoria([ngClass]="{ active: catShow==keyCategoria}", class="cat-{{categoria.idCategoria}}")
 			h4 categoría
 			//Nombre categoria
-			h2 {{categoria.categoria}}
+			h2 {{categoria.categoria}} ({{(keyCategoria+1)}} / {{categorias.length}})
 			///-Nombre categoria
 			
 			//Descripción

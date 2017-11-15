@@ -36,9 +36,11 @@ export class Form {
 		if (!this.serviceLogin.validateSession()) {
 			this.router.navigate(['login']);
 		}else{
+			this.toast.openLoader();
 			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'getPreguntas', idCuenta: this.dataSesssion.idCuenta})
 				.subscribe(
 				(result) => {
+					this.toast.closeLoader();
 					switch (result.error) {
 						case 0:
 							this.toast.openToast("Ocurrió un error",null,5,null);
@@ -53,6 +55,7 @@ export class Form {
 					}
 				},
 				(error) =>  {
+					this.toast.closeLoader();
 					console.log(error)
 				});
 		}

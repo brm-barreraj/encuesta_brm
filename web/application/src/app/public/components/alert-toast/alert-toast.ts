@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AlertToastComponent {
 
 	activeT:boolean = false;
+	activeL:boolean = false;
+	
 	txt1:string;
 	txt2:string;
 	
@@ -22,6 +24,16 @@ export class AlertToastComponent {
 	closeToast(){
       this.activeT = false;
   	}
+
+  	openLoader(){
+      this.activeL = true;
+  	}
+
+  	closeLoader(){
+      this.activeL = false;
+  	}
+
+
 	
 	openToast(txt1:string="",txt2:string="Listo",time:number=0,callback:any=null){
 		this.txt1 = txt1; 

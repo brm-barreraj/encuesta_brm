@@ -18,7 +18,6 @@ use Models\CategoriaRespuesta;
 use Models\CuentaXCategoria;
 
 
-
 $request = (object) $_POST;
 $accion = (isset($request->accion)) ? $request->accion : null ;
 //$accion = $_GET['accion'];
@@ -118,6 +117,7 @@ function getEncuesta(){
 	}
 	return $cuentas;
 }
+
 
 switch ($accion) {
 	// Public
@@ -331,10 +331,10 @@ switch ($accion) {
 		case "setAdminCliente":
 			if (isset($request->idCuenta) &&
 				isset($request->nombre) && $request->nombre != "" &&
-				isset($request->imagen) && $request->imagen != "" &&
+				isset($_FILES['imagen']) &&
 				isset($request->color) && $request->color != "" &&
 				isset($request->idAdmin) && $request->idAdmin != "") {
-
+				printVar($_FILES['imagen']);die;
 				$idAdmin = requestHash('decode',$request->idAdmin);
 				if ($request->idCuenta != "") {
 					$idCuenta = requestHash('decode',$request->idCuenta);

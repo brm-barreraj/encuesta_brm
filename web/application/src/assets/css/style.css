@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Wed Nov 15 2017 00:06:46 GMT-0500 (COT)
+ *Wed Nov 15 2017 17:42:04 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2437,6 +2437,42 @@ header .logo svg {
   border-left-color: #4f8fcc;
   border-right-color: #45634f;
 }
+.loader-center {
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+}
+.loader-center::after,
+.loader-center::before {
+  border-radius: 50%;
+  border: solid 8px transparent;
+  content: '';
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  -o-animation: wiggle 1.4s ease infinite;
+  -ms-animation: wiggle 1.4s ease infinite;
+  -webkit-animation: wiggle 1.4s ease infinite;
+  -moz-animation: wiggle 1.4s ease infinite;
+  animation: wiggle 1.4s ease infinite;
+}
+.loader-center::before {
+  border-bottom-color: #c3b578;
+  border-top-color: #0d2d6c;
+}
+.loader-center::after {
+  -o-animation-delay: 0.7s;
+  -ms-animation-delay: 0.7s;
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  border-left-color: #4f8fcc;
+  border-right-color: #45634f;
+}
 @-moz-keyframes wiggle {
   0% {
     -o-transform: rotate(0deg) scale(1);
@@ -2912,6 +2948,13 @@ header .logo svg {
   overflow: visible;
   padding: 0 1rem;
   pointer-events: all;
+}
+.category-item.ver-preguntas {
+  background-color: #0d2d6c;
+  color: #fff;
+}
+.category-item.ver-preguntas a {
+  color: #fff;
 }
 .category-item .btn-remove,
 .category-item .btn-submit {
@@ -4202,6 +4245,8 @@ body.login p {
   -moz-background-size: 2.5rem;
   background-size: 2.5rem;
   background-repeat: no-repeat;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
   color: #000;
   padding-right: 3rem;
 }

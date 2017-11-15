@@ -204,7 +204,7 @@
     <section class="categoria cat-{{categoria.idCategoria}}" [ngClass]="{ active: catShow==keyCategoria}">
       <h4>categoría</h4>
       <!--Nombre categoria-->
-      <h2>{{categoria.categoria}}</h2>
+      <h2>{{categoria.categoria}} ({{(keyCategoria+1)}} / {{categorias.length}})</h2>
       <!--/-Nombre categoria-->
       <!--Descripción-->
       <p class="categoria-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque repellendus nesciunt molestiae eius veritatis, minima quia tempore consectetur eum veniam porro possimus non, animi, ipsum laudantium quaerat illo ipsam. Laboriosam.</p>

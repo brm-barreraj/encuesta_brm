@@ -9,11 +9,19 @@ import 'rxjs/add/operator/map';
 export class RequestService {
   constructor(private http: Http) {}
 
-  public post(url:string, parameters:any) {
+  public post(url:string, parameters:any, file:boolean = false) {
     //url = url.replace("https://enc.brm.co/","http://127.0.0.1/encuestas_brm/web/server/");
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let headers:any;
+    let param:any;
+    if (file) {
+      headers = new Headers({ 'Content-Type': 'multipart/form-data'});
+      param = parameters;
+    }else{
+      headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      param = this.serialized(parameters);
+    }
     let options = new RequestOptions({ headers: headers, method: "post" });
-    return this.http.post(url, this.serialized(parameters), options)
+    return this.http.post(url, param, options)
                   .map(this.extractData)
                   .catch(this.handleError);
   }

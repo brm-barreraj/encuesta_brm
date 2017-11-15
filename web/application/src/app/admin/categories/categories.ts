@@ -12,11 +12,12 @@ import { AlertToastComponent } from '../components/alert-toast/alert-toast';
 export class AdminCategories {
 	activeS:boolean = false;
 	activeA:boolean = false;
-	categorias:Array<{id:String,nombre:String,porcentaje:Number,activo:Boolean}> = [];
+	categorias:Array<{id:String,nombre:String,porcentaje:Number,activo:Boolean,activoColor:Boolean}> = [];
 	categoria:any = {};
 	preguntas:Array<{id:String,idCategoria:String,titulo:String,activo:Boolean}> = [];
 	statusPreg:boolean = false;
 	pregunta:any = {};
+	tempKeyCategoriaActiva:any;
 
 	@ViewChild(AlertToastComponent) toast:AlertToastComponent;
 
@@ -59,8 +60,13 @@ export class AdminCategories {
 		}
 	}
 
-	showQuestions(idCategoria){
+	showQuestions(idCategoria,keyCategoria){
 		if (idCategoria !="" && idCategoria != undefined) {
+			if (this.tempKeyCategoriaActiva != undefined) {
+				this.categorias[this.tempKeyCategoriaActiva].activoColor=false;
+			}
+			this.categorias[keyCategoria].activoColor=true;
+			this.tempKeyCategoriaActiva = keyCategoria;
 			this.statusPreg = true;
 			this.pregunta = {idCategoria: idCategoria};
 			this.preguntas = [];			

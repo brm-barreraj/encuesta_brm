@@ -1,8 +1,12 @@
 div.form-group
 	input(type="text", placeholder="Nombre Cliente", value="{{client.nombre}}",[(ngModel)]="client.nombre")
 
+figure.client-brand([style.background-color] = 'client.color', *ngIf="client.imagen != undefined")
+	img(src="assets/images/{{client.imagen}}", title="{{client.nombre}}", alt="{{client.nombre}}")
+
 div.form-group
-	input(type="file", placeholder="Logo ", value="{{client.imagen}}",[(ngModel)]="client.imagen", (change)="fileChange($event)", accept=".png,.jpg,.jpeg")
+	input(type="hidden", placeholder="Logo ", value="{{client.imagen}}",[(ngModel)]="client.imagen", (change)="fileChange($event)", accept=".png,.jpg,.jpeg")
+	input(type="file", placeholder="Logo ", (change)="fileChange($event)", accept=".png,.jpg,.jpeg")
 
 div.form-group
 	input(type="text", placeholder="Color HEX", value="{{client.color}}",[(ngModel)]="client.color")
@@ -14,16 +18,15 @@ div.categories-selector
 		| Categorías:  
 		a((click)="toggleClass()") - selecccionar -
 
-
-
 	div.categories-selected
-		div(*ngFor="let catCliente of categoriasCliente; let keyCatCliente = index")
+		ng-container(*ngFor="let catCliente of categoriasCliente; let keyCatCliente = index")
 			p.chip(*ngIf="catCliente.active")
 				span {{catCliente.nombre}}
 				a.glyphicon.glyphicon-remove((click)="toogleCateogriaCliente('i',keyCatCliente)")
 	
 	//Selector de categorias
 	div.asigna-cat( [class.active]="activeS")
+		a.glyphicon.glyphicon-remove((click)="toggleClass()")
 		p(*ngFor="let catCliente of categoriasCliente; let keyCatCliente = index",(click)="toogleCateogriaCliente('inv',keyCatCliente)",[class.active]="catCliente.active") {{catCliente.nombre}}
 
 	///-Selector de categorias

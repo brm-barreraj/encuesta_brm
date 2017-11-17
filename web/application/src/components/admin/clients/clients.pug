@@ -4,19 +4,16 @@ include ../../includes/header-admin
 
 
 section.container-fluid.container-clients
-
-	
 	div.row.row-create
 		//Crear clientes
 		a.btn.btn-blue((click)="toggleClass()", [class.active]="activeS")
 			i.glyphicon.glyphicon-plus
 			| Nuevo cliente
 
-		article.client-create([class.active]="activeS")
-			form-client([idClient]="")
+		article.client-create( [class.active]="activeS")
+			form-client([idClient]="",(insertClient)="insertClient($event)",*ngIf="activeS")
 		///-Crear clientes
 
-	
 	//Listado de clientes BRM
 	div.row.row-client-list
 
@@ -34,7 +31,7 @@ section.container-fluid.container-clients
 
 				//Usuario por marca
 				aside.client.client-user
-					a.btn.btn-remove((click)="removeClient(cliente.idCuenta)"): i.glyphicon.glyphicon-remove
+					a.btn.btn-remove((click)="removeClient(cliente.idCuenta,keyCliente)"): i.glyphicon.glyphicon-remove
 
 					h3 {{cliente.nombreCuenta}}
 
@@ -43,7 +40,7 @@ section.container-fluid.container-clients
 							p((click)="goToUserClient(usuario.idUsuario,cliente.idCuenta)")
 								| {{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}
 								a((click)="removeUser(usuario.idUsuario)"): i.glyphicon.glyphicon-remove
-						
+				div.clearfix
 				///-Usuario por marca
 				a.btn.btn-create((click)="goToUserClient('',cliente.idCuenta)") Registrar Usuario
 

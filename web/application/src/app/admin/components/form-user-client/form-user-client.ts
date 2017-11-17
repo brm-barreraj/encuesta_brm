@@ -47,36 +47,47 @@ export class FormUserClientComponent {
 	}
 
 	setUser(){
-		let dataAdmin = this.serviceLoginAdmin.getSession();
-		this.user.idAdmin = dataAdmin.id;
-		this.user.idCuenta = this.idClient;
-		this.user.accion = 'setAdminUsuario';
-		this.serviceRequest.post('https://enc.brm.co/app.php', this.user)
-			.subscribe(
-			(result) => {
-				switch (result.error) {
-					case 0:
-						this.toast.openToast("Ocurrió un error",null,5,null);
-						break;
-					case 1:
-						if (this.idUser != '') {
-							this.toast.openToast("Actualizó correctamente al usuario",null,5,()=>{
-								this.router.navigate(['admin/clients']);
-							});
-						}else{
-							this.toast.openToast("Agregó correctamente al usuario",null,5,()=>{
-								this.router.navigate(['admin/clients']);
-							});
-						}
-						break;
-					case 2:
-						this.toast.openToast("Usuario incorrecto",null,5,null);
-						break;
-				}
-			},
-			(error) =>  {
-				console.log(error)
-			});
+
+
+
+		if (this.user.nombre != undefined && this.user.nombre != "" &&
+			this.user.apellido != undefined && this.user.apellido != "" &&
+			this.user.correo != undefined && this.user.correo != "" &&
+			this.user.usuario != undefined && this.user.usuario != "") {
+			let dataAdmin = this.serviceLoginAdmin.getSession();
+			this.user.idAdmin = dataAdmin.id;
+			this.user.idCuenta = this.idClient;
+			this.user.accion = 'setAdminUsuario';
+			this.user.contrasena = (this.idUser != '' && this.user.contrasena == null) ? '': this.user.contrasena;
+			this.serviceRequest.post('https://enc.brm.co/app.php', this.user)
+				.subscribe(
+				(result) => {
+					switch (result.error) {
+						case 0:
+							this.toast.openToast("Ocurrió un error",null,5,null);
+							break;
+						case 1:
+							if (this.idUser != '') {
+								this.toast.openToast("Actualizó correctamente al usuario",null,5,()=>{
+									this.router.navigate(['admin/clients']);
+								});
+							}else{
+								this.toast.openToast("Agregó correctamente al usuario",null,5,()=>{
+									this.router.navigate(['admin/clients']);
+								});
+							}
+							break;
+						case 2:
+							this.toast.openToast("Usuario incorrecto",null,5,null);
+							break;
+					}
+				},
+				(error) =>  {
+					console.log(error)
+				});
+		}else{
+			this.toast.openToast("Datos incompletos",null,5,null);
+		}
 	}
 
 }

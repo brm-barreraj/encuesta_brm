@@ -17,7 +17,6 @@ use Models\Admin;
 use Models\CategoriaRespuesta;
 use Models\CuentaXCategoria;
 
-
 $request = (object) $_POST;
 $accion = (isset($request->accion)) ? $request->accion : null ;
 //$accion = $_GET['accion'];
@@ -117,7 +116,6 @@ function getEncuesta(){
 	}
 	return $cuentas;
 }
-
 
 switch ($accion) {
 	// Public
@@ -331,33 +329,77 @@ switch ($accion) {
 		case "setAdminCliente":
 			if (isset($request->idCuenta) &&
 				isset($request->nombre) && $request->nombre != "" &&
-				isset($_FILES['imagen']) &&
+				(isset($_FILES['imagen']) || isset($request->imagen) && $request->imagen != "") &&
 				isset($request->color) && $request->color != "" &&
 				isset($request->idAdmin) && $request->idAdmin != "") {
-				printVar($_FILES['imagen']);die;
 				$idAdmin = requestHash('decode',$request->idAdmin);
+				$nResult = array();
 				if ($request->idCuenta != "") {
+					// Actualizar
+					if (isset($_FILES['imagen'])) {
+						$nameFile = moveFile($_FILES['imagen'],'assets/images/logos/');
+					}else{
+						$nameFile = $request->imagen;
+					}
 					$idCuenta = requestHash('decode',$request->idCuenta);
 					$nResult = Cuenta::where('id', $idCuenta)
-						->update(['nombre' => $request->nombre,'imagen' => $request->imagen,'color' => $request->color,'idAdmin' => $idAdmin]);
+						->update(['nombre' => $request->nombre,'imagen' => $nameFile,'color' => $request->color,'idAdmin' => $idAdmin]);
+					if (count($nResult) > 0) {
+						$data = $nResult;
+						// Error 1: Los datos de usuario son corerectos
+						$error = 1;
+					}else{
+						$data = null;
+						// Error 1: Los datos de usuario son incorerectos
+						$error = 2;
+					}
 				}else{
-					$cliente = new Cuenta;
-					$cliente->nombre = $request->nombre;
-					$cliente->imagen = $request->imagen;
-					$cliente->color = $request->color;
-					$cliente->idAdmin = $idAdmin;
-					$cliente->fecha = date("Y-m-d H:i:s");
-					$nResult = $cliente->save();
-				}
-				if (count($nResult) > 0) {
-					
-					$data = $nResult;
-					// Error 1: Los datos de usuario son corerectos
-					$error = 1;
-				}else{
-					$data = null;
-					// Error 1: Los datos de usuario son incorerectos
-					$error = 2;
+					// Insertar
+					$clienteIgual = Cuenta::select('id')
+					->where('nombre',$request->nombre)
+					->where('estado','A')
+					->first();
+					if (!isset($clienteIgual) || $clienteIgual == null || $clienteIgual == '') {
+						if (isset($_FILES['imagen'])) {
+							$nameFile = moveFile($_FILES['imagen'],'assets/images/logos/');
+							$nameFile = 'logos/'.$nameFile;
+							// Inserta un cliente
+							$cliente = new Cuenta;
+							$cliente->nombre = $request->nombre;
+							$cliente->imagen = $nameFile;
+							$cliente->color = $request->color;
+							$cliente->idAdmin = $idAdmin;
+							$cliente->fecha = date("Y-m-d H:i:s");
+							$nResult = $cliente->save();
+							$idCliente = $cliente->id;
+							if (count($nResult) > 0) {
+								// Inserta las categorias del cliente
+								$categoriasCliente = json_decode($request->categorias);
+								foreach ($categoriasCliente as $idCategoriaCliente) {
+									$cuentaXCategoria = new CuentaXCategoria;
+									$cuentaXCategoria->idCategoria = requestHash('decode',$idCategoriaCliente);
+									$cuentaXCategoria->idCuenta = $idCliente;
+									$cuentaXCategoria->fecha = date("Y-m-d H:i:s");
+									$cuentaXCategoria->save();
+								}
+								$data['id'] = requestHash('encode',$idCliente);
+								$data['imagen'] = $nameFile;
+								// Error 1: Los datos de usuario son corerectos
+								$error = 1;
+							}else{
+								$data = null;
+								// Error 1: Los datos de usuario son incorerectos
+								$error = 2;
+							}
+						}else{
+							// Error 3: datos request incorrectos
+							$error = 3;
+						}
+					}else{
+						$data = null;
+						// Error 5: El cliente ya existe
+						$error = 5;
+					}
 				}
 			}else{
 				// Error 3: datos request incorrectos

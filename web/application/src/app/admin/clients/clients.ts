@@ -35,7 +35,7 @@ export class AdminClients {
 							this.clientes = result.data;
 							break;
 						case 2:
-							this.toast.openToast("Usuario incorrecto",null,5,null);
+							this.toast.openToast("No existen clientes",null,5,null);
 							break;
 					}
 				},
@@ -55,12 +55,18 @@ export class AdminClients {
 	goToReports(){
 		
 	}
+
+	insertClient(client){
+		this.toast.openToast("Agregó correctamente al cliente",null,5,null);
+		this.activeS = false;
+		this.clientes.push(client);
+	}
 	
 	toggleClass(){
       this.activeS = !this.activeS;
   	}
 
-  	removeClient(idClient){
+  	removeClient(idClient:string,keyClient:number){
 		var conf = confirm("Desea eliminar el cliente?");
 		if (conf == true) {
 	  		this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'removeAdminCliente',id: idClient})
@@ -71,9 +77,8 @@ export class AdminClients {
 							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
-							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,()=>{
-								window.location.reload();
-							});
+							this.clientes.splice(keyClient,1);
+							this.toast.openToast("Se ha eliminado el cliente correctamente",null,5,null);
 							break;
 						case 2:
 							this.toast.openToast("Usuario incorrecto",null,5,null);

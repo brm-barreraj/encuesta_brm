@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestService } from '../../../app.request';
 import { LoginAdminService } from '../../login/login.service';
@@ -10,6 +10,7 @@ import { AlertToastComponent } from '../../components/alert-toast/alert-toast';
 })
 export class FormClientComponent {
 	@Input() idClient;
+	@Output() insertClient = new EventEmitter();
 	client:any = [];
 	activeS:boolean = false;
 	categoriasCliente:any = [];
@@ -71,18 +72,14 @@ export class FormClientComponent {
     	if(fileList.length > 0) {
 			this.fileImage = fileList[0];
 		}
-		console.log(this.fileImage);
 	}
 
 	toogleCateogriaCliente(action,key){
-		console.log(action);
 		if (action=="a") {
 			this.categoriasCliente[key].active = true;
 		}else if(action=="i"){
 			this.categoriasCliente[key].active = false;
 		}else if(action=="inv"){
-			this.activeS = false;
-			console.log(this.categoriasCliente[key]);
 			if (this.categoriasCliente[key].active == undefined) {
 				this.categoriasCliente[key].active = true;
 			}else{
@@ -93,10 +90,22 @@ export class FormClientComponent {
 	}
 
 	setClient(){
-		if (this.client.nombre != undefined && this.client.nombre != '' && this.fileImage != undefined && this.client.color != undefined && this.client.color != '') {
+		if (this.client.nombre != undefined && this.client.nombre != '' && ((this.client.imagen != undefined && this.client.imagen != '') || this.fileImage != undefined) && this.client.color != undefined && this.client.color != '') {
 			let user = this.serviceLoginAdmin.getSession();
 			let formData:FormData = new FormData();
-			formData.append('imagen', this.fileImage, this.fileImage.name);
+			if (this.fileImage == undefined) {
+				formData.append('imagen', this.client.imagen);
+			}else{
+				formData.append('imagen', this.fileImage, this.fileImage.name);
+			}
+			// Enviamos categorías
+			let categoriasActivas:any = [];
+			for (var i = 0; i < this.categoriasCliente.length; ++i) {
+				if (this.categoriasCliente[i].active) {
+					categoriasActivas.push(this.categoriasCliente[i].id);
+				}
+			}
+			formData.append('categorias', JSON.stringify(categoriasActivas));
 			formData.append('idCuenta', this.idClient);
 			formData.append('nombre', this.client.nombre);
 			formData.append('color', this.client.color);
@@ -111,18 +120,23 @@ export class FormClientComponent {
 							this.toast.openToast("Ocurrió un error",null,5,null);
 							break;
 						case 1:
-							if (this.idClient != null) {
-								this.toast.openToast("Actualizó correctamente al cliente",null,5,()=>{
-									this.router.navigate(['admin/clients']);
-								});
+							if (this.idClient != '') {
+								this.toast.openToast("Actualizó correctamente al cliente",null,5,null);
 							}else{
-								this.toast.openToast("Agregó correctamente al cliente",null,5,()=>{
-									this.router.navigate(['admin/clients']);
-								});
+								this.insertClient.emit({colorCuenta: this.client.color,
+									idCuenta: result.data.id,
+									imagenCuenta: result.data.imagen,
+									nombreCuenta: this.client.nombre});
 							}
 							break;
 						case 2:
-							this.toast.openToast("Usuario incorrecto",null,5,null);
+							this.toast.openToast("Los datos son incorrectos",null,5,null);
+							break;
+						case 3:
+							this.toast.openToast("Los datos son incorrectos",null,5,null);
+							break;
+						case 5:
+							this.toast.openToast("El cliente ya existe",null,5,null);
 							break;
 					}
 				},

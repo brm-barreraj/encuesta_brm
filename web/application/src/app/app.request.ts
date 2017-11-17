@@ -13,14 +13,15 @@ export class RequestService {
     //url = url.replace("https://enc.brm.co/","http://127.0.0.1/encuestas_brm/web/server/");
     let headers:any;
     let param:any;
+    let options:any;
     if (file) {
-      headers = new Headers({ 'Content-Type': 'multipart/form-data'});
       param = parameters;
     }else{
-      headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded' });
       param = this.serialized(parameters);
+      options = new RequestOptions({ headers: headers, method: "post" });
     }
-    let options = new RequestOptions({ headers: headers, method: "post" });
+    
     return this.http.post(url, param, options)
                   .map(this.extractData)
                   .catch(this.handleError);

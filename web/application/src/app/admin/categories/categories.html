@@ -215,10 +215,8 @@
           <input type="number" min="0" placeholder="10" [(ngModel)]="categoria.porcentaje" id="categoriaPer" name="categoriaPer"/>
         </div>
         <div class="form-group">
-          <div class="categoria-comment">
-            <!--label(for="comment") Descripción-->
-            <textarea [(ngModel)]="categoria.descripcion" id="comment" placeholder="Descripción" value="{{categoria.descripcion}}"></textarea>
-          </div>
+          <label for="comment">Descripción</label>
+          <textarea class="descripcion" [(ngModel)]="categoria.descripcion" id="comment" placeholder="..." value="{{categoria.descripcion}}"></textarea>
         </div>
         <button class="btn btn-submit" (click)="saveCategory(categoria)"><i class="glyphicon glyphicon-floppy-saved"></i><span>Guardar</span></button>
       </div>

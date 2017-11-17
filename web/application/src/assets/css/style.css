@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Fri Nov 17 2017 11:03:57 GMT-0500 (COT)
+ *Fri Nov 17 2017 16:03:11 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2566,11 +2566,12 @@ header .logo svg {
   }
 }
 .container-toast {
-  background-color: #323232;
-  bottom: 0;
-  -webkit-box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.3);
-  box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.3);
-  color: #fff;
+  background-color: #4f8fcc;
+  border-radius: 1rem;
+  bottom: 1rem;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+  color: #6d6e70;
   left: 50%;
   margin: 0;
   opacity: 0;
@@ -2589,7 +2590,7 @@ header .logo svg {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  width: 100%;
+  width: 90%;
   z-index: 30;
 }
 .container-toast.active {
@@ -2605,6 +2606,7 @@ header .logo svg {
 .container-toast span {
   color: #fff;
   margin: 0;
+  font-size: 1.8rem;
   max-width: 80%;
   padding: 0;
 }
@@ -4389,8 +4391,8 @@ body.login p {
 }
 .opciones a {
   color: #fff;
-  font-size: 1rem;
   display: inline-block;
+  font-size: 1rem;
   margin: 0.5rem;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -4456,22 +4458,21 @@ body.login p {
 .pregunta-text {
   padding-left: 0.8rem;
 }
-@media (min-width: 460px) {
-  .opciones {
-    right: 12rem;
-  }
-  .opciones.active {
-    max-width: 72%;
-  }
-}
-@media (min-width: 540px) {
-  .opciones.active {
-    max-width: 27rem;
+@media (min-width: 420px) {
+  .opciones a {
+    max-width: 15%;
+    width: 100%;
   }
 }
 @media (min-width: 640px) {
   .marca-front {
     top: 18.3rem;
+  }
+  .opciones {
+    right: 12rem;
+  }
+  .opciones.active {
+    max-width: 44rem;
   }
 }
 @media (min-width: 770px) {

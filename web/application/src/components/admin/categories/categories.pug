@@ -27,9 +27,8 @@ section.container-fluid.container-categories
 					input(type="number", min="0", placeholder="10", [(ngModel)]="categoria.porcentaje", id="categoriaPer", name="categoriaPer")
 
 				div.form-group
-					div.categoria-comment
-						//label(for="comment") Descripción
-						textarea([(ngModel)]="categoria.descripcion", id="comment", placeholder="Descripción", value="{{categoria.descripcion}}")
+					label(for="comment") Descripción
+					textarea.descripcion([(ngModel)]="categoria.descripcion", id="comment", placeholder="...", value="{{categoria.descripcion}}")
 
 				button.btn.btn-submit((click)="saveCategory(categoria)")
 					i.glyphicon.glyphicon-floppy-saved

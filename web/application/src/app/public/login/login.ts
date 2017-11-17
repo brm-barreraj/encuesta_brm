@@ -67,4 +67,8 @@ export class Login {
 				});
 		}
 	}
+
+	toggleFixed(){
+		this.document.body.classList.add('login-active');
+	}
 }

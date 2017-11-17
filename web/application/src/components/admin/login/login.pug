@@ -14,12 +14,12 @@ div.container-fluid.container-login
 	div.row
 		div.col-login
 			//- div.form-group((click)="this.active = !this.active", [class.active]="this.active")
-			div.form-group.form-user((click)="this.activeI = !this.activeI", [class.active]="this.activeI")
+			div.form-group.form-user((click)="toggleFixed()", [class.active]="this.activeI")
 				//- label(for="usuario") Usuario
 				input(type="text", [(ngModel)]="correo", id="correo", placeholder="Usuario")
 
 			//- div.form-group((click)="this.aca = !this.aca", [class.active]="this.aca")
-			div.form-group.form-pass((click)="this.activeO = !this.activeO", [class.active]="this.activeO")
+			div.form-group.form-pass((click)="toggleFixed()", [class.active]="this.activeO")
 				//- label(for="pass") Contraseña
 				input(type="password", [(ngModel)]="contrasena", id="pass", placeholder="Contraseña")
 

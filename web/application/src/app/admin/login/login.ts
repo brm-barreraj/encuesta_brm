@@ -60,4 +60,7 @@ export class AdminLogin {
 				});
 		}
 	}
+	toggleFixed(){
+		this.document.body.classList.add('login-active');
+	}
 }

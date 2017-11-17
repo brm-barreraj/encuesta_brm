@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Thu Nov 16 2017 20:20:41 GMT-0500 (COT)
+ *Fri Nov 17 2017 09:53:50 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -4205,6 +4205,12 @@ body.login p {
 .container-login .form-user::before {
   background-image: url("../images/icon-user.svg");
 }
+.login-active {
+  height: 100% !important;
+}
+.login-active footer {
+  position: relative !important;
+}
 .btn {
   border: none;
 }
@@ -4470,6 +4476,12 @@ body.login p {
   .hola {
     margin-bottom: 2.9rem;
     margin-top: -2.9rem;
+  }
+  .login-active {
+    height: 100vh !important;
+  }
+  .login-active footer {
+    position: absolute !important;
   }
   .marca {
     left: 15%;

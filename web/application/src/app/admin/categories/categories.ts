@@ -12,7 +12,7 @@ import { AlertToastComponent } from '../components/alert-toast/alert-toast';
 export class AdminCategories {
 	activeS:boolean = false;
 	activeA:boolean = false;
-	categorias:Array<{id:String,nombre:String,porcentaje:Number,activo:Boolean,activoColor:Boolean}> = [];
+	categorias:Array<{id:String,nombre:String,descripcion:String,porcentaje:Number,activo:Boolean,activoColor:Boolean}> = [];
 	categoria:any = {};
 	preguntas:Array<{id:String,idCategoria:String,titulo:String,activo:Boolean}> = [];
 	statusPreg:boolean = false;
@@ -103,8 +103,8 @@ export class AdminCategories {
 	}
 
 	saveCategory(category:any,keyCategoria:number=-1){
-		if (category.nombre !="" && category.nombre != undefined && category.porcentaje != undefined && category.porcentaje != undefined) {
-			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setCategoria', id: category.id, nombre: category.nombre, porcentaje: category.porcentaje})
+		if (category.nombre !="" && category.nombre != undefined && category.descripcion !="" && category.descripcion != undefined && category.porcentaje != undefined && category.porcentaje != undefined) {
+			this.serviceRequest.post('https://enc.brm.co/app.php', { accion: 'setCategoria', id: category.id, nombre: category.nombre, descripcion: category.descripcion, porcentaje: category.porcentaje})
 				.subscribe(
 				(result) => {
 					switch (result.error) {
@@ -256,16 +256,13 @@ export class AdminCategories {
 		}
 	}
 	
-
 	toggleClass(ele){
-	      // this.activeS = !this.activeS;
+		if(ele== 'activeS'){
+			this.activeS = !this.activeS;
+		}else  if(ele== 'activeA'){
+			this.activeA = !this.activeA;
+		}
 
-	      if(ele== 'activeS'){
-		      this.activeS = !this.activeS;
-	      }else  if(ele== 'activeA'){
-		      this.activeA = !this.activeA;
-	      }
-
-	  	}
+	}
 
 }

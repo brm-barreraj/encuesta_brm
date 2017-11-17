@@ -83,6 +83,7 @@ function getEncuesta(){
 		'pregunta_historial.titulo AS pregunta',
 		'categoria_historial.porcentaje AS porcentajeCategoria',
 		'categoria_historial.nombre AS categoria',
+		'categoria_historial.nombre AS categoria',
 		'usuario.nombre AS nombreUsuario',
 		'usuario.apellido AS apellidoUsuario',
 		'usuario.id AS idUsuario',
@@ -210,6 +211,7 @@ switch ($accion) {
 				$preguntas = Categoria::select('cuenta.id AS idCuenta',
 					'categoria.idCategoriaHistorial AS idCategoria',
 					'categoria.nombre AS categoria',
+					'categoria.descripcion AS categoriaDescripcion',
 					'pregunta.idPreguntaHistorial AS idPregunta',
 					'pregunta.titulo AS pregunta'
 					)
@@ -220,7 +222,7 @@ switch ($accion) {
 				->get();
 				if (count($preguntas) > 0) {
 					$preguntas = $preguntas->toArray();
-					$newPreguntas = groupArray($preguntas,array('idCategoria','categoria'),'preguntas');
+					$newPreguntas = groupArray($preguntas,array('idCategoria','categoria','categoriaDescripcion'),'preguntas');
 					$data = $newPreguntas;
 					// Error 1: Los datos de usuario son corerectos
 					$error = 1;
@@ -365,7 +367,7 @@ switch ($accion) {
 							$nameFile = 'logos/'.$nameFile;
 							// Inserta un cliente
 							$cliente = new Cuenta;
-							$cliente->nombre = $request->nombre;
+							$cliente->nombre = strtoupper($request->nombre);
 							$cliente->imagen = $nameFile;
 							$cliente->color = $request->color;
 							$cliente->idAdmin = $idAdmin;
@@ -523,14 +525,16 @@ switch ($accion) {
 
 				$idAdmin = requestHash('decode',$request->idAdmin);
 				$idCuenta = requestHash('decode',$request->idCuenta);
+				$nombre = ucfirst(strtolower($request->nombre));
+				$apellido = ucfirst(strtolower($request->apellido));
 				if ($request->id != "") {
 					$id = requestHash('decode',$request->id);
 					$nResult = Usuario::where('id', $id)
-						->update(['nombre' => $request->nombre,'apellido' => $request->apellido,'correo' => $request->correo,'usuario' => $request->usuario,'contrasena' => requestHash('encode',$request->contrasena),'idAdmin' => $idAdmin,'idCuenta' => $idCuenta]);
+						->update(['nombre' => $nombre,'apellido' => $apellido,'correo' => $request->correo,'usuario' => $request->usuario,'contrasena' => requestHash('encode',$request->contrasena),'idAdmin' => $idAdmin,'idCuenta' => $idCuenta]);
 				}else{
 					$usuario = new Usuario;
-					$usuario->nombre = $request->nombre;
-					$usuario->apellido = $request->apellido;
+					$usuario->nombre = $nombre;
+					$usuario->apellido = $apellido;
 					$usuario->correo = $request->correo;
 					$usuario->usuario = $request->usuario;
 					$usuario->contrasena = requestHash('encode',$request->contrasena);
@@ -602,7 +606,7 @@ switch ($accion) {
 
 		// getCategorias: Retorna todas los categorias
 		case "getCategorias":
-			$categorias = Categoria::select('id','nombre','porcentaje')->get();
+			$categorias = Categoria::select('id','nombre','porcentaje','descripcion')->get();
 			if (count($categorias) > 0) {
 				$categorias = $categorias->toArray();
 				// Ciframos ids 
@@ -624,7 +628,8 @@ switch ($accion) {
 		case "setCategoria":
 			if (isset($request->id) &&
 				isset($request->nombre) && $request->nombre != "" &&
-				isset($request->porcentaje) && $request->porcentaje != "") {
+				isset($request->porcentaje) && $request->porcentaje != "" &&
+				isset($request->descripcion) && $request->descripcion != "") {
 				$nResult = false;
 				$idCat = requestHash('decode',$request->id);
 				if (isset($request->id) && $request->id != "" && $request->id != 'undefined') {
@@ -643,7 +648,7 @@ switch ($accion) {
 						$idCategoriaHistorial = $categoriaHistoria->id;
 						// Actializa la categoría
 						$nResult = Categoria::where('id', $idCat)
-							->update(['nombre' => $request->nombre,'porcentaje' => $request->porcentaje,'idCategoriaHistorial' => $idCategoriaHistorial]);
+							->update(['nombre' => $request->nombre,'descripcion' => $request->descripcion,'porcentaje' => $request->porcentaje,'idCategoriaHistorial' => $idCategoriaHistorial]);
 						if (count($nResult) > 0) {
 							$data = $nResult;
 							// Error 1: Los datos de usuario son corerectos
@@ -654,9 +659,29 @@ switch ($accion) {
 							$error = 3;
 						}
 					}else{
-						$data = null;
-						// Error 4: No se realizaron cambios a la categoría
-						$error = 4;
+						$categoriaDescIgual = Categoria::select('id','nombre','porcentaje')
+							->where('descripcion',$request->descripcion)
+							->where('id',$idCat)
+							->first();
+						if (!isset($categoriaDescIgual) || $categoriaDescIgual == null || $categoriaDescIgual == '') {
+							// Actializa la categoría
+							$nResult = Categoria::where('id', $idCat)
+								->update(['descripcion' => $request->descripcion]);
+							
+							if (count($nResult) > 0) {
+								$data = $nResult;
+								// Error 1: Los datos de usuario son corerectos
+								$error = 1;
+							}else{
+								$data = null;
+								// Error 1: Los datos de usuario son incorerectos
+								$error = 3;
+							}
+						}else{
+							$data = null;
+							// Error 4: No se realizaron cambios a la categoría
+							$error = 4;
+						}
 					}
 				}else{
 					$categoriaIgual = Categoria::select('id','nombre','porcentaje')
@@ -674,6 +699,7 @@ switch ($accion) {
 						$categoria = new Categoria;
 						$categoria->nombre = $request->nombre;
 						$categoria->porcentaje = $request->porcentaje;
+						$categoria->descripcion = $request->descripcion;
 						$categoria->fecha = date("Y-m-d H:i:s");
 						$categoria->idCategoriaHistorial = $idCategoriaHistorial;
 						$nResult = $categoria->save();

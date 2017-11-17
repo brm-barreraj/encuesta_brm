@@ -207,7 +207,7 @@
       <h2>{{categoria.categoria}} ({{(keyCategoria+1)}} / {{categorias.length}})</h2>
       <!--/-Nombre categoria-->
       <!--Descripción-->
-      <p class="categoria-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque repellendus nesciunt molestiae eius veritatis, minima quia tempore consectetur eum veniam porro possimus non, animi, ipsum laudantium quaerat illo ipsam. Laboriosam.</p>
+      <p class="categoria-intro">{{categoria.categoriaDescripcion}}</p>
       <!--/-Descripción-->
       <!--Pregunta-->
       <article class="pregunta preg-{{pregunta.idPregunta}}" *ngFor="let pregunta of categoria.preguntas; let keyPregunta = index" data-id="{{pregunta.idPregunta}}">

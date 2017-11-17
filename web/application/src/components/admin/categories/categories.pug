@@ -26,6 +26,11 @@ section.container-fluid.container-categories
 					label(for="categoriaPer") Peso de la categoría (porcentaje)
 					input(type="number", min="0", placeholder="10", [(ngModel)]="categoria.porcentaje", id="categoriaPer", name="categoriaPer")
 
+				div.form-group
+					div.categoria-comment
+						//label(for="comment") Descripción
+						textarea([(ngModel)]="categoria.descripcion", id="comment", placeholder="Descripción", value="{{categoria.descripcion}}")
+
 				button.btn.btn-submit((click)="saveCategory(categoria)")
 					i.glyphicon.glyphicon-floppy-saved
 					span Guardar
@@ -38,7 +43,9 @@ section.container-fluid.container-categories
 						input([readonly]="!cat.activo", [(ngModel)]="cat.nombre", value="{{cat.nombre}}", type="text")
 						a.btn-edit((click)="showEditCategory(keyCategoria)"): i.glyphicon.glyphicon-pencil
 						a.btn-remove((click)="removeCategory(cat.id,keyCategoria)"): i.glyphicon.glyphicon-trash
+						
 						input.peso([readonly]="!cat.activo", [(ngModel)]="cat.porcentaje", value="{{cat.porcentaje}}", type="number", min="0")
+						textarea.descripcion([readonly]="!cat.activo", [(ngModel)]="cat.descripcion") {{cat.descripcion}} 
 						
 						button.btn.btn-submit((click)="saveCategory(cat,keyCategoria)")
 							i.glyphicon.glyphicon-floppy-saved

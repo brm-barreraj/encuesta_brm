@@ -39,6 +39,8 @@ section.container-fluid.container-categories
 						a.btn-edit((click)="showEditCategory(keyCategoria)"): i.glyphicon.glyphicon-pencil
 						a.btn-remove((click)="removeCategory(cat.id,keyCategoria)"): i.glyphicon.glyphicon-trash
 						input.peso([readonly]="!cat.activo", [(ngModel)]="cat.porcentaje", value="{{cat.porcentaje}}", type="number", min="0")
+
+						textarea.descripcion([readonly]="!cat.activo", [(ngModel)]="cat.descripcion") {{cat.descripcion}} 
 						
 						button.btn.btn-submit((click)="saveCategory(cat,keyCategoria)")
 							i.glyphicon.glyphicon-floppy-saved

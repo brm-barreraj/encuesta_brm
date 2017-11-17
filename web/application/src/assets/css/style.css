@@ -4,7 +4,7 @@
  * @link https://github.com/brmBOG/HTML
  * @link BRM Team
  * @license 
- *Fri Nov 17 2017 09:53:50 GMT-0500 (COT)
+ *Fri Nov 17 2017 11:04:41 GMT-0500 (COT)
  */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
@@ -2940,6 +2940,7 @@ header .logo svg {
 .category-item.active .form-select {
   display: block;
 }
+.category-item.active .descripcion,
 .category-item.active .peso {
   max-height: 10rem;
   opacity: 0.99;
@@ -2975,6 +2976,7 @@ header .logo svg {
   padding: 0;
   width: 100%;
 }
+.category-item .descripcion,
 .category-item .peso {
   display: block;
   max-height: 0;
@@ -2984,6 +2986,9 @@ header .logo svg {
   overflow: hidden;
   padding: 0;
   pointer-events: none;
+}
+.category-item .descripcion {
+  min-height: 0;
 }
 .category-list,
 .category-q {
